@@ -1,0 +1,44 @@
+.binary-event-em {
+    text-transform: capitalize;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 8px;
+    padding: 1px 5px;
+    color: red;
+    border-radius: 2px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: max-content;
+    animation: beei 2s ease-out infinite;
+}
+
+@keyframes beei {
+    0% {
+        transform: scale(1, 1);
+        color: red;
+        border: 1px solid #ddd;
+    }
+
+    50% {
+        transform: scale(1.05, 1.05);
+        color: green;
+        border: 1px solid #000;
+    }
+
+    100% {
+        transform: scale(1, 1);
+        color: blue;
+        border: 1px solid #aaa;
+    }
+}
+
+em.abo-em {
+    text-transform: capitalize;
+    font-style: normal;
+    font-size: 12px;
+    background: var(--theme2-bg);
+    color: #fff;
+    border-radius: 2px;
+    padding: 2px 5px;
+}

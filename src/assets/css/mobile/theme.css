@@ -1,0 +1,14 @@
+:root {
+  --theme1-bg: #000;
+  --theme1-bg90: #1a3da6e6;
+  --theme2-bg: #8000ff;
+  --theme2-bg70: #0f2462b3;
+  --theme2-bg85: #9430ff;
+  --primary-color: #fff;
+  --secondary-color: #fff;
+}
+@media (max-width: 767px) {
+  .header .logo {
+    width: 130px;
+  }
+}

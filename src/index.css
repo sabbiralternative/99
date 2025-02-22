@@ -1,0 +1,6 @@
+a {
+  cursor: pointer;
+}
+.video-js .vjs-tech {
+  object-fit: cover !important;
+}
