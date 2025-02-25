@@ -1,9 +1,19 @@
-:root {
+/* :root {
   --theme1-bg: #000;
   --theme1-bg90: #1a3da6e6;
   --theme2-bg: #8000ff;
   --theme2-bg70: #0f2462b3;
   --theme2-bg85: #9430ff;
+  --primary-color: #fff;
+  --secondary-color: #fff;
+} */
+
+:root {
+  --theme1-bg: #1a3da6;
+  --theme1-bg90: #1a3da6e6;
+  --theme2-bg: #0f2462;
+  --theme2-bg70: #0f2462b3;
+  --theme2-bg85: #0f2462d9;
   --primary-color: #fff;
   --secondary-color: #fff;
 }

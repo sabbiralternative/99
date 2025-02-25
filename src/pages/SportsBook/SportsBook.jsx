@@ -15,9 +15,17 @@ const SportsBook = () => {
     <div _nghost-swn-c87="">
       <div _ngcontent-swn-c87="" id="casino-frm">
         <div _ngcontent-swn-c87="" className="casino-detail-head">
-          <button onClick={() => navigate("/")} _ngcontent-swn-c87="">
+          <button
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onClick={() => navigate("/")}
+            _ngcontent-swn-c87=""
+          >
             <FontAwesomeIcon
-              style={{ color: "white" }}
+              style={{ color: "white", fontSize: "16px", marginBottom: "5px" }}
               icon={faHome}
               className="mr-1"
             />
