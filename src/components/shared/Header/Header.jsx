@@ -37,12 +37,21 @@ const Header = () => {
           >
             <div _ngcontent-htq-c82 className="logo col-6">
               <Link
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
                 _ngcontent-htq-c82
                 to="/"
                 className="router-link-exact-active router-link-active"
               >
                 <FontAwesomeIcon
-                  style={{ color: "white" }}
+                  style={{
+                    color: "white",
+                    fontSize: "16px",
+                    marginBottom: "5px",
+                  }}
                   icon={faHome}
                   className="mr-1"
                 />
