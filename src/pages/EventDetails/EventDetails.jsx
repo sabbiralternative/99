@@ -18,6 +18,7 @@ import {
 import Tab from "../../components/modules/EventDetails/Tab";
 import { useCurrentBets } from "../../hooks/currentBets";
 import CurrentBets from "../../components/modules/EventDetails/CurrentBets";
+import ScoreCard from "../../components/modules/EventDetails/ScoreCard";
 
 const EventDetails = () => {
   const { eventTypeId, eventId } = useParams();
@@ -167,7 +168,7 @@ const EventDetails = () => {
                         style={{
                           width: "100%",
                           position: "relative",
-                          // height: "180px",
+                          height: "auto",
                           paddingBottom: "56.25%",
                         }}
                         _ngcontent-bym-c104
@@ -190,8 +191,8 @@ const EventDetails = () => {
                             position: "absolute",
                             left: "0",
                             top: "0",
-                            bottom: "0",
-                            right: "0",
+                            // bottom: "0",
+                            // right: "0",
                           }}
                         />
                       </div>
@@ -230,6 +231,11 @@ const EventDetails = () => {
                           )}
 
                         <div _ngcontent-bym-c104 className="sr-widget-1" />
+
+                        {data?.result?.[0]?.score2?.length !== 0 &&
+                          !Array.isArray(data?.result?.[0]?.score2) && (
+                            <ScoreCard score2={data?.result?.[0]?.score2} />
+                          )}
                         {matchOdds && matchOdds?.length > 0 && (
                           <MatchOdds matchOdds={matchOdds} />
                         )}
