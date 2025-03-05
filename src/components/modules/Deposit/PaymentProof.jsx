@@ -38,7 +38,9 @@ const PaymentProof = ({ paymentId, amount }) => {
           getUTR(data?.filePath, {
             onSuccess: (data) => {
               if (data?.success) {
-                setUtr(data?.utr);
+                if (data?.utr !== null) {
+                  setUtr(data?.utr);
+                }
               }
             },
           });
@@ -126,7 +128,7 @@ const PaymentProof = ({ paymentId, amount }) => {
               name="transaction_id"
               id="transactionId"
               placeholder="6 to 12 Digit UTR Number"
-              value={utr}
+              value={utr !== null && utr}
             />
           </div>
           {!filePath && !loading && (
