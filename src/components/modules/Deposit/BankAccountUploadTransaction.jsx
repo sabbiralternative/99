@@ -69,7 +69,11 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
       const data = res?.data;
 
       if (data?.success) {
-        setDepositData(data?.result);
+        if (method?.type === "whatsapp") {
+          window.location.href = data?.result?.link;
+        } else {
+          setDepositData(data?.result);
+        }
       }
     }
   };
@@ -139,6 +143,9 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                             method?.type === methodType
                               ? "var(--theme2-bg)"
                               : "transparent",
+                          display: "flex",
+                          gap: "5px",
+                          alignItems: "center",
                         }}
                         key={method?.paymentId}
                         className="nav-link active"
@@ -170,6 +177,12 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                           <img
                             style={{ height: "20px", width: "20px" }}
                             src={"/m/src/assets/icon/usdt.png"}
+                          />
+                        ) : null}
+                        {method?.type == "whatsapp" ? (
+                          <img
+                            style={{ height: "20px", width: "20px" }}
+                            src={"/m/src/assets/img/wp_support.webp"}
                           />
                         ) : null}
                       </button>
@@ -212,7 +225,7 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                             {methodType === "pg" && (
                               <PG depositData={depositData} />
                             )}
-                            {methodType && (
+                            {methodType && methodType !== "whatsapp" && (
                               <PaymentProof
                                 amount={amount}
                                 paymentId={paymentId}
