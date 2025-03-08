@@ -232,7 +232,8 @@ const EventDetails = () => {
 
                         <div _ngcontent-bym-c104 className="sr-widget-1" />
 
-                        {data?.result?.[0]?.score2?.length !== 0 &&
+                        {eventTypeId == 4 &&
+                          data?.result?.[0]?.score2?.length !== 0 &&
                           !Array.isArray(data?.result?.[0]?.score2) && (
                             <ScoreCard score2={data?.result?.[0]?.score2} />
                           )}
