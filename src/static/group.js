@@ -23,13 +23,13 @@ export const homeTab = [
     id: 4,
     name: "Horse Racing",
     image: images.horseRacing,
-    group: 3,
+    group: 7,
   },
   {
     id: 5,
     name: "Greyhound Racing",
     image: images.greyhoundRacing,
-    group: 66,
+    group: 4339,
   },
   {
     id: 6,

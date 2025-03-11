@@ -19,6 +19,7 @@ import Tab from "../../components/modules/EventDetails/Tab";
 import { useCurrentBets } from "../../hooks/currentBets";
 import CurrentBets from "../../components/modules/EventDetails/CurrentBets";
 import ScoreCard from "../../components/modules/EventDetails/ScoreCard";
+import HorseGreyhound from "../../components/modules/EventDetails/HorseGreyhound";
 
 const EventDetails = () => {
   const { eventTypeId, eventId } = useParams();
@@ -246,6 +247,10 @@ const EventDetails = () => {
                         {fancyData && fancyData?.length > 0 && (
                           <Fancy fancy={fancyData} />
                         )}
+                        {(eventTypeId == 7 || eventTypeId == 4339) &&
+                        data?.result?.length > 0 ? (
+                          <HorseGreyhound data={data?.result} />
+                        ) : null}
                       </div>
                     </div>
                   </div>
