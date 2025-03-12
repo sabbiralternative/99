@@ -19,7 +19,7 @@
       "disabledDevtool": false,
       "casinoCurrency": "INR",
       "balanceApiLoop": true,
-      "baseUrl": "/m",
+      "baseUrl": "/m/",
       "betFairCashOut": true,
       "bookmakerCashOut": true,
       "mac88": true,
