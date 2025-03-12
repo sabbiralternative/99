@@ -2,7 +2,7 @@
 
 import { useParams } from "react-router-dom";
 import { useGetEventDetailsQuery } from "../../redux/features/events/events";
-import Score from "../../components/modules/EventDetails/Score";
+// import Score from "../../components/modules/EventDetails/Score";
 import MatchOdds from "../../components/modules/EventDetails/MatchOdds";
 import Bookmaker from "../../components/modules/EventDetails/Bookmaker";
 import Fancy from "../../components/modules/EventDetails/Fancy";
@@ -226,10 +226,10 @@ const EventDetails = () => {
                       )}
 
                       <div _ngcontent-bym-c104>
-                        {eventTypeId == 4 &&
+                        {/* {eventTypeId == 4 &&
                           data?.result?.[0]?.score?.length > 0 && (
                             <Score score={data?.result?.[0]?.score} />
-                          )}
+                          )} */}
 
                         <div _ngcontent-bym-c104 className="sr-widget-1" />
 

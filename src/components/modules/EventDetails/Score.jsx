@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unknown-property */
+/* NOTUSING */
 const Score = ({ score }) => {
   const {
     recent,
