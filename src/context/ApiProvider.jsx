@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { getSetApis } from "../api/config";
 import { API, Settings } from "../api";
 import notice from "../../notice.json";
+import images from "../assets/images";
 export const ApiContext = createContext(null);
 
 const ApiProvider = ({ children }) => {
@@ -21,8 +22,13 @@ const ApiProvider = ({ children }) => {
   useEffect(() => {
     if (noticeLoaded) {
       /* Dynamically append  theme css  */
-      const logo = `${API.assets}/${Settings.siteUrl}/logo.${Settings.logoFormat}`;
-      setLogo(logo);
+      if (Settings.build === "production") {
+        const logo = `${API.assets}/${Settings.siteUrl}/logo.${Settings.logoFormat}`;
+        setLogo(logo);
+      } else {
+        setLogo(images.logo);
+      }
+
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";

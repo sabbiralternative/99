@@ -29,8 +29,10 @@ import bankPicture from "../icon/bankPicture.svg";
 import deleteIcon from "../icon/delete-icon.svg";
 import edit from "../icon/edit.svg";
 import whatsApp from "../img/wp_support.webp";
+import logo from "../img/99exch/logo.png";
 
 export default {
+  logo,
   whatsApp,
   edit,
   deleteIcon,
