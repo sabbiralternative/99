@@ -171,14 +171,14 @@ body {
   font-weight: 300;
 }
 
-a.whatsapp_link[_ngcontent-htq-c82] {
+a.whatsapp_link {
   position: fixed;
   right: 4%;
   bottom: 3%;
   z-index: 9;
 }
 
-a.whatsapp_link[_ngcontent-htq-c82] img[_ngcontent-htq-c82] {
+a.whatsapp_link img {
   width: 75px;
   animation: simple-scale 1s linear 1s infinite alternate;
 }

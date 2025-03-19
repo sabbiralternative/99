@@ -12,12 +12,13 @@ import Dropdown from "./Dropdown";
 import images from "../../../assets/images";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import Search from "./Search";
+import useWhatsApp from "../../../hooks/whatsapp";
 
 /* eslint-disable react/no-unknown-property */
 const Header = () => {
   const dropdownRef = useRef();
-
-  const { user } = useSelector((state) => state.auth);
+  const { data: socialLink } = useWhatsApp();
+  const { user, token } = useSelector((state) => state.auth);
   const { data: balance } = useBalance();
   const { logo } = useContext(ApiContext);
   const { data } = useLatestEvent();
@@ -26,6 +27,14 @@ const Header = () => {
   useCloseModalClickOutside(dropdownRef, () => {
     setShowDropdown(false);
   });
+
+  const navigateWhatsApp = () => {
+    if (token && socialLink?.result?.branchWhatsapplink) {
+      window.open(socialLink?.result?.branchWhatsapplink, "_blank");
+    } else {
+      window.open(socialLink?.result?.whatsapplink, "_blank");
+    }
+  };
 
   return (
     <div _ngcontent-htq-c85 _nghost-htq-c82>
@@ -133,14 +142,12 @@ const Header = () => {
           {data && data?.length > 0 && <LatestEvent latestEvent={data} />}
         </div>
       </header>
-      {/* <a
-    _ngcontent-htq-c82
-    target="_blank"
-    className="whatsapp_link"
-    href="https://wa.link/allsitelink1"
-  >
-    <img _ngcontent-htq-c82 src="/src/assets/img/wp_support.webp" />
-  </a> */}
+      {socialLink?.result?.whatsapplink ||
+      socialLink?.result?.branchWhatsapplink ? (
+        <a onClick={navigateWhatsApp} className="whatsapp_link">
+          <img src={images.whatsApp} />
+        </a>
+      ) : null}
       <div
         _ngcontent-htq-c82
         bsmodal
