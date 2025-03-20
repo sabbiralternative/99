@@ -202,12 +202,13 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                       <div className="card">
                         <div className="card-body">
                           <h5
+                            style={{ textTransform: "uppercase" }}
                             className="card-title"
                             data-min={300.0}
                             data-max={200000.0}
                             id="account-name-128375"
                           >
-                            IMPS
+                            {methodType}
                           </h5>
                           <div className="row">
                             {methodType === "bank" && (
