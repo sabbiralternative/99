@@ -4,14 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faUser } from "@fortawesome/free-solid-svg-icons";
 import { ApiContext } from "../../context/ApiProvider";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import WithdrawConfirm from "./WithdrawConfirm";
 import BankAccounts from "./BankAccounts";
 import SelectAmount from "./SelectAmount";
 import { useBankAccount } from "../../hooks/bankAccount";
 import AddBank from "./AddBank";
+import { setAddBank } from "../../redux/features/global/globalSlice";
 
 const Withdraw = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { logo } = useContext(ApiContext);
@@ -19,7 +21,7 @@ const Withdraw = () => {
   const [showBankAccount, setShowBankAccount] = useState(false);
   const [confirmWithdraw, setConfirmWithdraw] = useState(false);
   const [bank, setBank] = useState("");
-  const { addBank, setAddBank } = useSelector((state) => state.global);
+  const { addBank } = useSelector((state) => state.global);
   const payload = {
     type: "getBankAccounts",
     status: "1",
@@ -29,9 +31,9 @@ const Withdraw = () => {
   useEffect(() => {
     if (showBankAccount && bankData?.length < 1) {
       setShowBankAccount(false);
-      setAddBank(true);
+      dispatch(setAddBank(true));
     }
-  }, [bankData, setAddBank, showBankAccount]);
+  }, [bankData, showBankAccount, dispatch]);
 
   return (
     <div _nghost-swn-c87="">
@@ -90,11 +92,8 @@ const Withdraw = () => {
                     setBank={setBank}
                   />
                 )}
-                {addBank && bankData?.length == 1 && (
-                  <AddBank
-                    setAddBank={setAddBank}
-                    refetchBankData={refetchBankData}
-                  />
+                {addBank && bankData?.length == 0 && (
+                  <AddBank refetchBankData={refetchBankData} />
                 )}
                 {confirmWithdraw && (
                   <WithdrawConfirm

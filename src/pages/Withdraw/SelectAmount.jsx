@@ -2,7 +2,7 @@ import images from "../../assets/images";
 import useWithdrawBreakdown from "../../hooks/withdrawBreakdown";
 
 const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
-  const { withdrawBreakdown } = useWithdrawBreakdown();
+  const { data } = useWithdrawBreakdown();
 
   return (
     <div
@@ -50,9 +50,7 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
             />
           </div>
           <div className="wallet-card ">
-            <span className="wallet-amount ">
-              ₹ {withdrawBreakdown?.mainWallet}
-            </span>
+            <span className="wallet-amount ">₹ {data?.mainWallet}</span>
             <div className="wallet-txt ">
               <p className="">Main Wallet</p>
               {/* <div className="with-any ">
@@ -86,7 +84,7 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
                       placeholder="₹ Amount"
                     />
                     <p className="deposit-input-min-text ">
-                      minimum ₹{withdrawBreakdown?.minimumWithdraw}
+                      minimum ₹{data?.minimumWithdraw}
                     </p>
                   </div>
                 </div>
@@ -96,10 +94,7 @@ const SelectAmount = ({ setAmount, amount, setShowBankAccount }) => {
         </div>
         <button
           style={{ border: "none" }}
-          disabled={
-            amount < withdrawBreakdown?.minimumWithdraw ||
-            amount > withdrawBreakdown?.mainWallet
-          }
+          disabled={amount < data?.minimumWithdraw || amount > data?.mainWallet}
           onClick={() => setShowBankAccount(true)}
           className="btnn1"
         >

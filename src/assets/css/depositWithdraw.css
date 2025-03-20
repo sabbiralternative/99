@@ -778,6 +778,11 @@
   line-height: normal;
 }
 
+.btnn1:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .dep-w-info-bc {
   display: flex;
   flex-direction: column;

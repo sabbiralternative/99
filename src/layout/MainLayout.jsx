@@ -2,7 +2,7 @@
 
 import { Outlet } from "react-router-dom";
 import Header from "../components/shared/Header/Header";
-import Banner from "../components/modals/Banner/Banner";
+// import Banner from "../components/modals/Banner/Banner";
 
 const MainLayout = () => {
   return (
@@ -17,7 +17,7 @@ const MainLayout = () => {
             </div>
           </div>
           <div _ngcontent-htq-c85 _nghost-htq-c84 />
-          <Banner />
+          {/* <Banner /> */}
         </div>
       </div>
     </div>
