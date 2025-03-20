@@ -19,7 +19,13 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
 
         // Dynamically update Settings object
         Object.keys(settings).forEach((key) => {
-          Settings[key] = settings[key];
+          if (key === "logo") {
+            Settings.logoHeight = settings?.["logo"]?.height;
+            Settings.logoWidth = settings?.["logo"]?.width;
+            Settings.logoFormat = settings?.["logo"]?.format;
+          } else {
+            Settings[key] = settings[key];
+          }
         });
 
         setNoticeLoaded(true);

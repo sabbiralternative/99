@@ -24,6 +24,7 @@ const ApiProvider = ({ children }) => {
       /* Dynamically append  theme css  */
       if (Settings.build === "production") {
         const logo = `${API.assets}/${Settings.siteUrl}/logo.${Settings.logoFormat}`;
+
         setLogo(logo);
       } else {
         setLogo(images.logo);
