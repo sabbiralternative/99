@@ -121,7 +121,7 @@ const Login = () => {
                 aria-required="true"
                 aria-invalid="false"
                 className="form-control ng-untouched ng-pristine ng-invalid"
-                placeholder="Username"
+                placeholder="Username/Mobile"
               />
             </div>
             <div _ngcontent-wjb-c42 className="form-group mb-4">

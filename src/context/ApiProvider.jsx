@@ -46,6 +46,7 @@ const ApiProvider = ({ children }) => {
       FavIconLink.type = "image/png";
       FavIconLink.href = `${API.assets}/${Settings.siteUrl}/favicon.png`;
       document.head.appendChild(FavIconLink);
+
       document.title = Settings.siteTitle;
 
       return () => {
