@@ -5,9 +5,7 @@ import { useNavigate } from "react-router-dom";
 const CasinoThumbnail = ({ casinoData }) => {
   const navigate = useNavigate();
   const handleNavigateToIFrame = (casino) => {
-    navigate(
-      `/casino/${casino?.name?.replace(/ /g, "")}/${casino?.event_type_id}`
-    );
+    navigate(`/casino/${casino?.name?.replace(/ /g, "")}/${casino?.id}`);
   };
   return (
     <div _ngcontent-hot-c46 className="tab-content">

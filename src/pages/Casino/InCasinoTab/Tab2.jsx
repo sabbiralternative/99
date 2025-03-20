@@ -63,10 +63,22 @@ const Tab2 = ({ categories, setSelectedSubCategory, selectedSubCategory }) => {
                 <img
                   _ngcontent-hot-c96
                   className="img-fluid"
-                  src={`/m/src/assets/icon/${category
+                  src={`/m/icon/${category
                     ?.split(" ")
                     .join("")
                     .toLowerCase()}.svg`}
+                  onError={(e) => {
+                    if (e.target.src.endsWith(".svg")) {
+                      // Try webp only once after svg fails
+                      e.target.src = `/m/icon/${category
+                        ?.split(" ")
+                        .join("")
+                        .toLowerCase()}.webp`;
+                    } else {
+                      // If webp fails, do nothing (leave broken img)
+                      e.target.onerror = null;
+                    }
+                  }}
                 />
                 {category}
               </span>
