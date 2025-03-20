@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 const LatestEvent = ({ latestEvent }) => {
   return (
     <div _ngcontent-htq-c82 _nghost-htq-c80>
-      <div _ngcontent-htq-c80 className="latest-event row">
+      <div
+        _ngcontent-htq-c80
+        className={`latest-event ${latestEvent?.length > 1 ? "row" : ""}`}
+      >
         {latestEvent?.map((event) => {
           return (
             <div

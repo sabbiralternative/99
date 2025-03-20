@@ -34,13 +34,13 @@ const Casino = () => {
                         style={{ color: "white" }}
                         onClick={() => setTab("casino")}
                         className={`nav-item ${
-                          tab === "casino" ? "active" : ""
+                          tab === "casino" ? "" : "active"
                         }`}
                       >
                         <a
                           role="tab"
                           className={`nav-link ${
-                            tab === "casino" ? "active" : ""
+                            tab === "casino" ? "" : "active"
                           }`}
                           aria-controls
                           aria-selected="true"
@@ -57,13 +57,13 @@ const Casino = () => {
                         style={{ color: "white" }}
                         onClick={() => setTab("intCasino")}
                         className={`nav-item ${
-                          tab === "intCasino" ? "active" : ""
+                          tab === "intCasino" ? "" : "active"
                         }`}
                       >
                         <a
                           role="tab"
                           className={`nav-link ${
-                            tab === "intCasino" ? "active" : ""
+                            tab === "intCasino" ? "" : "active"
                           }`}
                           aria-controls
                           aria-selected="false"
