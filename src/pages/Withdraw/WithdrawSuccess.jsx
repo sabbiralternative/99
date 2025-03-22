@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import images from "../../assets/images";
 
 const WithdrawSuccess = ({ setWithdrawSuccess }) => {
   const navigate = useNavigate();
@@ -43,7 +44,12 @@ const WithdrawSuccess = ({ setWithdrawSuccess }) => {
             }}
           >
             <div className="congo-box">
-              <div className="congo1 ng-tns-c159-7"></div>
+              <div
+                className="congo1 ng-tns-c159-7"
+                style={{
+                  backgroundImage: `url(${images.congo})`,
+                }}
+              ></div>
               <div
                 className="congo-msg ng-tns-c159-7"
                 style={{ marginTop: "10px" }}

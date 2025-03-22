@@ -31,8 +31,10 @@ import edit from "../icon/edit.svg";
 import whatsApp from "../img/wp_support.webp";
 import logo from "../img/99exch/logo.png";
 import posterBinary from "../img/poster-binary.webp";
+import congo from "../icon/congo.svg";
 
 export default {
+  congo,
   posterBinary,
   logo,
   whatsApp,
