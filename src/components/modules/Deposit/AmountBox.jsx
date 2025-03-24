@@ -1,11 +1,25 @@
 import toast from "react-hot-toast";
+import useDepositBreakdown from "../../../hooks/depositBreakdown";
 
 const AmountBox = ({ setTab, setAmount, amount }) => {
+  const { mutate: handleDepositBreakdown } = useDepositBreakdown();
+
   const handleShowPaymentMethods = () => {
-    if (!amount) {
-      return toast.error("Amount is required.");
+    if (amount) {
+      handleDepositBreakdown(
+        { amount },
+        {
+          onSuccess: (data) => {
+            if (data?.minimumDeposit && amount < data?.minimumDeposit) {
+              toast.error(`Minimum deposit amount is ${data?.minimumDeposit}`);
+            } else {
+              setTab("bankAccount");
+            }
+          },
+        }
+      );
     } else {
-      setTab("bankAccount");
+      return toast.error("Amount is required");
     }
   };
 
