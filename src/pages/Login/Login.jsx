@@ -146,17 +146,20 @@ const Login = () => {
                 <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
               </button>
             </div>
-            <div _ngcontent-wjb-c42 className="form-group mb-0">
-              <button
-                onClick={loginWithDemo}
-                _ngcontent-wjb-c42
-                type="button"
-                className="btn btn-primary btn-block"
-              >
-                Login with Demo ID
-                <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
-              </button>
-            </div>
+            {Settings.demoLogin && (
+              <div _ngcontent-wjb-c42 className="form-group mb-0">
+                <button
+                  onClick={loginWithDemo}
+                  _ngcontent-wjb-c42
+                  type="button"
+                  className="btn btn-primary btn-block"
+                >
+                  Login with Demo ID
+                  <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
+                </button>
+              </div>
+            )}
+
             {Settings.registration && (
               <div _ngcontent-wjb-c42 className="form-group mt-1">
                 <button
@@ -170,17 +173,18 @@ const Login = () => {
                 </button>
               </div>
             )}
-
-            <div _ngcontent-kfy-c42="" class="form-group text-center">
-              <Link
-                to="/forgot-password"
-                _ngcontent-kfy-c42=""
-                style={{ color: "#193ba0" }}
-                class="fp "
-              >
-                Forgot Password
-              </Link>
-            </div>
+            {Settings.registration && (
+              <div _ngcontent-kfy-c42="" class="form-group text-center">
+                <Link
+                  to="/forgot-password"
+                  _ngcontent-kfy-c42=""
+                  style={{ color: "#193ba0" }}
+                  class="fp "
+                >
+                  Forgot Password
+                </Link>
+              </div>
+            )}
 
             <small _ngcontent-wjb-c42 className="recaptchaTerms">
               This site is protected by reCAPTCHA and the Google{" "}
