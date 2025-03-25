@@ -6,11 +6,16 @@ const AmountBox = ({ setTab, setAmount, amount }) => {
 
   const handleShowPaymentMethods = () => {
     if (amount) {
+      const floatAmount = parseFloat(amount);
+
+      if (typeof floatAmount !== "number") {
+        return toast.error("Please enter a valid number");
+      }
       handleDepositBreakdown(
-        { amount },
+        { amount: floatAmount },
         {
           onSuccess: (data) => {
-            if (data?.minimumDeposit && amount < data?.minimumDeposit) {
+            if (data?.minimumDeposit && floatAmount < data?.minimumDeposit) {
               toast.error(`Minimum deposit amount is ${data?.minimumDeposit}`);
             } else {
               setTab("bankAccount");
