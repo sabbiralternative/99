@@ -30,6 +30,16 @@ const Dropdown = ({ showDropdown }) => {
       >
         Account Statement
       </Link>
+      <Link _ngcontent-htq-c82 to="/bonus-statement" className="dropdown-item">
+        Bonus Statement
+      </Link>
+      <Link
+        _ngcontent-htq-c82
+        to="/deposit-withdraw-report"
+        className="dropdown-item"
+      >
+        Deposit Withdraw Report
+      </Link>
 
       <Link _ngcontent-htq-c82 to="/unsettled-bets" className="dropdown-item">
         Unsetteled Bet

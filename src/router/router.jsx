@@ -18,6 +18,8 @@ import SportsBook from "../pages/SportsBook/SportsBook";
 import Other from "../pages/Other/Other";
 import PrivateRoute from "./PrivateRoute";
 import Withdraw from "../pages/Withdraw/Withdraw";
+import BonusStatement from "../pages/BonusStatement/BonusStatement";
+import DepositWithdrawReport from "../pages/DepositWithdrawReport/DepositWithdrawReport";
 
 export const router = createBrowserRouter(
   [
@@ -61,6 +63,18 @@ export const router = createBrowserRouter(
         {
           path: "/rules",
           element: <Rules />,
+        },
+        {
+          path: "/other",
+          element: <Other />,
+        },
+        {
+          path: "/bonus-statement",
+          element: <BonusStatement />,
+        },
+        {
+          path: "/deposit-withdraw-report",
+          element: <DepositWithdrawReport />,
         },
         {
           path: "/other",

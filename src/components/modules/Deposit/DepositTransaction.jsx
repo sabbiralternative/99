@@ -1,7 +1,18 @@
-import { useDepositStatement } from "../../../hooks/accountStatement";
+import { useAccountStatement } from "../../../hooks/accountStatement";
 
 const DepositTransaction = () => {
-  const { data } = useDepositStatement();
+  const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
+    .toISOString()
+    .split("T")[0];
+
+  const toDate = new Date().toISOString().split("T")[0];
+  const payload = {
+    from: fromDate,
+    to: toDate,
+    type: "DEPOSIT",
+    status: "ALL",
+  };
+  const { data } = useAccountStatement(payload);
 
   return (
     <div className="col-md-4">
