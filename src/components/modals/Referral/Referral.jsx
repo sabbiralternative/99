@@ -5,11 +5,9 @@ import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
 import { ApiContext } from "../../../context/ApiProvider";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import useGetIndex from "../../../hooks/useGetIndex";
-import { useNavigate } from "react-router-dom";
 
 const Referral = ({ setShowReferral }) => {
   const { logo } = useContext(ApiContext);
-  const navigate = useNavigate();
 
   const referralRef = useRef();
   useCloseModalClickOutside(referralRef, () => {
@@ -130,7 +128,7 @@ const Referral = ({ setShowReferral }) => {
                             }}
                             onClick={() => {
                               handleCopyToClipBoard(data?.text);
-                              navigate("/register");
+
                               setShowReferral(false);
                             }}
                             _ngcontent-ng-c526813732=""
