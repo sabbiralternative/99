@@ -1,0 +1,160 @@
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 2000;
+}
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 1;
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.32);
+}
+.cdk-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+}
+
+.cdk-global-overlay-wrapper {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+}
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.cdk-overlay-pane {
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.mdc-dialog__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+.mdc-dialog__surface::before {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+.mat-mdc-dialog-container.mdc-dialog .modal-header {
+  position: relative;
+  padding: 10px 0;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--theme1-bg);
+}
+
+.modal-header[_ngcontent-ng-c526813732] .img-wrap[_ngcontent-ng-c526813732] {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.modal-header[_ngcontent-ng-c526813732]
+  .img-wrap[_ngcontent-ng-c526813732]
+  img[_ngcontent-ng-c526813732] {
+  width: 175px;
+  max-height: 70px;
+  height: auto;
+  min-width: auto;
+  object-fit: contain;
+}
+
+.modal-header[_ngcontent-ng-c526813732]
+  .modal-close-btn[_ngcontent-ng-c526813732] {
+  background: white !important;
+  color: black;
+}
+
+.mat-mdc-dialog-container.mdc-dialog .modal-header .modal-close-btn {
+  min-width: auto;
+  width: 25px;
+  max-height: 25px;
+  background: var(--bg-primary) !important;
+  border-radius: 50%;
+  padding: 0;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.mat-mdc-dialog-container.mdc-dialog .modal-body {
+  padding: 10px;
+}
+
+.modal-body[_ngcontent-ng-c526813732] h3[_ngcontent-ng-c526813732] {
+  font-size: 18px;
+
+  margin: 0;
+}
+
+.modal-body[_ngcontent-ng-c526813732] p[_ngcontent-ng-c526813732] {
+  font-size: 12px;
+  margin: 0;
+}
+
+.modal-body[_ngcontent-ng-c526813732] .referral-code[_ngcontent-ng-c526813732] {
+  background-color: rgb(212, 212, 212);
+  border-radius: 6px;
+  padding: 10px;
+  position: relative;
+  height: 45px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.modal-body[_ngcontent-ng-c526813732]
+  .referral-code[_ngcontent-ng-c526813732]
+  button[_ngcontent-ng-c526813732] {
+  position: absolute;
+  right: 0;
+  width: 30px;
+  height: 45px;
+  top: 0;
+  background-color: var(--bg-primary);
+}
+
+button.btn {
+  font-size: 12px;
+  white-space: nowrap;
+  border: none;
+  min-height: 25px;
+  min-width: 75px;
+  font-weight: 300;
+  cursor: pointer;
+  width: 100%;
+}

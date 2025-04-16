@@ -3,8 +3,9 @@
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { Settings } from "../../../api";
 
-const Dropdown = ({ showDropdown }) => {
+const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -12,55 +13,89 @@ const Dropdown = ({ showDropdown }) => {
     navigate("/login");
   };
   return (
-    <div
-      _ngcontent-htq-c82
-      className={`dropdown-menu  ${showDropdown ? "show" : ""}`}
-    >
-      <Link
+    <>
+      <div
         _ngcontent-htq-c82
-        to="/"
-        className="dropdown-item router-link-exact-active router-link-active"
+        className={`dropdown-menu  ${showDropdown ? "show" : ""}`}
       >
-        Home
-      </Link>
-      <Link
-        _ngcontent-htq-c82
-        to="/account-statement"
-        className="dropdown-item"
-      >
-        Account Statement
-      </Link>
-      <Link _ngcontent-htq-c82 to="/bonus-statement" className="dropdown-item">
-        Bonus Statement
-      </Link>
-      <Link
-        _ngcontent-htq-c82
-        to="/deposit-withdraw-report"
-        className="dropdown-item"
-      >
-        Deposit Withdraw Report
-      </Link>
+        <Link
+          _ngcontent-htq-c82
+          to="/"
+          className="dropdown-item router-link-exact-active router-link-active"
+        >
+          Home
+        </Link>
+        <Link
+          _ngcontent-htq-c82
+          to="/account-statement"
+          className="dropdown-item"
+        >
+          Account Statement
+        </Link>
+        <Link
+          _ngcontent-htq-c82
+          to="/bonus-statement"
+          className="dropdown-item"
+        >
+          Bonus Statement
+        </Link>
+        {Settings.referral && (
+          <a
+            onClick={() => {
+              setShowDropdown(false);
+              setShowReferral(true);
+            }}
+            _ngcontent-htq-c82
+            className="dropdown-item"
+          >
+            Referral
+          </a>
+        )}
 
-      <Link _ngcontent-htq-c82 to="/unsettled-bets" className="dropdown-item">
-        Unsetteled Bet
-      </Link>
-      <Link _ngcontent-htq-c82 to="change-btn-value" className="dropdown-item">
-        Set Button Values
-      </Link>
-      <Link _ngcontent-htq-c82 to="/change-password" className="dropdown-item">
-        Change Password
-      </Link>
-      <Link _ngcontent-htq-c82 to="/rules" className="dropdown-item">
-        Rule
-      </Link>
-      <Link
-        _ngcontent-htq-c82
-        onClick={handleLogout}
-        className="dropdown-item mt-2 text-danger"
-      >
-        <b _ngcontent-htq-c82>Logout</b>
-      </Link>
-    </div>
+        <Link
+          _ngcontent-htq-c82
+          to="/referral-statement"
+          className="dropdown-item"
+        >
+          Referral Statement
+        </Link>
+        <Link
+          _ngcontent-htq-c82
+          to="/deposit-withdraw-report"
+          className="dropdown-item"
+        >
+          Deposit Withdraw Report
+        </Link>
+
+        <Link _ngcontent-htq-c82 to="/unsettled-bets" className="dropdown-item">
+          Unsetteled Bet
+        </Link>
+        <Link
+          _ngcontent-htq-c82
+          to="change-btn-value"
+          className="dropdown-item"
+        >
+          Set Button Values
+        </Link>
+        <Link
+          _ngcontent-htq-c82
+          to="/change-password"
+          className="dropdown-item"
+        >
+          Change Password
+        </Link>
+        <Link _ngcontent-htq-c82 to="/rules" className="dropdown-item">
+          Rule
+        </Link>
+        <Link
+          _ngcontent-htq-c82
+          onClick={handleLogout}
+          className="dropdown-item mt-2 text-danger"
+        >
+          <b _ngcontent-htq-c82>Logout</b>
+        </Link>
+      </div>
+    </>
   );
 };
 
