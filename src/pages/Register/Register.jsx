@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { AxiosSecure } from "../../lib/AxiosSecure";
 import toast from "react-hot-toast";
 import { ApiContext } from "../../context/ApiProvider";
-import { API, Settings } from "../../api";
+import { API } from "../../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHandPointDown,
   faKey,
-  faMobile,
+  // faMobile,
   faPhone,
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +19,7 @@ import { setUser } from "../../redux/features/auth/authSlice";
 const Register = () => {
   const dispatch = useDispatch();
   const referralCode = localStorage.getItem("referralCode");
-  const { data, refetch } = useWhatsApp();
+  const { refetch } = useWhatsApp();
   const [userData, setUserData] = useState({
     password: "",
     confirmPassword: "",
@@ -130,7 +130,7 @@ const Register = () => {
             </h4>
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* <!-- whatsapp start--> */}
-              {data?.result?.whatsapplink && Settings?.registrationWhatsapp && (
+              {/* {data?.result?.whatsapplink && Settings?.registrationWhatsapp && (
                 <div className="whatsapp-box">
                   <div>
                     <span>Register as New User</span>
@@ -148,7 +148,7 @@ const Register = () => {
                     <div className="click-here">click here</div>
                   </Link>
                 </div>
-              )}
+              )} */}
               {/* <!-- whatsapp end--> */}
 
               <div className="mb-4 input-group position-relative username-text">
@@ -247,7 +247,7 @@ const Register = () => {
                   <b>Login here</b>
                 </Link>
               </div>
-              <small className="recaptchaTerms mt-1">
+              {/* <small className="recaptchaTerms mt-1">
                 This site is protected by reCAPTCHA and the Google
                 <Link to="https://policies.google.com/privacy">
                   Privacy Policy
@@ -257,7 +257,7 @@ const Register = () => {
                   Terms of Service
                 </Link>
                 apply.
-              </small>
+              </small> */}
             </form>
           </div>
         </div>
