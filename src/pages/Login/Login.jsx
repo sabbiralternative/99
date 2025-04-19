@@ -11,8 +11,10 @@ import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { setUser } from "../../redux/features/auth/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import useWhatsApp from "../../hooks/whatsapp";
 
 const Login = () => {
+  const { data: socialLink } = useWhatsApp();
   const navigate = useNavigate();
   const { logo } = useContext(ApiContext);
   const dispatch = useDispatch();
@@ -89,6 +91,13 @@ const Login = () => {
       toast.error(result?.error);
     }
   };
+
+  const openWhatsapp = () => {
+    if (socialLink?.result?.whatsapplink) {
+      window.open(socialLink?.result?.whatsapplink, "_blank");
+    }
+  };
+
   return (
     <div _nghost-wjb-c42>
       <div
@@ -173,6 +182,20 @@ const Login = () => {
                 </button>
               </div>
             )}
+            {Settings.registrationWhatsapp &&
+              socialLink?.result?.whatsapplink && (
+                <div _ngcontent-wjb-c42 className="form-group mt-1">
+                  <button
+                    onClick={openWhatsapp}
+                    _ngcontent-wjb-c42
+                    type="button"
+                    className="btn btn-primary btn-block"
+                  >
+                    Get ID on Whatsapp
+                    <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
+                  </button>
+                </div>
+              )}
             {Settings.registration && (
               <div _ngcontent-kfy-c42="" class="form-group text-center">
                 <Link
