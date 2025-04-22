@@ -160,9 +160,11 @@ const Header = () => {
             {data && data?.length > 0 && <LatestEvent latestEvent={data} />}
           </div>
         </header>
-        {socialLink?.telegramLink ? (
+        {socialLink?.result?.telegramLink ? (
           <a
-            onClick={() => window.open(socialLink?.telegramLink, "_blank")}
+            onClick={() =>
+              window.open(socialLink?.result?.telegramLink, "_blank")
+            }
             style={{ bottom: "17%", right: "4.5%" }}
             className="whatsapp_link"
           >
