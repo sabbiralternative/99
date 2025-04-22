@@ -34,8 +34,10 @@ import posterBinary from "../img/poster-binary.webp";
 import congo from "../icon/congo.svg";
 import upi from "../icon/upi.png";
 import usdt from "../icon/usdt.png";
+import telegram from "/icon/telegram.png";
 
 export default {
+  telegram,
   usdt,
   upi,
   congo,

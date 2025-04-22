@@ -160,6 +160,18 @@ const Header = () => {
             {data && data?.length > 0 && <LatestEvent latestEvent={data} />}
           </div>
         </header>
+        {socialLink?.telegramLink ? (
+          <a
+            onClick={() => window.open(socialLink?.telegramLink, "_blank")}
+            style={{ bottom: "17%", right: "4.5%" }}
+            className="telegram_link"
+          >
+            <img
+              style={{ height: "60px", width: "60px" }}
+              src={images.telegram}
+            />
+          </a>
+        ) : null}
         {socialLink?.result?.whatsapplink ||
         socialLink?.result?.branchWhatsapplink ? (
           <a onClick={navigateWhatsApp} className="whatsapp_link">
