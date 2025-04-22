@@ -164,7 +164,7 @@ const Header = () => {
           <a
             onClick={() => window.open(socialLink?.telegramLink, "_blank")}
             style={{ bottom: "17%", right: "4.5%" }}
-            className="telegram_link"
+            className="whatsapp_link"
           >
             <img
               style={{ height: "60px", width: "60px" }}
