@@ -165,11 +165,11 @@ const Header = () => {
             onClick={() =>
               window.open(socialLink?.result?.telegramLink, "_blank")
             }
-            style={{ bottom: "17%", right: "4.5%" }}
+            style={{ bottom: "22%", right: "7.5%" }}
             className="whatsapp_link"
           >
             <img
-              style={{ height: "60px", width: "60px" }}
+              style={{ height: "50px", width: "50px" }}
               src={images.telegram}
             />
           </a>

@@ -27,7 +27,7 @@ const LatestEvent = ({ latestEvent }) => {
                 <img
                   _ngcontent-htq-c80
                   alt=""
-                  src={`/m/src/assets/img/${event?.eventTypeId}.png`}
+                  src={`/src/assets/img/${event?.eventTypeId}.png`}
                 />
                 <span _ngcontent-htq-c80>{event?.eventName}</span>
               </a>

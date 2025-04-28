@@ -5,5 +5,5 @@ import notice from "./notice.json";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: notice?.result?.settings?.baseUrl || "/m/",
+  base: notice?.result?.settings?.baseUrl || "/",
 });

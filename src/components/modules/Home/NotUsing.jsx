@@ -456,11 +456,7 @@ const NotUsing = () => {
                 src="assets/img/poster-binary.webp"
                 className="img-fluid mb-2"
               />
-              <a
-                _ngcontent-htq-c97
-                routerlink="/m/game-detail/1736377636"
-                href="/m/game-detail/1736377636"
-              >
+              <a _ngcontent-htq-c97 routerlink="/m/game-detail/1736377636">
                 <img
                   _ngcontent-htq-c97
                   src="assets/img/poster-election.webp"
