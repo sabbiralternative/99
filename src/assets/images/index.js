@@ -35,8 +35,10 @@ import congo from "../icon/congo.svg";
 import upi from "../icon/upi.png";
 import usdt from "../icon/usdt.png";
 import telegram from "/icon/telegram.png";
+import instagram from "../img/instagram.png";
 
 export default {
+  instagram,
   telegram,
   usdt,
   upi,
