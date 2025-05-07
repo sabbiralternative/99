@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { AxiosSecure } from "../../lib/AxiosSecure";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import useCloseModalClickOutside from "../../hooks/closeModal";
 import { useDispatch, useSelector } from "react-redux";
 import { setAddBank } from "../../redux/features/global/globalSlice";
@@ -211,7 +211,7 @@ const AddBank = ({ refetchBankData }) => {
                 >
                   <input type="text" placeholder="Enter IFSC" name="" />
                 </div>
-                {mobile && (
+                {mobile && Settings.otp && (
                   <div style={{ position: "relative" }} className="input-box ">
                     <input
                       readOnly
@@ -256,7 +256,7 @@ const AddBank = ({ refetchBankData }) => {
                     )}
                   </div>
                 )}
-                {mobile && (
+                {mobile && Settings.otp && (
                   <div
                     onChange={(e) => {
                       setBankDetails({
