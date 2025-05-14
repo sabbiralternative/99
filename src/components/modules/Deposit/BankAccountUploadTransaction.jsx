@@ -130,6 +130,7 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                     overflow: "hidden",
                     overflowX: "scroll",
                     display: "flex",
+                    height: "90px",
                   }}
                 >
                   {data?.result?.map((method) => {
@@ -145,8 +146,10 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                               ? "var(--theme2-bg)"
                               : "transparent",
                           display: "flex",
+                          flexDirection: "column",
                           gap: "5px",
                           alignItems: "center",
+                          borderRadius: "5px",
                         }}
                         key={method?.paymentId}
                         className="nav-link active"
@@ -161,7 +164,6 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                         data-original-title
                         title
                       >
-                        {method?.title}
                         {method?.type == "qr" && (
                           <FaQrcode size={20} color="gray" />
                         )}
@@ -182,10 +184,16 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                         ) : null}
                         {method?.type == "whatsapp" ? (
                           <img
-                            style={{ height: "20px", width: "20px" }}
-                            src={images.whatsApp}
+                            style={{
+                              height: "20px",
+                              width: "20px",
+                              filter: "none",
+                            }}
+                            src={"/icon/whatsapp.png"}
                           />
                         ) : null}
+
+                        {method?.title}
                       </button>
                     );
                   })}
