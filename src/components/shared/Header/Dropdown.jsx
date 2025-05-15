@@ -12,6 +12,10 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
     dispatch(logout());
     navigate("/login");
   };
+
+  const closeDropdown = () => {
+    setShowDropdown(false);
+  };
   return (
     <>
       <div
@@ -19,6 +23,7 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
         className={`dropdown-menu  ${showDropdown ? "show" : ""}`}
       >
         <Link
+          onClick={closeDropdown}
           _ngcontent-htq-c82
           to="/"
           className="dropdown-item router-link-exact-active router-link-active"
@@ -26,6 +31,7 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
           Home
         </Link>
         <Link
+          onClick={closeDropdown}
           _ngcontent-htq-c82
           to="/account-statement"
           className="dropdown-item"
@@ -33,6 +39,7 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
           Account Statement
         </Link>
         <Link
+          onClick={closeDropdown}
           _ngcontent-htq-c82
           to="/bonus-statement"
           className="dropdown-item"
@@ -53,6 +60,7 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
         )}
 
         <Link
+          onClick={closeDropdown}
           _ngcontent-htq-c82
           to="/referral-statement"
           className="dropdown-item"
@@ -60,17 +68,32 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
           Referral Statement
         </Link>
         <Link
+          onClick={closeDropdown}
           _ngcontent-htq-c82
           to="/deposit-withdraw-report"
           className="dropdown-item"
         >
           Deposit Withdraw Report
         </Link>
+        <Link
+          onClick={closeDropdown}
+          _ngcontent-htq-c82
+          to="/my-bank-details"
+          className="dropdown-item"
+        >
+          My Bank Details
+        </Link>
 
-        <Link _ngcontent-htq-c82 to="/unsettled-bets" className="dropdown-item">
+        <Link
+          onClick={closeDropdown}
+          _ngcontent-htq-c82
+          to="/unsettled-bets"
+          className="dropdown-item"
+        >
           Unsetteled Bet
         </Link>
         <Link
+          onClick={closeDropdown}
           _ngcontent-htq-c82
           to="change-btn-value"
           className="dropdown-item"
@@ -78,13 +101,19 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
           Set Button Values
         </Link>
         <Link
+          onClick={closeDropdown}
           _ngcontent-htq-c82
           to="/change-password"
           className="dropdown-item"
         >
           Change Password
         </Link>
-        <Link _ngcontent-htq-c82 to="/rules" className="dropdown-item">
+        <Link
+          onClick={closeDropdown}
+          _ngcontent-htq-c82
+          to="/rules"
+          className="dropdown-item"
+        >
           Rule
         </Link>
         <Link

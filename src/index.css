@@ -399,3 +399,125 @@ html * {
   }
 }
 /* Horse banner */
+
+/* DW REPORT */
+
+.deposit-withdraw-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dcdcdc;
+  border-radius: 10px;
+  margin: 0 10px;
+  left: 0;
+  right: 0;
+  padding-top: 1rem;
+  z-index: 2;
+  padding-bottom: 1rem;
+}
+
+.deposit-withdraw-btns .btnBox {
+  display: flex;
+  padding: 0.375rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.deposit-withdraw-btns .btnBox .btn-inactive {
+  cursor: pointer;
+  display: flex;
+  width: 7.0625rem;
+  padding: 0.3125rem 0.5rem;
+
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  z-index: 1;
+}
+
+.deposit-withdraw-btns .btnBox .btn-inactive span {
+  color: #040404;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 0.01875rem;
+}
+
+.deposit-withdraw-btns .btns-animation {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.deposit-withdraw-btns .animation-div-1 {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.375rem;
+  bottom: 0.375rem;
+  cursor: pointer;
+  display: flex;
+  width: 7.0625rem;
+  padding: 0.3125rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    92deg,
+    var(--theme1-bg) 1.85%,
+    var(--theme2-bg) 100%
+  );
+  z-index: 0;
+  animation: right-to-left 0.5s ease-in-out forwards;
+}
+
+.deposit-withdraw-btns .animation-div-2 {
+  position: absolute;
+  top: 0.375rem;
+  left: 0.375rem;
+  bottom: 0.375rem;
+  cursor: pointer;
+  display: flex;
+  width: 7.0625rem;
+  padding: 0.3125rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    92deg,
+    var(--theme1-bg) 1.85%,
+    var(--theme2-bg) 100%
+  );
+  z-index: 0;
+  animation: left-to-right 0.5s ease-in-out forwards;
+}
+
+/*! CSS Used keyframes */
+@keyframes right-to-left {
+  0% {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translate(-109%);
+  }
+}
+
+@keyframes left-to-right {
+  0% {
+    transform: translate(0);
+  }
+
+  100% {
+    transform: translate(109%);
+  }
+}
+/* DW REPORT */

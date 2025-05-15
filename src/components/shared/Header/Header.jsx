@@ -49,12 +49,17 @@ const Header = () => {
               _ngcontent-htq-c82
               className="row row5 pt-1 pb-1 align-items-center"
             >
-              <div _ngcontent-htq-c82 className="logo col-6">
+              <div
+                _ngcontent-htq-c82
+                className="logo col-6"
+                style={{ alignItems: "start" }}
+              >
                 <Link
                   style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    marginLeft: "3px",
                   }}
                   _ngcontent-htq-c82
                   to="/"
