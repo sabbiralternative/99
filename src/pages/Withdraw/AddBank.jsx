@@ -10,7 +10,7 @@ import { setAddBank } from "../../redux/features/global/globalSlice";
 const AddBank = ({ refetchBankData }) => {
   /* Handle close modal click outside */
   const dispatch = useDispatch();
-  const [mobile, setMobile] = useState("null");
+  const [mobile, setMobile] = useState(null);
   const { token } = useSelector((state) => state.auth);
   const [orderId, setOrderId] = useState(null);
   const [timer, setTimer] = useState(null);
@@ -107,6 +107,7 @@ const AddBank = ({ refetchBankData }) => {
   useEffect(() => {
     const getMobile = () => {
       const decode = jwtDecode(token);
+
       if (decode?.mobile) {
         setMobile(decode?.mobile);
       }
