@@ -39,7 +39,8 @@
       "b2c": true,
       "language": false,
       "build": "development",
-      "betDelay": false
+      "betDelay": false,
+      "otp": true
     },
 
     "endpoint": {
