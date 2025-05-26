@@ -75,7 +75,8 @@ const AddBank = ({ refetchBankData }) => {
     const isaccountNameFilled = bankDetails.accountName.trim() !== "";
     const isaccountNumberFilled = bankDetails.accountNumber.trim() !== "";
     const isIfscFilled = bankDetails.ifsc.trim() !== "";
-    const isOTPFilled = mobile ? bankDetails.otp.trim() !== "" : true;
+    const isOTPFilled =
+      mobile && Settings.otp ? bankDetails.otp.trim() !== "" : true;
     const isFormValid =
       isaccountNameFilled &&
       isIfscFilled &&
