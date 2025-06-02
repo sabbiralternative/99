@@ -139,10 +139,10 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                         onClick={() => handleVisibleBankMethod(method)}
                         style={{
                           color:
-                            method?.type === methodType ? "white" : "black",
+                            method?.paymentId === paymentId ? "white" : "black",
                           borderColor: "#dee2e6",
                           backgroundColor:
-                            method?.type === methodType
+                            method?.paymentId === paymentId
                               ? "var(--theme2-bg)"
                               : "transparent",
                           display: "flex",
