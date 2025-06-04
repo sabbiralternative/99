@@ -20,6 +20,7 @@ import { useCurrentBets } from "../../hooks/currentBets";
 import CurrentBets from "../../components/modules/EventDetails/CurrentBets";
 import ScoreCard from "../../components/modules/EventDetails/ScoreCard";
 import HorseGreyhound from "../../components/modules/EventDetails/HorseGreyhound";
+import SportsBook from "./SportsBook/SportsBook";
 
 const EventDetails = () => {
   const { eventTypeId, eventId } = useParams();
@@ -251,6 +252,9 @@ const EventDetails = () => {
                         data?.result?.length > 0 ? (
                           <HorseGreyhound data={data?.result} />
                         ) : null}
+                        {data && data?.sportsbook?.Result && (
+                          <SportsBook sportsBook={data?.sportsbook?.Result} />
+                        )}
                       </div>
                     </div>
                   </div>
