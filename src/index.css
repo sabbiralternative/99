@@ -521,3 +521,16 @@ html * {
   }
 }
 /* MY BANK DETAILS */
+
+.animate-spin {
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

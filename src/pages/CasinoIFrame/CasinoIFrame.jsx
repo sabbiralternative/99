@@ -8,12 +8,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { Settings } from "../../api";
+import Loader from "../../components/shared/Loader/Loader";
 
 const CasinoIFrame = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const { logo } = useContext(ApiContext);
-  const [handleGetIFrame, { data }] = useLiveCasinoIframeMutation();
+  const [handleGetIFrame, { data, isLoading, isSuccess }] =
+    useLiveCasinoIframeMutation();
   const { gameId } = useParams();
 
   useEffect(() => {
@@ -62,6 +64,7 @@ const CasinoIFrame = () => {
             {user}
           </span>
         </div>
+        {isLoading && !isSuccess && <Loader />}
         <iframe
           _ngcontent-swn-c87=""
           allowFullScreen
