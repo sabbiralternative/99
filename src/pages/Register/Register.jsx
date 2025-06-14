@@ -16,6 +16,7 @@ import {
 import useWhatsApp from "../../hooks/whatsapp";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/features/auth/authSlice";
+import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
 const Register = () => {
   const dispatch = useDispatch();
   const referralCode = localStorage.getItem("referralCode");
@@ -114,6 +115,9 @@ const Register = () => {
     }
   };
 
+  const handleGetOtpOnWhatsapp = async () => {
+    await getOtpOnWhatsapp(userData.mobileNo, setOrder);
+  };
   return (
     <div className="login-wrapper">
       <div className="login-page">
@@ -169,7 +173,15 @@ const Register = () => {
                   className="btn btn-primary btn-block"
                   type="button"
                 >
-                  Get OTP
+                  Get OTP on Message
+                </button>
+                <button
+                  onClick={handleGetOtpOnWhatsapp}
+                  disabled={userData?.mobileNo?.length < 10}
+                  className="btn btn-primary btn-block"
+                  type="button"
+                >
+                  Get OTP on Whatsapp
                 </button>
               </div>
 

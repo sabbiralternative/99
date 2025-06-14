@@ -125,6 +125,22 @@ const AddBank = ({ refetchBankData }) => {
       setTimer(null);
     }
   }, [timer]);
+
+  const getOtpOnWhatsapp = async () => {
+    const otpData = {
+      mobile: mobile,
+      type: "otpsend",
+    };
+
+    const res = await AxiosSecure.post(API.otpless, otpData);
+    const data = res.data;
+
+    if (data?.success) {
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
+    }
+  };
   return (
     <>
       <div className="Modal-Background  ">
@@ -239,22 +255,48 @@ const AddBank = ({ refetchBankData }) => {
                         Retry in {timer}
                       </div>
                     ) : (
-                      <button
-                        onClick={getOtp}
+                      <div
                         style={{
-                          backgroundColor: "var(--theme1-bg)",
-                          borderRadius: "4px",
-                          padding: "6px 0px",
-                          width: "80px",
-                          color: "white",
-                          fontSize: "11px",
-                          border: "none",
-                          marginRight: "10px",
+                          display: "flex",
+                          alignItems: "center",
                         }}
-                        type="button"
                       >
-                        Get OTP
-                      </button>
+                        {Settings.otpWhatsapp && (
+                          <button
+                            onClick={getOtpOnWhatsapp}
+                            style={{
+                              backgroundColor: "var(--theme1-bg)",
+                              borderRadius: "4px",
+                              padding: "6px 0px",
+                              width: "110px",
+                              color: "white",
+                              fontSize: "11px",
+                              border: "none",
+                              marginRight: "10px",
+                            }}
+                            type="button"
+                          >
+                            Get OTP Whatsapp
+                          </button>
+                        )}
+
+                        <button
+                          onClick={getOtp}
+                          style={{
+                            backgroundColor: "var(--theme1-bg)",
+                            borderRadius: "4px",
+                            padding: "6px 0px",
+                            width: "110px",
+                            color: "white",
+                            fontSize: "11px",
+                            border: "none",
+                            marginRight: "10px",
+                          }}
+                          type="button"
+                        >
+                          Get OTP Message
+                        </button>
+                      </div>
                     )}
                   </div>
                 )}

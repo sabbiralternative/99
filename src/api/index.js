@@ -52,6 +52,7 @@ export const API = {
   mac88All: "",
   forgotPassword: "",
   utr: "",
+  otpless: "",
 };
 
 export const Settings = {
@@ -79,4 +80,5 @@ export const Settings = {
   aura: "",
   referral: "",
   b2c: "",
+  otpWhatsapp: "",
 };
