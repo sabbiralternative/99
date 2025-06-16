@@ -105,9 +105,10 @@ const Register = () => {
                 <input
                   {...register("otp", { required: true })}
                   name="otp"
-                  type="number"
+                  type="text"
                   className="form-control PhoneInput"
                   placeholder="OTP"
+                  maxLength={6}
                 />
                 <span className="input-group-text">
                   <FontAwesomeIcon icon={faKey} className="ml-2" />

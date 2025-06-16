@@ -223,9 +223,10 @@ const Register = () => {
                     setUserData({ ...userData, otp: e.target.value })
                   }
                   name="otp"
-                  type="number"
+                  type="text"
                   className="form-control PhoneInput"
                   placeholder="OTP"
+                  maxLength={6}
                 />
                 <span className="input-group-text">
                   <FontAwesomeIcon icon={faKey} className="ml-2" />
