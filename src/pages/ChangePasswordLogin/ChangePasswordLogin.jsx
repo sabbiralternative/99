@@ -25,13 +25,14 @@ const ChangePasswordLogin = () => {
       password: newPassword,
       passVerify: newPasswordConfirm,
     };
-    const data = await handleChangePassword(payload);
+    const data = await handleChangePassword(payload).unwrap();
+
     if (data.success) {
       toast.success(data?.result?.message);
       localStorage.clear();
       navigate("/login");
     } else {
-      toast.error(data?.error?.oldPassword[0]?.description);
+      toast.error(data?.error?.errorMessage);
     }
   };
 
