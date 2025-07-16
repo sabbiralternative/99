@@ -48,6 +48,7 @@ const Login = () => {
       localStorage.setItem("bonusToken", bonusToken);
       localStorage.setItem("modal", JSON.stringify(modal));
       if (data?.result?.changePassword) {
+        localStorage.setItem("changePassword", true);
         navigate("/change-password-login");
       } else {
         navigate("/");

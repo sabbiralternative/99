@@ -29,6 +29,7 @@ const ChangePasswordLogin = () => {
 
     if (data.success) {
       toast.success(data?.result?.message);
+      localStorage.removeItem("changePassword");
       localStorage.clear();
       navigate("/login");
     } else {
@@ -45,7 +46,8 @@ const ChangePasswordLogin = () => {
           </Link>
           <div className="login-form mt-4">
             <h4 className="text-center login-title">
-              LOGIN <FontAwesomeIcon icon={faHandPointDown} className="ml-2" />
+              Change Password{" "}
+              <FontAwesomeIcon icon={faHandPointDown} className="ml-2" />
             </h4>
             <form
               onSubmit={handleSubmit(onSubmit)}
