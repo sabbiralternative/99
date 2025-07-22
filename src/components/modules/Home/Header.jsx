@@ -1,13 +1,23 @@
 /* eslint-disable react/no-unknown-property */
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setHomeTab } from "../../../redux/features/global/globalSlice";
 
 const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { homeTab } = useSelector((state) => state.global);
+  const navigate = useNavigate();
+  const { token } = useSelector((state) => state.auth);
+
+  const handleNavigateToIFrame = (name, id) => {
+    if (token) {
+      navigate(`/casino/${name}/${id}`);
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <ul
       _ngcontent-htq-c46
@@ -62,10 +72,13 @@ const Header = () => {
           <span _ngcontent-htq-c46>Casino</span>
         </Link>
       </li>
-      <li _ngcontent-htq-c46 className="nav-item customClass">
-        <Link
+      <li
+        onClick={() => handleNavigateToIFrame("sportsbook", "550000")}
+        _ngcontent-htq-c46
+        className="nav-item customClass"
+      >
+        <a
           _ngcontent-htq-c46
-          to="/sports-book"
           role="tab"
           className="nav-link"
           aria-controls
@@ -73,10 +86,14 @@ const Header = () => {
           id
         >
           <span _ngcontent-htq-c46 />
-          <div _ngcontent-htq-c97 className="new-tag-menus-sb">
+          <div
+            style={{ color: "white" }}
+            _ngcontent-htq-c97
+            className="new-tag-menus-sb"
+          >
             Sports book
           </div>
-        </Link>
+        </a>
       </li>
       <li _ngcontent-htq-c46 className="nav-item">
         <Link
