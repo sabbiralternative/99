@@ -24,6 +24,7 @@
       "bookmakerCashOut": true,
       "mac88": true,
       "referral": true,
+      "complaint": true,
       "logo": {
         "height": "65px",
         "width": "auto",

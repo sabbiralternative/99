@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAccountStatement } from "../../hooks/accountStatement";
 import ShowImage from "./ShowImage";
+import Complaint from "../../components/modals/Complaint/Complaint";
+import { Settings } from "../../api";
 
 const DepositReport = () => {
+  const [complaintId, setComplaintId] = useState(null);
   const [image, setImage] = useState("");
   const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
     .toISOString()
@@ -31,6 +34,13 @@ const DepositReport = () => {
 
   return (
     <>
+      {complaintId && (
+        <Complaint
+          setComplaintId={setComplaintId}
+          complaintId={complaintId}
+          method="deposit"
+        />
+      )}
       {image && <ShowImage image={image} setShowImage={setImage} />}
       <div
         style={{
@@ -179,9 +189,24 @@ const DepositReport = () => {
                             justifyContent: "end",
                             fontWeight: "bold",
                             flex: 1,
+                            flexDirection: "column",
                           }}
                         >
-                          ₹ {data?.amount}
+                          <span> ₹ {data?.amount}</span>
+                          {Settings.complaint && (
+                            <button
+                              style={{
+                                backgroundColor: "rgb(255 131 46)",
+                                borderRadius: "5px",
+                                fontSize: "12px",
+                                border: "none",
+                              }}
+                              onClick={() => setComplaintId(data?.referenceNo)}
+                              className="px-2 py-1  text-white   "
+                            >
+                              Raise Complaint
+                            </button>
+                          )}
                         </span>
                       </div>
                       <div
