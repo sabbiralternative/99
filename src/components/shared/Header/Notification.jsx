@@ -26,9 +26,8 @@ const Notification = () => {
       notification?.length > 0
     ) {
       setShowNotification(true);
-      const sortNotification = notification?.sort((a, b) => a.sort - b.sort);
 
-      setFilteredNotification(sortNotification);
+      setFilteredNotification(notification);
     }
     if (
       notification?.length > 0 &&
@@ -41,10 +40,7 @@ const Notification = () => {
       );
 
       if (filteredNotifications?.length > 0) {
-        const sortNotification = filteredNotifications?.sort(
-          (a, b) => a.sort - b.sort
-        );
-        setFilteredNotification(sortNotification);
+        setFilteredNotification(filteredNotifications);
         setShowNotification(true);
       }
     }
