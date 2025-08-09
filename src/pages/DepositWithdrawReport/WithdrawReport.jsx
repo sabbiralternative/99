@@ -201,7 +201,7 @@ const WithdrawReport = () => {
                               onClick={() => setComplaintId(data?.referenceNo)}
                               className="px-2 py-1  text-white   "
                             >
-                              Raise Complaint
+                              Report Issue
                             </button>
                           )}
                         </span>
