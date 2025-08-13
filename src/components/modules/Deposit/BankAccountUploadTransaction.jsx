@@ -249,6 +249,7 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                             )}
                             {methodType && methodType !== "whatsapp" && (
                               <PaymentProof
+                                methodType={methodType}
                                 amount={amount}
                                 paymentId={paymentId}
                               />

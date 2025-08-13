@@ -9,7 +9,7 @@ import { useBankMutation } from "../../../redux/features/deposit/deposit.api";
 import useUTR from "../../../hooks/utr";
 import { useAccountStatement } from "../../../hooks/accountStatement";
 
-const PaymentProof = ({ paymentId, amount }) => {
+const PaymentProof = ({ paymentId, amount, methodType }) => {
   const { mutate: getUTR } = useUTR();
   const { refetch } = useAccountStatement();
   const [handlePayment] = useBankMutation();
@@ -20,6 +20,7 @@ const PaymentProof = ({ paymentId, amount }) => {
   const [image, setImage] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [filePath, setFilePath] = useState(null);
+  const [receipt, setReceipt] = useState(null);
 
   useEffect(() => {
     if (image) {
@@ -73,14 +74,16 @@ const PaymentProof = ({ paymentId, amount }) => {
       return;
     }
     if (uploadedImage || utr) {
-      const screenshotPostData = {
+      let screenshotPostData = {
         type: "depositSubmit",
         paymentId,
         amount: amount,
         fileName: uploadedImage,
         utr: String(utr),
       };
-
+      if (methodType === "usdt" || methodType === "usdt_bep20") {
+        screenshotPostData.receipt_no = receipt;
+      }
       const result = await handlePayment(screenshotPostData).unwrap();
 
       if (result?.success) {
@@ -118,7 +121,9 @@ const PaymentProof = ({ paymentId, amount }) => {
         <div className="modal-body">
           <div className="form-group">
             <label htmlFor="transactionId">
-              Unique Transaction Reference{" "}
+              {methodType === "usdt" || methodType === "usdt_bep20"
+                ? "Hash Code"
+                : " Unique Transaction Reference"}{" "}
               <small style={{ color: "red" }}>*</small>
             </label>
             <input
@@ -128,10 +133,29 @@ const PaymentProof = ({ paymentId, amount }) => {
               className="form-control"
               name="transaction_id"
               id="transactionId"
-              placeholder="6 to 12 Digit UTR Number"
+              placeholder={
+                methodType === "usdt" || methodType === "usdt_bep20"
+                  ? "Enter Hash code"
+                  : "6 to 12 Digit UTR Number"
+              }
               value={utr !== null ? utr : null}
             />
           </div>
+          {methodType === "usdt" || methodType === "usdt_bep20" ? (
+            <div className="form-group">
+              <label htmlFor="transactionId">Receipt Number</label>
+              <input
+                onChange={(e) => setReceipt(e.target.value)}
+                type="text"
+                className="form-control"
+                name="transaction_id"
+                id="transactionId"
+                placeholder={"Enter Receipt Number"}
+                value={receipt}
+              />
+            </div>
+          ) : null}
+
           {!filePath && !loading && (
             <div className="form-group">
               <label htmlFor="proofOfDeposit128375">
