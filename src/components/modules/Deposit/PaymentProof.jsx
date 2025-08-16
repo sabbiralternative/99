@@ -20,7 +20,7 @@ const PaymentProof = ({ paymentId, amount, methodType }) => {
   const [image, setImage] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [filePath, setFilePath] = useState(null);
-  const [receipt, setReceipt] = useState(null);
+  // const [receipt, setReceipt] = useState(null);
 
   useEffect(() => {
     if (image) {
@@ -81,9 +81,9 @@ const PaymentProof = ({ paymentId, amount, methodType }) => {
         fileName: uploadedImage,
         utr: String(utr),
       };
-      if (methodType === "usdt" || methodType === "usdt_bep20") {
-        screenshotPostData.receipt_no = receipt;
-      }
+      // if (methodType === "usdt" || methodType === "usdt_bep20") {
+      //   screenshotPostData.receipt_no = receipt;
+      // }
       const result = await handlePayment(screenshotPostData).unwrap();
 
       if (result?.success) {
@@ -141,7 +141,7 @@ const PaymentProof = ({ paymentId, amount, methodType }) => {
               value={utr !== null ? utr : null}
             />
           </div>
-          {methodType === "usdt" || methodType === "usdt_bep20" ? (
+          {/* {methodType === "usdt" || methodType === "usdt_bep20" ? (
             <div className="form-group">
               <label htmlFor="transactionId">Receipt Number</label>
               <input
@@ -154,7 +154,7 @@ const PaymentProof = ({ paymentId, amount, methodType }) => {
                 value={receipt}
               />
             </div>
-          ) : null}
+          ) : null} */}
 
           {!filePath && !loading && (
             <div className="form-group">
