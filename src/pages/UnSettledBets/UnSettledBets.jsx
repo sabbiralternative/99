@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { useCurrentBets } from "../../hooks/currentBets";
 
 const UnSettledBets = () => {
   const { data } = useCurrentBets();
+  const navigate = useNavigate();
+
+  const navigateGameList = (item) => {
+    navigate(`/event-details/${item?.eventTypeId}/${item?.eventId}`);
+  };
 
   return (
     <div className="ng-star-inserted">
@@ -17,6 +23,7 @@ const UnSettledBets = () => {
                   {data?.map((bet) => {
                     return (
                       <div
+                        onClick={() => navigateGameList(bet)}
                         key={bet?.betId}
                         className={`bet-history back ng-star-inserted ${
                           bet?.betType === "Back" ? "back" : "lay"
