@@ -94,11 +94,11 @@ const Login = () => {
     }
   };
 
-  const openWhatsapp = () => {
-    if (socialLink?.result?.whatsapplink) {
-      window.open(socialLink?.result?.whatsapplink, "_blank");
-    }
-  };
+  // const openWhatsapp = () => {
+  //   if (socialLink?.result?.whatsapplink) {
+  //     window.open(socialLink?.result?.whatsapplink, "_blank");
+  //   }
+  // };
 
   const handleOpenSocialLink = (link) => {
     if (link) {
@@ -198,7 +198,7 @@ const Login = () => {
                 </button>
               </div>
             )}
-            {Settings.registrationWhatsapp &&
+            {/* {Settings.registrationWhatsapp &&
               socialLink?.result?.whatsapplink && (
                 <div _ngcontent-wjb-c42 className="form-group mt-1">
                   <button
@@ -211,7 +211,7 @@ const Login = () => {
                     <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
                   </button>
                 </div>
-              )}
+              )} */}
             {Settings.registration && (
               <div _ngcontent-kfy-c42="" class="form-group text-center">
                 <Link

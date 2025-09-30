@@ -36,8 +36,10 @@ import upi from "../icon/upi.png";
 import usdt from "../icon/usdt.png";
 import telegram from "/icon/telegram.png";
 import instagram from "../img/instagram.png";
+import whatsapp2 from "../img/1384023 (1).png";
 
 export default {
+  whatsapp2,
   instagram,
   telegram,
   usdt,
