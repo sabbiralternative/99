@@ -14,11 +14,12 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import useWhatsApp from "../../hooks/whatsapp";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/features/auth/authSlice";
 import images from "../../assets/images";
 // import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
 const Register = () => {
+  const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const referralCode = localStorage.getItem("referralCode");
   const { refetch, data } = useWhatsApp();
@@ -265,59 +266,61 @@ const Register = () => {
                 </button>
               </div>
 
-              {data?.result?.whatsapplink && Settings.registrationWhatsapp && (
-                <Fragment>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "10px",
-                      margin: "10px 0px",
-                    }}
-                  >
+              {!token &&
+                data?.result?.whatsapplink &&
+                Settings.registrationWhatsapp && (
+                  <Fragment>
                     <div
                       style={{
-                        border: "1px solid gray",
-                        width: "100%",
-                        opacity: "0.5",
-                      }}
-                    />
-                    <span
-                      style={{
-                        opacity: "0.5",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px",
+                        margin: "10px 0px",
                       }}
                     >
-                      Or
-                    </span>
-                    <div
-                      style={{
-                        border: "1px solid gray",
-                        width: "100%",
-                        opacity: "0.5",
-                      }}
-                    />
-                  </div>
-                  <button
-                    onClick={() => getWhatsappOTP(data?.result?.whatsapplink)}
-                    className="btn btn-primary btn-block"
-                    type="button"
-                  >
-                    <img
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                      }}
-                      src={images.whatsapp2}
-                      alt=""
-                    />
-                    <span style={{ marginLeft: "10px" }}>
-                      {" "}
-                      Get OTP on Whatsapp
-                    </span>
-                  </button>
-                </Fragment>
-              )}
+                      <div
+                        style={{
+                          border: "1px solid gray",
+                          width: "100%",
+                          opacity: "0.5",
+                        }}
+                      />
+                      <span
+                        style={{
+                          opacity: "0.5",
+                        }}
+                      >
+                        Or
+                      </span>
+                      <div
+                        style={{
+                          border: "1px solid gray",
+                          width: "100%",
+                          opacity: "0.5",
+                        }}
+                      />
+                    </div>
+                    <button
+                      onClick={() => getWhatsappOTP(data?.result?.whatsapplink)}
+                      className="btn btn-primary btn-block"
+                      type="button"
+                    >
+                      <img
+                        style={{
+                          height: "18px",
+                          width: "18px",
+                        }}
+                        src={images.whatsapp2}
+                        alt=""
+                      />
+                      <span style={{ marginLeft: "10px" }}>
+                        {" "}
+                        Get OTP on Whatsapp
+                      </span>
+                    </button>
+                  </Fragment>
+                )}
 
               <div className="mt-2 mb-1">
                 <b>Already have User?</b>{" "}
