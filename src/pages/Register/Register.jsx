@@ -116,7 +116,7 @@ const Register = () => {
         orderId: data?.result?.orderId,
         otpMethod: "sms",
       });
-      toast.error(data?.result?.message);
+      toast.success(data?.result?.message);
     } else {
       toast.error(data?.error?.description);
     }
