@@ -25,7 +25,7 @@ const Banner = () => {
   });
   return (
     <>
-      {token && showModal && modal && (
+      {token && showModal && modal && modal?.banner && (
         <div
           ref={modalRef}
           onClick={closeModal}
