@@ -85,7 +85,9 @@ const Login = () => {
       dispatch(setUser({ user, token }));
       localStorage.setItem("buttonValue", JSON.stringify(game));
       localStorage.setItem("token", token);
-      localStorage.setItem("modal", JSON.stringify(modal));
+      if (modal?.banner) {
+        localStorage.setItem("modal", JSON.stringify(modal));
+      }
       localStorage.setItem("bonusToken", bonusToken);
       if (token && user) {
         navigate("/");
