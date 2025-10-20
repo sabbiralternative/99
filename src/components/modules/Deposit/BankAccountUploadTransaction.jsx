@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaQrcode } from "react-icons/fa";
 import { CiBank } from "react-icons/ci";
 import { AxiosSecure } from "../../../lib/AxiosSecure";
@@ -16,6 +16,7 @@ import { useBankMutation } from "../../../redux/features/deposit/deposit.api";
 import images from "../../../assets/images";
 
 const BankAccountUploadTransaction = ({ setTab, amount }) => {
+  const paymentMethodRef = useRef();
   const [getPaymentMethod, { data }] = useBankMutation();
   const [paymentId, setPaymentId] = useState(null);
   const [methodType, setMethodType] = useState(null);
@@ -107,6 +108,19 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
   //     .padStart(2, "0")}`;
   // };
 
+  useEffect(() => {
+    if (
+      paymentMethodRef &&
+      paymentMethodRef.current &&
+      methodType &&
+      methodType !== "pg"
+    ) {
+      paymentMethodRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }, [methodType]);
+
   return (
     <div className="col-md-8">
       <div className="row">
@@ -127,10 +141,11 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                   id="nav-tab"
                   role="tablist"
                   style={{
-                    overflow: "hidden",
-                    overflowX: "scroll",
                     display: "flex",
-                    height: "90px",
+                    flexDirection: "column",
+                    height: "auto",
+                    gap: "5px",
+                    borderBottom: "none",
                   }}
                 >
                   {data?.result?.length > 0 &&
@@ -230,7 +245,7 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                           >
                             {methodType}
                           </h5>
-                          <div className="row">
+                          <div className="row" ref={paymentMethodRef}>
                             {methodType === "bank" && (
                               <BankAccount depositData={depositData} />
                             )}

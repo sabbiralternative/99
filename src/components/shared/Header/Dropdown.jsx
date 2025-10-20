@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { Settings } from "../../../api";
+import useWhatsApp from "../../../hooks/whatsapp";
 
 const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
+  const { data: socialLink } = useWhatsApp();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -16,6 +18,14 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
   const closeDropdown = () => {
     setShowDropdown(false);
   };
+
+  const handleOpenSocialLink = (link) => {
+    if (link) {
+      window.open(link, "_blank");
+    }
+  };
+
+  console.log(socialLink);
   return (
     <>
       <div
@@ -30,6 +40,19 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
         >
           Home
         </Link>
+        {socialLink?.result?.branchWhatsapplink && (
+          <Link
+            onClick={() =>
+              handleOpenSocialLink(socialLink?.result?.branchWhatsapplink)
+            }
+            _ngcontent-htq-c82
+            to="/"
+            className="dropdown-item router-link-exact-active router-link-active"
+          >
+            Deposit Support
+          </Link>
+        )}
+
         <Link
           onClick={closeDropdown}
           _ngcontent-htq-c82
@@ -116,6 +139,18 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
         >
           Rule
         </Link>
+        {socialLink?.result?.whatsapplink && (
+          <Link
+            onClick={() =>
+              handleOpenSocialLink(socialLink?.result?.whatsapplink)
+            }
+            _ngcontent-htq-c82
+            to="/"
+            className="dropdown-item router-link-exact-active router-link-active"
+          >
+            All Support
+          </Link>
+        )}
         <Link
           _ngcontent-htq-c82
           onClick={handleLogout}
