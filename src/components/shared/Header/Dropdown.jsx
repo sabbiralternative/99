@@ -93,10 +93,18 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
         <Link
           onClick={closeDropdown}
           _ngcontent-htq-c82
-          to="/deposit-withdraw-report"
+          to="/deposit-report"
           className="dropdown-item"
         >
-          Deposit Withdraw Report
+          Deposit Report
+        </Link>
+        <Link
+          onClick={closeDropdown}
+          _ngcontent-htq-c82
+          to="/withdraw-report"
+          className="dropdown-item"
+        >
+          Withdraw Report
         </Link>
         <Link
           onClick={closeDropdown}

@@ -86,13 +86,11 @@ const WithdrawReport = () => {
                       style={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: "8px",
                         border: "1px solid #ddd",
                         backgroundColor: "#F8F8F8",
                         borderRadius: "8px",
                         overflow: "hidden",
                         boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
-                        padding: "8px",
                         marginBottom: "3px",
                       }}
                     >
@@ -116,10 +114,10 @@ const WithdrawReport = () => {
                         </div>
                         <div
                           style={{
-                            padding: "8px 12px",
+                            padding: "4px 6px",
                             fontSize: "12px",
                             fontWeight: "600",
-                            borderRadius: "0px 0px 0px 8px",
+                            borderRadius: "0px 0px 0px 4px",
                             height: "100%",
                             backgroundColor:
                               data?.status === "APPROVED"
@@ -138,7 +136,6 @@ const WithdrawReport = () => {
                         style={{
                           display: "flex",
                           justifyContent: "space-between",
-                          padding: "8px 12px",
                         }}
                       >
                         <span
@@ -190,19 +187,24 @@ const WithdrawReport = () => {
                             flexDirection: "column",
                           }}
                         >
-                          <span> ₹ {data?.amount}</span>
+                          <span style={{ paddingRight: "6px" }}>
+                            {" "}
+                            ₹ {data?.amount}
+                          </span>
                           {Settings.complaint && (
-                            <button
+                            <div
                               style={{
                                 backgroundColor: "rgb(255 131 46)",
-                                borderRadius: "5px",
+                                padding: "4px 6px",
                                 fontSize: "12px",
+                                fontWeight: "600",
+                                borderRadius: "4px 0px 0px 0px",
                               }}
                               onClick={() => setComplaintId(data?.referenceNo)}
                               className="px-2 py-1  text-white   "
                             >
                               Report Issue
-                            </button>
+                            </div>
                           )}
                         </span>
                       </div>
