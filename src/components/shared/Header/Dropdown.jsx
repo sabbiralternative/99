@@ -147,7 +147,7 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
         >
           Rule
         </Link>
-        {socialLink?.result?.whatsapplink && (
+        {/* {socialLink?.result?.whatsapplink && (
           <Link
             onClick={() =>
               handleOpenSocialLink(socialLink?.result?.whatsapplink)
@@ -158,7 +158,7 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
           >
             All Support
           </Link>
-        )}
+        )} */}
         <Link
           _ngcontent-htq-c82
           onClick={handleLogout}
