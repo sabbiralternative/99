@@ -37,8 +37,10 @@ import usdt from "../icon/usdt.png";
 import telegram from "/icon/telegram.png";
 import instagram from "../img/instagram.png";
 import whatsapp2 from "../img/1384023 (1).png";
+import brandsm from "../icon/brand-sm.svg";
 
 export default {
+  brandsm,
   whatsapp2,
   instagram,
   telegram,
