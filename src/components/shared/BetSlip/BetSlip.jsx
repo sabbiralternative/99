@@ -192,7 +192,7 @@ const BetSlip = () => {
           <div _ngcontent-ukj-c63="" class="row mx-0">
             <div _ngcontent-ukj-c63="" class="col-6">
               <div _ngcontent-ukj-c63="" class="input-group">
-                {!placeBetValues?.isWeak && (
+                {!placeBetValues?.isWeak && !placeBetValues?.cashout && (
                   <div
                     onClick={() =>
                       handleDecreasePrice(
@@ -212,6 +212,7 @@ const BetSlip = () => {
                 )}
 
                 <input
+                  readOnly={placeBetValues?.cashout}
                   onChange={(e) => dispatch(setPrice(e.target.value))}
                   _ngcontent-ukj-c63=""
                   type="number"
@@ -220,7 +221,7 @@ const BetSlip = () => {
                   class="form-control ng-untouched ng-pristine ng-valid"
                   value={price}
                 />
-                {!placeBetValues?.isWeak && (
+                {!placeBetValues?.isWeak && !placeBetValues?.cashout && (
                   <div
                     onClick={() =>
                       handleIncreasePrice(
@@ -242,6 +243,7 @@ const BetSlip = () => {
             </div>
             <div _ngcontent-ukj-c63="" class="col-6">
               <input
+                readOnly={placeBetValues?.cashout}
                 onChange={(e) => dispatch(setStake(e.target.value))}
                 _ngcontent-ukj-c63=""
                 type="number"
@@ -256,6 +258,7 @@ const BetSlip = () => {
               {parseButtonValues?.map((button, i) => {
                 return (
                   <button
+                    disabled={placeBetValues?.cashout}
                     onClick={() => dispatch(setStake(button?.value))}
                     key={i}
                     _ngcontent-ukj-c63=""
@@ -267,6 +270,7 @@ const BetSlip = () => {
               })}
 
               <button
+                disabled={placeBetValues?.cashout}
                 onClick={() => dispatch(setStake(100))}
                 _ngcontent-ukj-c63=""
                 class="min-stake"
@@ -274,6 +278,7 @@ const BetSlip = () => {
                 min stake
               </button>
               <button
+                disabled={placeBetValues?.cashout}
                 onClick={() =>
                   dispatch(
                     setStake(

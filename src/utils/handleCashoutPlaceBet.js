@@ -62,6 +62,7 @@ export const handleCashOutPlaceBet = (
           marketName: games?.name,
           eventId: games?.eventId,
           totalSize: team?.newStakeValue,
+          cashout: true,
         })
       );
       dispatch(setRunnerId(team?.runner?.id));
