@@ -224,7 +224,7 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                                   width: "20px",
                                   filter: "none",
                                 }}
-                                src={images.brandsm}
+                                src={"/icon/bhim.png"}
                               />
                             ) : null}
 
