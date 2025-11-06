@@ -39,10 +39,11 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
     setMethodType(method?.type);
     setPaymentId(method?.paymentId);
 
-    if (method?.type === "upigateway") {
+    if (method?.type === "upigateway" || method?.type === "toitgateway") {
       const depositDetailForPg = {
         paymentId: method?.paymentId,
         amount,
+        method: method?.type,
       };
       const res = await AxiosSecure.post(API.pg, depositDetailForPg);
       const data = res?.data;
@@ -217,7 +218,8 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                                 src={"/icon/whatsapp.png"}
                               />
                             ) : null}
-                            {method?.type == "upigateway" ? (
+                            {method?.type == "upigateway" ||
+                            method?.type === "toitgateway" ? (
                               <img
                                 style={{
                                   height: "20px",
