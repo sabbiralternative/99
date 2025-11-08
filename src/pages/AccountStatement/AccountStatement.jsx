@@ -176,14 +176,7 @@ const AccountStatement = () => {
                               >
                                 Sports
                               </th>
-                              <th
-                                role="columnheader"
-                                scope="col"
-                                aria-colindex={1}
-                                className="text-center"
-                              >
-                                Time
-                              </th>
+
                               <th
                                 role="columnheader"
                                 scope="col"
@@ -215,7 +208,9 @@ const AccountStatement = () => {
                                     role="cell"
                                     className="text-center"
                                   >
-                                    <span>{statement?.settledTime}</span>
+                                    <span>
+                                      {statement?.settledTime} {statement?.time}
+                                    </span>
                                   </td>
                                   <td
                                     aria-colindex={1}
@@ -269,13 +264,7 @@ const AccountStatement = () => {
                                   >
                                     <span>N/A</span>
                                   </td>
-                                  <td
-                                    aria-colindex={1}
-                                    role="cell"
-                                    className="text-center"
-                                  >
-                                    <span>{statement?.time}</span>
-                                  </td>
+
                                   <td
                                     onClick={() =>
                                       setMarketId(statement?.marketId)
