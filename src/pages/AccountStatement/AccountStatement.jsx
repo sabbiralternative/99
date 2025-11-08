@@ -182,6 +182,14 @@ const AccountStatement = () => {
                                 aria-colindex={1}
                                 className="text-center"
                               >
+                                Time
+                              </th>
+                              <th
+                                role="columnheader"
+                                scope="col"
+                                aria-colindex={1}
+                                className="text-center"
+                              >
                                 Remark
                               </th>
                             </tr>
@@ -260,6 +268,13 @@ const AccountStatement = () => {
                                     className="text-center"
                                   >
                                     <span>N/A</span>
+                                  </td>
+                                  <td
+                                    aria-colindex={1}
+                                    role="cell"
+                                    className="text-center"
+                                  >
+                                    <span>{statement?.time}</span>
                                   </td>
                                   <td
                                     onClick={() =>

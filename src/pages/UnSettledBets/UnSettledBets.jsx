@@ -38,7 +38,7 @@ const UnSettledBets = () => {
                             </div>
                             <div>
                               <strong>Nation: </strong>
-                              {bet?.nation}a
+                              {bet?.nation}
                             </div>
                             <div>
                               <strong>Place Date: </strong>
