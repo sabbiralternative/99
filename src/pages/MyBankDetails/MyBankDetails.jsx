@@ -10,9 +10,11 @@ import { useBankAccount } from "../../hooks/bankAccount";
 import AddBank from "../Withdraw/AddBank";
 import { useDispatch, useSelector } from "react-redux";
 import { setAddBank } from "../../redux/features/global/globalSlice";
+import AddUSDTAccount from "../../components/modals/AddUSDTAccount/AddUSDTAccount";
 
 const MyBankDetails = () => {
   const { addBank } = useSelector((state) => state.global);
+  const [showUSDTModal, setShowUSDTModal] = useState(false);
   const dispatch = useDispatch();
   const [showDetails, setShowDetails] = useState(null);
   const [tab, setTab] = useState(1);
@@ -89,6 +91,12 @@ const MyBankDetails = () => {
   return (
     <>
       {addBank && <AddBank refetchBankData={refetchBankData} />}
+      {showUSDTModal && (
+        <AddUSDTAccount
+          refetchBankData={refetchBankData}
+          setShowUSDTModal={setShowUSDTModal}
+        />
+      )}
 
       <div className="deposit-withdraw-btns">
         <div className="btns-animation ">
@@ -135,6 +143,18 @@ const MyBankDetails = () => {
         >
           Add New Bank
         </button>
+        <button
+          onClick={() => setShowUSDTModal(true)}
+          className="btn"
+          style={{
+            background: "var(--theme1-bg)",
+            color: "white",
+            borderRadius: "4px",
+            marginTop: "5px",
+          }}
+        >
+          Add USDT Account
+        </button>
         <h6 style={{ marginTop: "5px", fontWeight: "500" }}>Bank Details</h6>
 
         {bankData?.length > 0 &&
@@ -168,7 +188,7 @@ const MyBankDetails = () => {
                       gap: "3px",
                     }}
                   >
-                    <img
+                    {/* <img
                       style={{
                         height: "30px",
                         width: "30px",
@@ -176,7 +196,7 @@ const MyBankDetails = () => {
                       }}
                       alt="Bank Icon"
                       src={`/icon/${bank?.bankCode}.png`}
-                    />
+                    /> */}
                     <div>
                       <p> {bank?.bankName}</p>
                       {bank?.isDefault === 1 && (
