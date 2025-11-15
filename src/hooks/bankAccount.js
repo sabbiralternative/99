@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosSecure } from "../lib/AxiosSecure";
 import { API } from "../api";
 
@@ -13,6 +13,16 @@ export const useBankAccount = (payload) => {
       if (data?.success) {
         return data?.result;
       }
+    },
+  });
+};
+
+export const useBankMutation = () => {
+  return useMutation({
+    mutationKey: ["bank-account"],
+    mutationFn: async (payload) => {
+      const { data } = await AxiosSecure.post(`${API.bankAccount}`, payload);
+      return data;
     },
   });
 };

@@ -4,7 +4,7 @@ import { useContext, useRef } from "react";
 import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
 import { ApiContext } from "../../../context/ApiProvider";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
-import useGetIndex from "../../../hooks/useGetIndex";
+import { useGetIndex } from "../../../hooks";
 
 const Referral = ({ setShowReferral }) => {
   const { logo } = useContext(ApiContext);
@@ -13,7 +13,9 @@ const Referral = ({ setShowReferral }) => {
   useCloseModalClickOutside(referralRef, () => {
     setShowReferral(false);
   });
-  const { data } = useGetIndex();
+  const { data } = useGetIndex({
+    type: "get_referral_code",
+  });
 
   return (
     <>

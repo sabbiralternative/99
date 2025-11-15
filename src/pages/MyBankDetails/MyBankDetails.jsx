@@ -7,10 +7,11 @@ import { AxiosSecure } from "../../lib/AxiosSecure";
 import { API } from "../../api";
 import toast from "react-hot-toast";
 import { useBankAccount } from "../../hooks/bankAccount";
-import AddBank from "../Withdraw/AddBank";
+
 import { useDispatch, useSelector } from "react-redux";
 import { setAddBank } from "../../redux/features/global/globalSlice";
 import AddUSDTAccount from "../../components/modals/AddUSDTAccount/AddUSDTAccount";
+import AddBank from "../../components/modals/AddBank/AddBank";
 
 const MyBankDetails = () => {
   const { addBank } = useSelector((state) => state.global);

@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Settings } from "../../../api";
 import useWhatsApp from "../../../hooks/whatsapp";
 
-const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
+const Dropdown = ({ showDropdown, setShowDropdown }) => {
   const { data: socialLink } = useWhatsApp();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -70,26 +70,24 @@ const Dropdown = ({ showDropdown, setShowDropdown, setShowReferral }) => {
           Bonus Statement
         </Link>
         {Settings.referral && (
-          <a
-            onClick={() => {
-              setShowDropdown(false);
-              setShowReferral(true);
-            }}
+          <Link
+            to="/affiliate"
+            onClick={closeDropdown}
             _ngcontent-htq-c82
             className="dropdown-item"
           >
-            Referral
-          </a>
+            Affiliate
+          </Link>
         )}
 
-        <Link
+        {/* <Link
           onClick={closeDropdown}
           _ngcontent-htq-c82
           to="/referral-statement"
           className="dropdown-item"
         >
           Referral Statement
-        </Link>
+        </Link> */}
         <Link
           onClick={closeDropdown}
           _ngcontent-htq-c82

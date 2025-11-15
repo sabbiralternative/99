@@ -1,40 +1,20 @@
 /* eslint-disable react/no-unknown-property */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import ChooseAmount from "./ChoseAmount";
+import BankAccount from "./BankAccount";
+import "./withdraw.css";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faUser } from "@fortawesome/free-solid-svg-icons";
 import { ApiContext } from "../../context/ApiProvider";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import WithdrawConfirm from "./WithdrawConfirm";
-import BankAccounts from "./BankAccounts";
-import SelectAmount from "./SelectAmount";
-import { useBankAccount } from "../../hooks/bankAccount";
-import AddBank from "./AddBank";
-import { setAddBank } from "../../redux/features/global/globalSlice";
+import { useSelector } from "react-redux";
 
 const Withdraw = () => {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { logo } = useContext(ApiContext);
+  const { user } = useSelector((state) => state.auth);
   const [amount, setAmount] = useState("");
-  const [showBankAccount, setShowBankAccount] = useState(false);
-  const [confirmWithdraw, setConfirmWithdraw] = useState(false);
-  const [bank, setBank] = useState("");
-  const { addBank } = useSelector((state) => state.global);
-  const payload = {
-    type: "getBankAccounts",
-    status: "1",
-  };
-  const { data: bankData, refetch: refetchBankData } = useBankAccount(payload);
-
-  useEffect(() => {
-    if (showBankAccount && bankData?.length < 1) {
-      setShowBankAccount(false);
-      dispatch(setAddBank(true));
-    }
-  }, [bankData, showBankAccount, dispatch]);
-
+  const [tab, setTab] = useState("choseAmount");
   return (
     <div _nghost-swn-c87="">
       <div _ngcontent-swn-c87="" id="casino-frm">
@@ -70,41 +50,37 @@ const Withdraw = () => {
             {user}
           </span>
         </div>
-        <div className="col-md-10 featured-box">
+        <div
+          className="col-md-10 featured-box"
+          // style={{ paddingLeft: "0px", paddingRight: "0px" }}
+        >
           <div className="bankingUi">
             <div className="container-fluid">
               <div className="row">
-                {!showBankAccount && !confirmWithdraw && (
-                  <SelectAmount
-                    setShowBankAccount={setShowBankAccount}
-                    setAmount={setAmount}
-                    amount={amount}
+                <div
+                  className="col-md-12 text-center pt-3 logo-section"
+                  style={{ display: "none" }}
+                >
+                  <img
+                    className="img-fluid main-logo"
+                    src="https://speedcdn.io/assets/logos/gold365.com.png"
+                    style={{ width: "150px" }}
                   />
-                )}
-                {showBankAccount && bankData?.length > 0 && (
-                  <BankAccounts
-                    refetchBankData={refetchBankData}
-                    setAmount={setAmount}
-                    bankData={bankData}
-                    setConfirmWithdraw={setConfirmWithdraw}
-                    setShowBankAccount={setShowBankAccount}
-                    bank={bank}
-                    setBank={setBank}
-                  />
-                )}
-                {addBank && bankData?.length == 0 && (
-                  <AddBank refetchBankData={refetchBankData} />
-                )}
-                {confirmWithdraw && (
-                  <WithdrawConfirm
-                    amount={amount}
-                    bank={bank}
-                    setAmount={setAmount}
-                    setShowBankAccount={setShowBankAccount}
-                    setConfirmWithdraw={setConfirmWithdraw}
-                    setBank={setBank}
-                  />
-                )}
+                  <h2>G51India53(387.2)</h2>
+                </div>
+                <div
+                  className=" withdraw-main-wrapper"
+                  style={{ width: "100%" }}
+                >
+                  {tab === "choseAmount" && (
+                    <ChooseAmount
+                      amount={amount}
+                      setAmount={setAmount}
+                      setTab={setTab}
+                    />
+                  )}
+                  {tab === "bank" && <BankAccount amount={amount} />}
+                </div>
               </div>
             </div>
           </div>

@@ -24,6 +24,7 @@ import ReferralStatement from "../pages/ReferralStatement/ReferralStatement";
 import NotFound from "../pages/NotFound/NotFound";
 import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
 import WithdrawReport from "../pages/WithdrawReport/WithdrawReport";
+import Affiliate from "../pages/Affiliate/Affiliate";
 
 export const router = createBrowserRouter(
   [
@@ -96,6 +97,10 @@ export const router = createBrowserRouter(
         {
           path: "/other",
           element: <Other />,
+        },
+        {
+          path: "/affiliate",
+          element: <Affiliate />,
         },
       ],
     },
