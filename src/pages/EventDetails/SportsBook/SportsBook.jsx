@@ -43,27 +43,26 @@ const SportsBook = ({ sportsBook }) => {
 
   return (
     <>
-      {eventTypeId != 4 &&
-        sports?.map((group) =>
-          group?.Items?.map((item, iIdx) => {
-            const isOpen = openItems[iIdx];
+      {sports?.map((group) =>
+        group?.Items?.map((item, iIdx) => {
+          const isOpen = openItems[iIdx];
 
-            return (
-              <div key={iIdx} style={{ marginBottom: "10px" }}>
-                <div className="a23_css bt12687">
-                  <div onClick={() => toggleItem(iIdx)} className="bt12695">
+          return (
+            <div key={iIdx} style={{ marginBottom: "10px" }}>
+              <div className="a23_css bt12687">
+                <div onClick={() => toggleItem(iIdx)} className="bt12695">
+                  <div
+                    className="bt12689 !text-white"
+                    data-editor-id="marketTitle"
+                  >
+                    {item?.Name}
                     <div
-                      className="bt12689 !text-white"
-                      data-editor-id="marketTitle"
+                      className="bt6471 bt12696 bt12690"
+                      style={{ width: "16px", height: "16px" }}
                     >
-                      {item?.Name}
-                      <div
-                        className="bt6471 bt12696 bt12690"
-                        style={{ width: "16px", height: "16px" }}
-                      >
-                        {isOpen ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
+                      {isOpen ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
 
-                        {/* <svg
+                      {/* <svg
                         width="16"
                         height="16"
                         viewBox="0 0 16 16"
@@ -71,48 +70,48 @@ const SportsBook = ({ sportsBook }) => {
                       >
                         <path d="M8.7542 11.1529C8.35634 11.6157 7.64366 11.6157 7.2458 11.1529L4.24545 7.66298C3.68586 7.01207 4.14485 6 4.99964 6L11.0004 6C11.8551 6 12.3141 7.01207 11.7546 7.66298L8.7542 11.1529Z"></path>
                       </svg> */}
-                      </div>
                     </div>
                   </div>
-                  {item?.MColumnCount === 3 && (
-                    <ColumnThree
-                      item={item}
-                      isOpen={isOpen}
-                      sportsBook={sportsBook}
-                      priceClasses={priceClasses}
-                      setPriceClasses={setPriceClasses}
-                      prevPrices={prevPrices}
-                      setPrevPrices={setPrevPrices}
-                    />
-                  )}
-                  {item?.MColumnCount === 2 && (
-                    <ColumnTwo
-                      item={item}
-                      isOpen={isOpen}
-                      sportsBook={sportsBook}
-                      priceClasses={priceClasses}
-                      setPriceClasses={setPriceClasses}
-                      prevPrices={prevPrices}
-                      setPrevPrices={setPrevPrices}
-                    />
-                  )}
-                  {item?.MColumnCount === 1 && (
-                    <ColumnOne
-                      item={item}
-                      isOpen={isOpen}
-                      sportsBook={sportsBook}
-                      priceClasses={priceClasses}
-                      setPriceClasses={setPriceClasses}
-                      prevPrices={prevPrices}
-                      setPrevPrices={setPrevPrices}
-                    />
-                  )}
                 </div>
-                {item?.Id === runnerId && <BetSlip />}
+                {item?.MColumnCount === 3 && (
+                  <ColumnThree
+                    item={item}
+                    isOpen={isOpen}
+                    sportsBook={sportsBook}
+                    priceClasses={priceClasses}
+                    setPriceClasses={setPriceClasses}
+                    prevPrices={prevPrices}
+                    setPrevPrices={setPrevPrices}
+                  />
+                )}
+                {item?.MColumnCount === 2 && (
+                  <ColumnTwo
+                    item={item}
+                    isOpen={isOpen}
+                    sportsBook={sportsBook}
+                    priceClasses={priceClasses}
+                    setPriceClasses={setPriceClasses}
+                    prevPrices={prevPrices}
+                    setPrevPrices={setPrevPrices}
+                  />
+                )}
+                {item?.MColumnCount === 1 && (
+                  <ColumnOne
+                    item={item}
+                    isOpen={isOpen}
+                    sportsBook={sportsBook}
+                    priceClasses={priceClasses}
+                    setPriceClasses={setPriceClasses}
+                    prevPrices={prevPrices}
+                    setPrevPrices={setPrevPrices}
+                  />
+                )}
               </div>
-            );
-          })
-        )}
+              {item?.Id === runnerId && <BetSlip />}
+            </div>
+          );
+        })
+      )}
     </>
   );
 };
