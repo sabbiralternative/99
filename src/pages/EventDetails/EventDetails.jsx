@@ -25,7 +25,8 @@ import CricketScore from "../../components/modules/EventDetails/CricketScore";
 
 const EventDetails = () => {
   const { eventTypeId, eventId } = useParams();
-  const { data: currentBet } = useCurrentBets(eventId);
+  const { data: currentBet, refetch: refetchCurrentBets } =
+    useCurrentBets(eventId);
 
   const [tab, setTab] = useState("odd");
   const dispatch = useDispatch();
@@ -283,7 +284,13 @@ const EventDetails = () => {
               </div>
             </div>
           )}
-          {tab === "matchedBet" && <CurrentBets currentBet={currentBet} />}
+          {tab === "matchedBet" && (
+            <CurrentBets
+              sportsBook={data?.sportsbook?.Result}
+              currentBet={currentBet}
+              refetchCurrentBets={refetchCurrentBets}
+            />
+          )}
         </div>
         {data?.score?.hasVideo && (
           <div _ngcontent-bym-c104 className="tv-icon">

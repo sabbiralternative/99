@@ -53,6 +53,8 @@ export const API = {
   forgotPassword: "",
   utr: "",
   otpless: "",
+  sb_cashout: "",
+  fast_cashout: "",
 };
 
 export const Settings = {

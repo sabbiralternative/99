@@ -120,7 +120,9 @@
       "singleDiamondRules": "https://api7.live/api/exchange/diamond/rules",
       "mac88All": "https://cache7.live/api/exchange/diamond/mac88",
       "forgotPassword": "https://api7.live/api/exchange/diamond/forgotPassword",
-      "utr": "https://b2c.bet/deposit/utr"
+      "utr": "https://b2c.bet/deposit/utr",
+      "sb_cashout": "https://api7.live/api/exchange/diamond/sb_cashout",
+      "fast_cashout": "https://api7.live/api/exchange/diamond/fast_cashout"
     }
   },
   "success": true
