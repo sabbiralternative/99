@@ -107,9 +107,8 @@ const CurrentBets = ({ currentBet, sportsBook, refetchCurrentBets }) => {
                 });
 
                 const price = (
-                  0.92 *
-                  bet?.amount *
-                  (bet?.userRate / column?.Price)
+                  0.92 * bet?.amount * (bet?.userRate / column?.Price) -
+                  bet?.amount
                 )?.toFixed(2);
                 return (
                   <tr
@@ -121,7 +120,7 @@ const CurrentBets = ({ currentBet, sportsBook, refetchCurrentBets }) => {
                       {bet?.nation}
                     </td>
                     <td _ngcontent-nfu-c64="" class="text-right">
-                      {bet?.cashout && (
+                      {bet?.cashout && column && (
                         <button
                           onClick={() =>
                             handleCashOut({
