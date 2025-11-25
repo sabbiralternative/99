@@ -53,7 +53,9 @@ const OldAccount = ({ amount, bankAccounts, refetchBankAccounts }) => {
 
   return (
     <Fragment>
-      {showSuccessModal && <WithdrawSuccess />}
+      {showSuccessModal && (
+        <WithdrawSuccess setShowSuccessModal={setShowSuccessModal} />
+      )}
       {bankAccounts?.length > 0 ? (
         <form onSubmit={handleWithdraw} className="old-account-form">
           <div className="account-list">
