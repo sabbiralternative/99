@@ -9,7 +9,7 @@ const BankAccount = ({ amount }) => {
     type: "getBankAccounts",
     status: "1",
   };
-  const { bankData: data, refetchBankData } = useBankAccount(bankData);
+  const { data, refetch: refetchBankAccounts } = useBankAccount(bankData);
   const [tab, setTab] = useState("");
 
   useEffect(() => {
@@ -70,20 +70,20 @@ const BankAccount = ({ amount }) => {
         {tab === "add-bank-account" && (
           <AddBankAccount
             setTab={setTab}
-            refetchBankAccounts={refetchBankData}
+            refetchBankAccounts={refetchBankAccounts}
           />
         )}
         {tab === "add-usdt-account" && (
           <AddUSDTAccount
             setTab={setTab}
-            refetchBankAccounts={refetchBankData}
+            refetchBankAccounts={refetchBankAccounts}
           />
         )}
         {tab === "oldAccount" && (
           <OldAccount
             bankAccounts={data}
             amount={amount}
-            refetchBankAccounts={refetchBankData}
+            refetchBankAccounts={refetchBankAccounts}
           />
         )}
       </div>
