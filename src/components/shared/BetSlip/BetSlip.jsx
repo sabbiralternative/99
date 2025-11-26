@@ -230,7 +230,7 @@ const BetSlip = () => {
                 <input
                   onChange={(e) => {
                     dispatch(setPrice(e.target.value));
-                    setIsCashOut(faPlus);
+                    setIsCashOut(false);
                   }}
                   _ngcontent-ukj-c63=""
                   type="number"
@@ -264,7 +264,7 @@ const BetSlip = () => {
               <input
                 onChange={(e) => {
                   dispatch(setStake(e.target.value));
-                  setIsCashOut(faPlus);
+                  setIsCashOut(false);
                 }}
                 _ngcontent-ukj-c63=""
                 type="number"
@@ -292,7 +292,7 @@ const BetSlip = () => {
               <button
                 onClick={() => {
                   dispatch(setStake(100));
-                  setIsCashOut(faPlus);
+                  setIsCashOut(false);
                 }}
                 _ngcontent-ukj-c63=""
                 class="min-stake"
