@@ -23,6 +23,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const BetSlip = () => {
+  const [isCashOut, setIsCashOut] = useState(false);
   const { eventTypeId } = useParams();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -49,6 +50,7 @@ const BetSlip = () => {
           : null
       )
     );
+    setIsCashOut(placeBetValues?.cashout || false);
   }, [placeBetValues, dispatch]);
 
   let payload = {};
@@ -68,7 +70,7 @@ const BetSlip = () => {
         totalSize: stake,
         isBettable: placeBetValues?.isBettable,
         eventId: placeBetValues?.eventId,
-        cashout: placeBetValues?.cashout || false,
+        cashout: isCashOut,
         b2c: Settings.b2c,
       };
     } else {
@@ -158,6 +160,19 @@ const BetSlip = () => {
       setBetDelay(null);
     }
   }, [setBetDelay, betDelay]);
+
+  const handleButtonValue = (value) => {
+    setIsCashOut(false);
+    const buttonValue = Number(value);
+    const prevStake = stake === null ? null : Number(stake);
+
+    if (prevStake === null) {
+      dispatch(setStake(buttonValue));
+    }
+    if (prevStake >= 0) {
+      dispatch(setStake(buttonValue + prevStake));
+    }
+  };
   return (
     <div _ngcontent-ukj-c100="" style={{ zIndex: "999" }}>
       <div _ngcontent-ukj-c100="" _nghost-ukj-c63="">
@@ -192,16 +207,17 @@ const BetSlip = () => {
           <div _ngcontent-ukj-c63="" class="row mx-0">
             <div _ngcontent-ukj-c63="" class="col-6">
               <div _ngcontent-ukj-c63="" class="input-group">
-                {!placeBetValues?.isWeak && !placeBetValues?.cashout && (
+                {!placeBetValues?.isWeak && (
                   <div
-                    onClick={() =>
+                    onClick={() => {
                       handleDecreasePrice(
                         price,
                         placeBetValues,
                         dispatch,
                         setPrice
-                      )
-                    }
+                      );
+                      setIsCashOut(false);
+                    }}
                     _ngcontent-ukj-c63=""
                     class="input-group-prepend"
                   >
@@ -212,8 +228,10 @@ const BetSlip = () => {
                 )}
 
                 <input
-                  readOnly={placeBetValues?.cashout}
-                  onChange={(e) => dispatch(setPrice(e.target.value))}
+                  onChange={(e) => {
+                    dispatch(setPrice(e.target.value));
+                    setIsCashOut(faPlus);
+                  }}
                   _ngcontent-ukj-c63=""
                   type="number"
                   min="1.01"
@@ -221,16 +239,17 @@ const BetSlip = () => {
                   class="form-control ng-untouched ng-pristine ng-valid"
                   value={price}
                 />
-                {!placeBetValues?.isWeak && !placeBetValues?.cashout && (
+                {!placeBetValues?.isWeak && (
                   <div
-                    onClick={() =>
+                    onClick={() => {
                       handleIncreasePrice(
                         price,
                         placeBetValues,
                         dispatch,
                         setPrice
-                      )
-                    }
+                      );
+                      setIsCashOut(false);
+                    }}
                     _ngcontent-ukj-c63=""
                     class="input-group-append"
                   >
@@ -243,8 +262,10 @@ const BetSlip = () => {
             </div>
             <div _ngcontent-ukj-c63="" class="col-6">
               <input
-                readOnly={placeBetValues?.cashout}
-                onChange={(e) => dispatch(setStake(e.target.value))}
+                onChange={(e) => {
+                  dispatch(setStake(e.target.value));
+                  setIsCashOut(faPlus);
+                }}
                 _ngcontent-ukj-c63=""
                 type="number"
                 value={stake !== null && stake}
@@ -258,8 +279,7 @@ const BetSlip = () => {
               {parseButtonValues?.map((button, i) => {
                 return (
                   <button
-                    disabled={placeBetValues?.cashout}
-                    onClick={() => dispatch(setStake(button?.value))}
+                    onClick={() => handleButtonValue(button?.value)}
                     key={i}
                     _ngcontent-ukj-c63=""
                     class="ot-stake"
@@ -270,22 +290,24 @@ const BetSlip = () => {
               })}
 
               <button
-                disabled={placeBetValues?.cashout}
-                onClick={() => dispatch(setStake(100))}
+                onClick={() => {
+                  dispatch(setStake(100));
+                  setIsCashOut(faPlus);
+                }}
                 _ngcontent-ukj-c63=""
                 class="min-stake"
               >
                 min stake
               </button>
               <button
-                disabled={placeBetValues?.cashout}
-                onClick={() =>
+                onClick={() => {
                   dispatch(
                     setStake(
                       parseButtonValues[parseButtonValues?.length - 1]?.value
                     )
-                  )
-                }
+                  );
+                  setIsCashOut(false);
+                }}
                 _ngcontent-ukj-c63=""
                 class="max-stake"
               >
