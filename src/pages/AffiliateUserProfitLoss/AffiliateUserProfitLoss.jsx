@@ -1,95 +1,62 @@
-import { useState } from "react";
-import { useIndex } from "../../../hooks";
+import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
+import { useGetIndex } from "../../hooks";
 
-const ProfitLoss = () => {
-  const from = new Date(new Date().setDate(new Date().getDate() - 7))
+const AffiliateUserProfitLoss = () => {
+  const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
     .toISOString()
     .split("T")[0];
-  const to = new Date().toISOString().split("T")[0];
-  const [fromDate, setFromDate] = useState(from);
-  const [toDate, setToDate] = useState(to);
-  const { mutate, data, isSuccess } = useIndex();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    mutate({
-      type: "get_affiliate_all_pl",
-      from_date: fromDate,
-      to_date: toDate,
-    });
-  };
+  const toDate = new Date().toISOString().split("T")[0];
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const punter_id = params.get("punter_id");
+  const { data } = useGetIndex({
+    type: "get_affiliate_pl",
+    punter_id,
+    from_date: fromDate,
+    to_date: toDate,
+  });
 
   const getUniqueDate = Array.from(
-    new Set(data?.result?.map((item) => item?.date_added))
+    new Set(data?.result?.map((item) => item?.settledTime))
   );
+
   return (
-    <section data-v-81c2ddd8 className="nw-affi-user-wrapper affi-pd-bot ">
-      <div data-v-81c2ddd8 className>
-        <h3 data-v-81c2ddd8 className="nw-affi-heading-text">
-          User Profit / Loss
-        </h3>
-        <form
-          onSubmit={handleSubmit}
-          data-v-81c2ddd8
-          className="typeslabel openbettss affiliate-pl affiliate-report affi-date-filter-form"
+    <div className="center-container a23_css" style={{ width: "100%" }}>
+      <div className="mat-accordion bet-history-accordion ">
+        <div
+          onClick={() => navigate("/affiliate?tab=user-list")}
+          style={{ cursor: "pointer" }}
+          className="deposit-report-head "
         >
-          <ul
-            style={{ paddingLeft: "0px" }}
-            data-v-81c2ddd8
-            className="typelabel-main flex-nowrap"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 20 20"
+            fill="none"
+            className=""
           >
-            <li data-v-81c2ddd8>
-              <div data-v-81c2ddd8 className="form-group">
-                <label data-v-81c2ddd8 className="label-pl12">
-                  From Date
-                </label>
-                <input
-                  onChange={(e) => setFromDate(e.target.value)}
-                  data-v-81c2ddd8
-                  type="date"
-                  id="open-bet-from"
-                  className="form-control"
-                  value={fromDate}
-                />
-              </div>
-            </li>
-            <li data-v-81c2ddd8>
-              <div data-v-81c2ddd8 className="form-group">
-                <label data-v-81c2ddd8 className="label-pl12">
-                  To Date
-                </label>
-                <input
-                  onChange={(e) => setToDate(e.target.value)}
-                  data-v-81c2ddd8
-                  type="date"
-                  id="open-bet-from"
-                  className="form-control"
-                  value={toDate}
-                />
-              </div>
-            </li>
-          </ul>
-          <div data-v-81c2ddd8 className="download-main">
-            <button
-              type="submit"
-              className="nw-affi-add-new-user-btn"
-              data-bs-target="#AfAddNewUser"
-              data-bs-toggle="modal"
-              data-v-4c49d924
-            >
-              <span data-v-4c49d924>Submit</span>
-            </button>
-          </div>
-        </form>
+            <path
+              d="M13.1213 17.0761L6.25 10.2047L13.1213 3.33337L14.0833 4.31254L8.19115 10.2047L14.0833 16.0969L13.1213 17.0761Z"
+              fill="#228435"
+              className=""
+            ></path>
+          </svg>
+          <span className="deposit-withdraw-head-title  ng-star-inserted">
+            Back
+          </span>
+        </div>
         {getUniqueDate?.length > 0 && (
-          <div className="a23_css">
+          <div>
             {getUniqueDate?.map((date) => {
               const filterByDate = data?.result?.filter(
-                (item) => item?.date_added === date
+                (item) => item?.settledTime === date
               );
               const totalPnl = filterByDate?.reduce((acc, curr) => {
-                return acc + Number(curr.amount);
+                return acc + curr.memberWin;
               }, 0);
               return (
                 <div key={date}>
@@ -124,7 +91,7 @@ const ProfitLoss = () => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#fff",
+                        color: "white",
                       }}
                     >
                       <span>Total PL</span>
@@ -158,16 +125,10 @@ const ProfitLoss = () => {
                         className="mat-expansion-panel   mat-expanded mat-expansion-panel-spacing"
                       >
                         <div
-                          style={{
-                            backgroundColor: "rgb(239 239 239)",
-                            padding: "8px",
-                          }}
+                          style={{ backgroundColor: "rgb(239 239 239)" }}
                           className="mat-expansion-panel-header mat-focus-indicator   mat-expansion-toggle-indicator-after  mat-expanded"
                         >
-                          <span
-                            className="mat-content  mat-content-hide-toggle"
-                            style={{ marginRight: "0px", alignItems: "center" }}
-                          >
+                          <span className="mat-content  mat-content-hide-toggle">
                             <div
                               className="mat-expansion-panel-header-title "
                               style={{
@@ -176,31 +137,26 @@ const ProfitLoss = () => {
                               }}
                             >
                               <h3 style={{ fontSize: "12px" }}>
-                                {item?.event_type_id}
+                                {item?.narration}
+                              </h3>
+                              <h3 style={{ fontSize: "12px" }}>
+                                Balance: {item?.balance}
+                              </h3>
+                              <h3 style={{ color: "gray", fontSize: "12px" }}>
+                                {item?.time}
                               </h3>
                             </div>
                             <div
-                              style={{
-                                flexGrow: 0,
-                                gap: "0px 2px",
-                                marginRight: "0px",
-                              }}
+                              style={{ flexGrow: 0 }}
                               className="mat-expansion-panel-header-description "
                             >
-                              <span> Amount:</span>{" "}
+                              <span> PL:</span>{" "}
                               <span
                                 className={`${
-                                  item?.amount > 0 ? "Won" : "Lost"
+                                  item?.memberWin > 0 ? "Won" : "Lost"
                                 }`}
                               >
-                                ₹
-                              </span>
-                              <span
-                                className={`${
-                                  item?.amount > 0 ? "Won" : "Lost"
-                                }`}
-                              >
-                                {item?.amount}
+                                {item?.memberWin}
                               </span>
                             </div>
                           </span>
@@ -220,14 +176,20 @@ const ProfitLoss = () => {
           </div>
         )}
 
-        {isSuccess && getUniqueDate?.length === 0 && (
+        {getUniqueDate?.length === 0 && (
           <div className="no-data ng-star-inserted">
-            <p>No betting profit and loss yet!</p>
+            <p>Passbook not found</p>
+          </div>
+        )}
+
+        {!token && (
+          <div className="no-data ng-star-inserted">
+            <p>Please login to view your passbook entries</p>
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 };
 
-export default ProfitLoss;
+export default AffiliateUserProfitLoss;

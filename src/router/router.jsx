@@ -25,6 +25,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
 import WithdrawReport from "../pages/WithdrawReport/WithdrawReport";
 import Affiliate from "../pages/Affiliate/Affiliate";
+import AffiliateUserProfitLoss from "../pages/AffiliateUserProfitLoss/AffiliateUserProfitLoss";
 
 export const router = createBrowserRouter(
   [
@@ -101,6 +102,10 @@ export const router = createBrowserRouter(
         {
           path: "/affiliate",
           element: <Affiliate />,
+        },
+        {
+          path: "affiliate/user-profit-loss",
+          element: <AffiliateUserProfitLoss />,
         },
       ],
     },
