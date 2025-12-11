@@ -103,7 +103,7 @@
   min-width: auto;
   width: 25px;
   max-height: 25px;
-  background: var(--bg-primary) !important;
+  background: var(--theme1-bg) !important;
   border-radius: 50%;
   padding: 0;
   position: absolute;
@@ -145,7 +145,7 @@
   width: 30px;
   height: 45px;
   top: 0;
-  background-color: var(--bg-primary);
+  background-color: var(--theme1-bg);
 }
 
 button.btn {

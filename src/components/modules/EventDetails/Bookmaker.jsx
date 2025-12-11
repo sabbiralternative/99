@@ -15,8 +15,11 @@ import { Settings } from "../../../api";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MarketRule from "../../modals/MarketRule/MarketRule";
+import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
+import { isGameSuspended } from "../../../utils/isOddSuspended";
 
 const Bookmaker = ({ bookmaker }) => {
+  const [speedCashOut, setSpeedCashOut] = useState(null);
   const [showRule, setShowRule] = useState(false);
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
@@ -112,7 +115,12 @@ const Bookmaker = ({ bookmaker }) => {
     runner2,
     gameId
   ) => {
-    let runner, largerExposure, layValue, oppositeLayValue, lowerExposure;
+    let runner,
+      largerExposure,
+      layValue,
+      oppositeLayValue,
+      lowerExposure,
+      speedCashOut;
 
     const pnlArr = [exposureA, exposureB];
     const isOnePositiveExposure = onlyOnePositive(pnlArr);
@@ -131,6 +139,13 @@ const Bookmaker = ({ bookmaker }) => {
       layValue = 1 + Number(runner2?.lay?.[0]?.price) / 100;
       oppositeLayValue = 1 + Number(runner1?.lay?.[0]?.price) / 100;
       lowerExposure = exposureA;
+    }
+
+    if (exposureA > 0 && exposureB > 0) {
+      const difference = exposureA - exposureB;
+      if (difference <= 10) {
+        speedCashOut = true;
+      }
     }
 
     // Compute the absolute value of the lower exposure.
@@ -157,6 +172,11 @@ const Bookmaker = ({ bookmaker }) => {
       oppositeLayValue,
       gameId,
       isOnePositiveExposure,
+      exposureA,
+      exposureB,
+      runner1,
+      runner2,
+      speedCashOut,
     };
   };
   function onlyOnePositive(arr) {
@@ -207,12 +227,22 @@ const Bookmaker = ({ bookmaker }) => {
   }
   return (
     <>
+      {speedCashOut && (
+        <SpeedCashOut
+          speedCashOut={speedCashOut}
+          setSpeedCashOut={setSpeedCashOut}
+        />
+      )}
       {showRule && <MarketRule setShowRule={setShowRule} />}
       {bookmaker?.map((games) => {
         const teamProfitForGame = teamProfit?.find(
           (profit) =>
             profit?.gameId === games?.id && profit?.isOnePositiveExposure
         );
+        const speedCashOut = teamProfit?.find(
+          (profit) => profit?.gameId === games?.id && profit?.speedCashOut
+        );
+
         return (
           <div key={games?.id} _ngcontent-bym-c104>
             <div _ngcontent-bym-c104>
@@ -224,7 +254,8 @@ const Bookmaker = ({ bookmaker }) => {
                       {Settings.betFairCashOut &&
                         games?.runners?.length !== 3 &&
                         games?.status === "OPEN" &&
-                        games?.name !== "toss" && (
+                        games?.name !== "toss" &&
+                        !speedCashOut && (
                           <button
                             onClick={() =>
                               handleCashOutPlaceBet(
@@ -250,6 +281,27 @@ const Bookmaker = ({ bookmaker }) => {
                             cashout{" "}
                             {teamProfitForGame?.profit &&
                               teamProfitForGame?.profit?.toFixed(2)}
+                          </button>
+                        )}
+
+                      {Settings.betFairCashOut &&
+                        games?.runners?.length !== 3 &&
+                        games?.status === "OPEN" &&
+                        games?.name !== "toss" &&
+                        speedCashOut && (
+                          <button
+                            style={{
+                              backgroundColor: "#82371b",
+                              color: "#fff",
+                              border: "none",
+                            }}
+                            onClick={() => setSpeedCashOut(speedCashOut)}
+                            disabled={isGameSuspended(games)}
+                            _ngcontent-gdr-c100=""
+                            class="btn-cashout"
+                          >
+                            {" "}
+                            Speed Cashout
                           </button>
                         )}
                       <p _ngcontent-bym-c101 className="float-right mb-0">
