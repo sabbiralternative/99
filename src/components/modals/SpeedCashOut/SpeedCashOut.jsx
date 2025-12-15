@@ -11,7 +11,7 @@ import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useIndex } from "../../../hooks";
 
 const SpeedCashOut = ({ speedCashOut, setSpeedCashOut }) => {
-  const { eventId } = useParams();
+  const { eventTypeId, eventId } = useParams();
   const { refetch: refetchCurrentBets } = useCurrentBets(eventId);
   const { refetch: refetchExposure } = useExposure(eventId);
   const { refetch: refetchBalance } = useBalance();
@@ -33,6 +33,8 @@ const SpeedCashOut = ({ speedCashOut, setSpeedCashOut }) => {
       type: "speed_cashout",
       market_id: speedCashOut?.gameId,
       amount,
+      event_id: eventId,
+      event_type_id: eventTypeId,
     };
     mutate(payload, {
       onSuccess: (data) => {
