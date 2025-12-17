@@ -295,7 +295,13 @@ const Bookmaker = ({ bookmaker }) => {
                               color: "#fff",
                               border: "none",
                             }}
-                            onClick={() => setSpeedCashOut(speedCashOut)}
+                            onClick={() =>
+                              setSpeedCashOut({
+                                ...speedCashOut,
+                                market_name: games?.name,
+                                event_name: games?.eventName,
+                              })
+                            }
                             disabled={isGameSuspended(games)}
                             _ngcontent-gdr-c100=""
                             class="btn-cashout"
