@@ -534,3 +534,140 @@ html * {
     transform: rotate(360deg);
   }
 }
+
+/* App pop up */
+.android-popup {
+  width: 100%;
+  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  background: var(--theme2-bg);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  position: relative;
+  /* z-index: 1; */
+}
+
+.rect-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 141px;
+  height: 64px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    98deg,
+    rgba(8, 248, 255, 0.7) 0.98%,
+    rgba(59, 164, 253, 0.7) 51.52%,
+    rgba(132, 54, 250, 0.7) 100%
+  );
+  filter: blur(90px);
+  z-index: 0;
+}
+
+.rect-2 {
+  position: absolute;
+  width: 164px;
+  height: 64px;
+  right: 0;
+  top: 0;
+  flex-shrink: 0;
+  background: linear-gradient(
+    98deg,
+    rgba(8, 248, 255, 0.7) 0.98%,
+    rgba(59, 164, 253, 0.7) 51.52%,
+    rgba(132, 54, 250, 0.7) 100%
+  );
+  filter: blur(90px);
+  z-index: 0;
+}
+
+.android-card {
+  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  display: flex;
+  width: 282px;
+  align-items: center;
+  gap: 7px;
+  z-index: 3;
+}
+
+.cancel-icon {
+  display: flex;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: #9ca3af;
+}
+
+.side-logo {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.side-logo img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.app-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.app-text h2 {
+  color: #fff;
+  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  margin-bottom: 0;
+}
+
+.app-text span {
+  color: #fff;
+  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  margin-bottom: 0;
+}
+.app-text .star {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.install-btn {
+  display: flex;
+  height: 28px;
+  padding: 0 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--theme1-bg);
+}
+
+.install-btn button {
+  color: #fff;
+  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  z-index: 10;
+  background: transparent;
+  border: none;
+}
+
+/*! App pop up */

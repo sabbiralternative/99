@@ -1,13 +1,13 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ApiContext } from "../../../context/ApiProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import LatestEvent from "./LatestEvent";
 import { useLatestEvent } from "../../../hooks/latestEvent";
 import Notification from "./Notification";
 import useBalance from "../../../hooks/balance";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Dropdown from "./Dropdown";
 import images from "../../../assets/images";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
@@ -15,9 +15,20 @@ import Search from "./Search";
 import useWhatsApp from "../../../hooks/whatsapp";
 import { Settings } from "../../../api";
 import Referral from "../../modals/Referral/Referral";
+import {
+  setShowAPKModal,
+  setShowAppPopUp,
+} from "../../../redux/features/global/globalSlice";
+import AppPopup from "./AppPopUp";
+import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 
 /* eslint-disable react/no-unknown-property */
 const Header = () => {
+  const { showAppPopUp, windowWidth, showAPKModal } = useSelector(
+    (state) => state?.global
+  );
+  const dispatch = useDispatch();
+  const location = useLocation();
   const [showReferral, setShowReferral] = useState(false);
   const dropdownRef = useRef();
   const { data: socialLink } = useWhatsApp();
@@ -39,9 +50,42 @@ const Header = () => {
     }
   };
 
+  useEffect(() => {
+    const closePopupForForever = localStorage.getItem("closePopupForForever");
+    const apk_modal_shown = sessionStorage.getItem("apk_modal_shown");
+    if (location?.state?.pathname === "/apk" || location.pathname === "/apk") {
+      sessionStorage.setItem("apk_modal_shown", true);
+      localStorage.setItem("closePopupForForever", true);
+      localStorage.removeItem("installPromptExpiryTime");
+    } else {
+      if (!apk_modal_shown) {
+        dispatch(setShowAPKModal(true));
+      }
+      if (!closePopupForForever) {
+        const expiryTime = localStorage.getItem("installPromptExpiryTime");
+        const currentTime = new Date().getTime();
+
+        if ((!expiryTime || currentTime > expiryTime) && Settings?.apkLink) {
+          localStorage.removeItem("installPromptExpiryTime");
+
+          dispatch(setShowAppPopUp(true));
+        }
+      }
+    }
+  }, [
+    dispatch,
+    windowWidth,
+    showAppPopUp,
+    location?.state?.pathname,
+    location.pathname,
+  ]);
+
   return (
     <>
       {showReferral && <Referral setShowReferral={setShowReferral} />}
+      {Settings?.apkLink && showAPKModal && <DownloadAPK />}
+      {Settings?.apkLink && showAppPopUp && windowWidth < 1040 && <AppPopup />}
+
       <div _ngcontent-htq-c85 _nghost-htq-c82>
         <header _ngcontent-htq-c82 className="header">
           <div _ngcontent-htq-c82 className="container-fluid">

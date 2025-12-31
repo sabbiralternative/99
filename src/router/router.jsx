@@ -27,6 +27,7 @@ import WithdrawReport from "../pages/WithdrawReport/WithdrawReport";
 import Affiliate from "../pages/Affiliate/Affiliate";
 import AffiliateUserProfitLoss from "../pages/AffiliateUserProfitLoss/AffiliateUserProfitLoss";
 import AffiliateUserStatement from "../pages/AffiliateUserStatement/AffiliateUserStatement";
+import APK from "../pages/APK/APK";
 
 export const router = createBrowserRouter(
   [
@@ -145,6 +146,10 @@ export const router = createBrowserRouter(
     {
       path: "/sports-book",
       element: <SportsBook />,
+    },
+    {
+      path: "/apk",
+      element: <APK />,
     },
   ],
   {

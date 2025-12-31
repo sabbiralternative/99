@@ -12,6 +12,7 @@ import { setUser } from "../../redux/features/auth/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import useWhatsApp from "../../hooks/whatsapp";
+import { GrAndroid } from "react-icons/gr";
 
 const Login = () => {
   const { token } = useSelector((state) => state.auth);
@@ -118,6 +119,17 @@ const Login = () => {
     }
   };
 
+  const handleDownload = (e) => {
+    e.preventDefault();
+    const fileUrl = Settings.apkLink;
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.setAttribute("download", "site.apk");
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+  };
+
   return (
     <div _nghost-wjb-c42>
       <div
@@ -198,6 +210,19 @@ const Login = () => {
                   className="btn btn-primary btn-block"
                 >
                   Registration
+                  <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
+                </button>
+              </div>
+            )}
+            {Settings.apkLink && (
+              <div _ngcontent-wjb-c42 className="form-group mt-1">
+                <button
+                  onClick={handleDownload}
+                  _ngcontent-wjb-c42
+                  type="button"
+                  className="btn btn-primary btn-block"
+                >
+                  <GrAndroid /> Download .apk
                   <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
                 </button>
               </div>
