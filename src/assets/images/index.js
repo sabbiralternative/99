@@ -54,8 +54,10 @@ import user from "../img/affi-user-icn.b08f83a6.svg";
 import share from "../img/af-share-img.51df8801.svg";
 import appStar from "../img/app-star.svg";
 import playStore from "../img/playstore.svg";
+import install_android from "../img/header_image.png";
 
 export default {
+  install_android,
   playStore,
   appStar,
   share,

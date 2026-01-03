@@ -4,6 +4,7 @@ import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { setShowAPKModal } from "../../../redux/features/global/globalSlice";
 import { Settings } from "../../../api";
 import { GrAndroid } from "react-icons/gr";
+import images from "../../../assets/images";
 
 const DownloadAPK = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,12 @@ const DownloadAPK = () => {
       >
         <div
           className="close-btn"
-          style={{ position: "absolute", right: "10px", top: "10px" }}
+          style={{
+            position: "absolute",
+            right: "10px",
+            top: "10px",
+            zIndex: 9999,
+          }}
         >
           <svg
             onClick={closeModal}
@@ -63,14 +69,9 @@ const DownloadAPK = () => {
         <div className="promo-card">
           <header className="promo-header">
             <div className="header-content">
-              <div className="phone-mockup">
-                <div className="screen">
-                  <button className="install-btn">INSTALL APP</button>
-                </div>
-              </div>
+              <img src={images.install_android} alt="install_android" />
               <h1 className="main-title">
-                Download APK for <br />
-                <span>Premium Gaming Experience</span>
+                Download APK for Premium Gaming Experience
               </h1>
             </div>
           </header>
