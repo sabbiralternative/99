@@ -11,7 +11,7 @@
       "casino": "mac88",
       "liveCasinoType": "ultrawin",
       "registration": true,
-      "forceLogin": true,
+      "forceLogin": false,
       "demoLogin": true,
       "apkLink": "https://11xgame.vip/11xgame.apk",
       "deposit": true,

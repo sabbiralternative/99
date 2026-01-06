@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { ApiContext } from "../../../context/ApiProvider";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import LatestEvent from "./LatestEvent";
 import { useLatestEvent } from "../../../hooks/latestEvent";
 import Notification from "./Notification";
@@ -24,6 +24,7 @@ import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 
 /* eslint-disable react/no-unknown-property */
 const Header = () => {
+  const navigate = useNavigate();
   const { showAppPopUp, windowWidth, showAPKModal } = useSelector(
     (state) => state?.global
   );
@@ -127,78 +128,117 @@ const Header = () => {
                   />
                 </Link>
               </div>
-              <div _ngcontent-htq-c82 className="col-6 text-right bal-expo">
-                <p _ngcontent-htq-c82 className="mb-0">
-                  <img
-                    _ngcontent-htq-c82
-                    src={images.landMark}
-                    alt="Exchange"
-                    className="img-fluid pr-1"
-                  />
-                  <b _ngcontent-htq-c82>{balance?.availBalance}</b>
-                </p>
-                <div _ngcontent-htq-c82>
-                  <span _ngcontent-htq-c82 className="mr-1">
-                    <u _ngcontent-htq-c82>Exp: {balance?.deductedExposure}</u>
-                  </span>
-                  <div
-                    ref={dropdownRef}
-                    _ngcontent-htq-c82
-                    className="dropdown d-inline-block"
+              {!token && (
+                <div
+                  _ngcontent-htq-c82
+                  className="col-6 text-right bal-expo"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <button
+                    onClick={() => navigate("/login")}
+                    style={{ maxWidth: "80px" }}
+                    _ngcontent-wjb-c42
+                    type="submit"
+                    className="btn btn-secondary"
                   >
-                    <a
-                      onClick={() => setShowDropdown((prev) => !prev)}
-                      _ngcontent-htq-c82
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                      className="dropdown-toggle"
+                    Login
+                    <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
+                  </button>
+                  {Settings.registration && (
+                    <button
+                      onClick={() => navigate("/register")}
+                      style={{ marginTop: "0px" }}
+                      _ngcontent-wjb-c42
+                      className="btn btn-secondary btn-block"
                     >
-                      <u _ngcontent-htq-c82 data-v-3f4cf84d>
-                        {user}
-                      </u>
-                    </a>
-                    <Dropdown
-                      showDropdown={showDropdown}
-                      setShowDropdown={setShowDropdown}
-                      setShowReferral={setShowReferral}
+                      Register
+                      <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
+                    </button>
+                  )}
+                </div>
+              )}
+              {token && (
+                <div _ngcontent-htq-c82 className="col-6 text-right bal-expo">
+                  <p _ngcontent-htq-c82 className="mb-0">
+                    <img
+                      _ngcontent-htq-c82
+                      src={images.landMark}
+                      alt="Exchange"
+                      className="img-fluid pr-1"
                     />
+                    <b _ngcontent-htq-c82>{balance?.availBalance}</b>
+                  </p>
+                  <div _ngcontent-htq-c82>
+                    <span _ngcontent-htq-c82 className="mr-1">
+                      <u _ngcontent-htq-c82>Exp: {balance?.deductedExposure}</u>
+                    </span>
+                    <div
+                      ref={dropdownRef}
+                      _ngcontent-htq-c82
+                      className="dropdown d-inline-block"
+                    >
+                      <a
+                        onClick={() => setShowDropdown((prev) => !prev)}
+                        _ngcontent-htq-c82
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        className="dropdown-toggle"
+                      >
+                        <u _ngcontent-htq-c82 data-v-3f4cf84d>
+                          {user}
+                        </u>
+                      </a>
+                      <Dropdown
+                        showDropdown={showDropdown}
+                        setShowDropdown={setShowDropdown}
+                        setShowReferral={setShowReferral}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div _ngcontent-uxw-c82="" className="btns__deposit_withdrawal">
-              {Settings.deposit && (
-                <Link
-                  _ngcontent-uxw-c82=""
-                  className="btn_deposit"
-                  to="/deposit"
-                >
-                  <img
-                    _ngcontent-uxw-c82=""
-                    routerlink="/deposit"
-                    src={images.deposit}
-                    className="img-fluid"
-                  />
-                  deposit{" "}
-                </Link>
               )}
+            </div>
+            {token && (
+              <div _ngcontent-uxw-c82="" className="btns__deposit_withdrawal">
+                {Settings.deposit && (
+                  <Link
+                    _ngcontent-uxw-c82=""
+                    className="btn_deposit"
+                    to="/deposit"
+                  >
+                    <img
+                      _ngcontent-uxw-c82=""
+                      routerlink="/deposit"
+                      src={images.deposit}
+                      className="img-fluid"
+                    />
+                    deposit{" "}
+                  </Link>
+                )}
 
-              {Settings.withdraw && (
-                <Link
-                  _ngcontent-uxw-c82=""
-                  routerlink="/withdraw"
-                  className="btn_withdrawal"
-                  to="/withdraw"
-                >
-                  <img
+                {Settings.withdraw && (
+                  <Link
                     _ngcontent-uxw-c82=""
-                    src={images.withdraw}
-                    className="img-fluid"
-                  />
-                  withdrawal
-                </Link>
-              )}
-            </div>
+                    routerlink="/withdraw"
+                    className="btn_withdrawal"
+                    to="/withdraw"
+                  >
+                    <img
+                      _ngcontent-uxw-c82=""
+                      src={images.withdraw}
+                      className="img-fluid"
+                    />
+                    withdrawal
+                  </Link>
+                )}
+              </div>
+            )}
+
             <div _ngcontent-htq-c82 className="row row5 header-bottom">
               <div _ngcontent-htq-c82 className="col-12">
                 <Search />
