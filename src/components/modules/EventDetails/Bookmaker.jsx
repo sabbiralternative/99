@@ -588,7 +588,10 @@ const Bookmaker = ({ bookmaker }) => {
                                 </div>
                               </div>
                               {runnerId === runner?.id && (
-                                <BetSlip setRunnerId={setRunnerId} />
+                                <BetSlip
+                                  currentPlacedBetEvent={games}
+                                  setRunnerId={setRunnerId}
+                                />
                               )}
                             </>
                           );

@@ -22,7 +22,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-const BetSlip = () => {
+const BetSlip = ({ currentPlacedBetEvent }) => {
   const [isCashOut, setIsCashOut] = useState(false);
   const { eventTypeId } = useParams();
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ const BetSlip = () => {
         btype: placeBetValues?.btype,
         placeName: placeBetValues?.placeName,
         eventTypeId: placeBetValues?.eventTypeId,
-        betDelay: placeBetValues?.betDelay,
+        betDelay: currentPlacedBetEvent?.betDelay,
         marketId: placeBetValues?.marketId,
         maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
         maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
@@ -75,7 +75,7 @@ const BetSlip = () => {
       };
     } else {
       payload = {
-        betDelay: placeBetValues?.betDelay,
+        betDelay: currentPlacedBetEvent?.betDelay,
         btype: placeBetValues?.btype,
         eventTypeId: placeBetValues?.eventTypeId,
         marketId: placeBetValues?.marketId,
@@ -122,8 +122,8 @@ const BetSlip = () => {
     ) {
       delay = 9000;
     } else {
-      setBetDelay(placeBetValues?.betDelay);
-      delay = Settings.betDelay ? placeBetValues?.betDelay * 1000 : 0;
+      setBetDelay(currentPlacedBetEvent?.betDelay);
+      delay = Settings.betDelay ? currentPlacedBetEvent?.betDelay * 1000 : 0;
     }
     // Introduce a delay before calling the API
     setTimeout(async () => {

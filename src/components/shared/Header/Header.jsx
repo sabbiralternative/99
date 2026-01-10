@@ -21,9 +21,12 @@ import {
 } from "../../../redux/features/global/globalSlice";
 import AppPopup from "./AppPopUp";
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
+import BuildVersion from "../../modals/BuildVersion/BuildVersion";
 
 /* eslint-disable react/no-unknown-property */
 const Header = () => {
+  const [showBuildVersion, setShowBuildVersion] = useState(false);
+  const stored_build_version = localStorage.getItem("build_version");
   const navigate = useNavigate();
   const { showAppPopUp, windowWidth, showAPKModal } = useSelector(
     (state) => state?.global
@@ -81,11 +84,32 @@ const Header = () => {
     location.pathname,
   ]);
 
+  useEffect(() => {
+    const newVersion = socialLink?.result?.build_version;
+    if (!stored_build_version) {
+      if (newVersion) {
+        setShowBuildVersion(true);
+      }
+    }
+    if (stored_build_version && newVersion) {
+      const parseVersion = JSON.parse(stored_build_version);
+      if (newVersion > parseVersion) {
+        setShowBuildVersion(true);
+      }
+    }
+  }, [socialLink?.result?.build_version, stored_build_version]);
+
   return (
     <>
       {showReferral && <Referral setShowReferral={setShowReferral} />}
       {Settings?.apkLink && showAPKModal && <DownloadAPK />}
       {Settings?.apkLink && showAppPopUp && windowWidth < 1040 && <AppPopup />}
+      {showBuildVersion && !showAPKModal && (
+        <BuildVersion
+          build_version={socialLink?.result?.build_version}
+          setShowBuildVersion={setShowBuildVersion}
+        />
+      )}
 
       <div _ngcontent-htq-c85 _nghost-htq-c82>
         <header _ngcontent-htq-c82 className="header">

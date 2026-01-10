@@ -526,6 +526,7 @@ const Fancy = ({ fancy }) => {
                                             </div>
                                             {runnerId === games?.id && (
                                               <BetSlip
+                                                currentPlacedBetEvent={games}
                                                 setRunnerId={setRunnerId}
                                               />
                                             )}

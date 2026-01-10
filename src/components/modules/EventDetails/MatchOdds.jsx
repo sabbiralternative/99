@@ -568,7 +568,9 @@ const MatchOdds = ({ matchOdds }) => {
                               </button>
                             </div>
                           </div>
-                          {runnerId === runner?.id && <BetSlip />}
+                          {runnerId === runner?.id && (
+                            <BetSlip currentPlacedBetEvent={games} />
+                          )}
                         </>
                       );
                     })}

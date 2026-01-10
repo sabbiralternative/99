@@ -107,7 +107,9 @@ const SportsBook = ({ sportsBook }) => {
                   />
                 )}
               </div>
-              {item?.Id === runnerId && <BetSlip />}
+              {item?.Id === runnerId && (
+                <BetSlip currentPlacedBetEvent={item} />
+              )}
             </div>
           );
         })

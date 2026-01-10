@@ -55,8 +55,10 @@ import share from "../img/af-share-img.51df8801.svg";
 import appStar from "../img/app-star.svg";
 import playStore from "../img/playstore.svg";
 import install_android from "../img/header_image.png";
+import warning from "../img/warning-yellow.svg";
 
 export default {
+  warning,
   install_android,
   playStore,
   appStar,
