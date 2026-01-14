@@ -56,8 +56,16 @@ import appStar from "../img/app-star.svg";
 import playStore from "../img/playstore.svg";
 import install_android from "../img/header_image.png";
 import warning from "../img/warning-yellow.svg";
+import promotionBanner from "../icon/promotionBanner.webp";
+import cashBundle from "../icon/cash-bundle.webp";
+import giftCard from "../icon/giftCard.webp";
+import redeemCardGift from "../icon/redeemCardGift.svg";
 
 export default {
+  cashBundle,
+  giftCard,
+  redeemCardGift,
+  promotionBanner,
   warning,
   install_android,
   playStore,

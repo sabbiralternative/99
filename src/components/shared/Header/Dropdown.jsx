@@ -77,6 +77,22 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
             Affiliate
           </Link>
         )}
+        <Link
+          to="/promotions"
+          onClick={closeDropdown}
+          _ngcontent-htq-c82
+          className="dropdown-item"
+        >
+          Promos & Bonus
+        </Link>
+        <Link
+          to="/lossback-claims"
+          onClick={closeDropdown}
+          _ngcontent-htq-c82
+          className="dropdown-item"
+        >
+          Loss Back Claims
+        </Link>
 
         {/* <Link
           onClick={closeDropdown}
