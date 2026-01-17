@@ -1,37 +1,45 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import MainLayout from "./layout/MainLayout";
 import { useEffect } from "react";
-import { Settings } from "./api";
-import disableDevtool from "disable-devtool";
 import { useDispatch } from "react-redux";
+import disableDevtool from "disable-devtool";
+
+import MainLayout from "./layout/MainLayout";
+import { Settings } from "./api";
 import { logout } from "./redux/features/auth/authSlice";
 import useWhatsApp from "./hooks/whatsapp";
+
+/**
+ * GLOBAL META PIXEL GUARD
+ * Must live outside React
+ */
+let metaPixelInitialized = false;
 
 function App() {
   const { data } = useWhatsApp();
   const disabledDevtool = Settings.disabledDevtool;
+
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
 
+  // Scroll to top
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location]);
+  }, [location.pathname]);
 
+  // Disable devtools
   useEffect(() => {
-    if (disabledDevtool) {
-      disableDevtool({
-        ondevtoolopen: (type) => {
-          const info = "devtool opened!; type =" + type;
-          if (info) {
-            dispatch(logout());
-            window.location.href = "https://www.google.com/";
-          }
-        },
-      });
-    }
-  }, [navigate, disabledDevtool, dispatch]);
+    if (!disabledDevtool) return;
 
+    disableDevtool({
+      ondevtoolopen: () => {
+        dispatch(logout());
+        window.location.href = "https://www.google.com/";
+      },
+    });
+  }, [disabledDevtool, dispatch]);
+
+  // Force password change
   useEffect(() => {
     const changePassword = localStorage.getItem("changePassword");
     if (changePassword) {
@@ -39,42 +47,41 @@ function App() {
     }
   }, [location.pathname, navigate]);
 
+  // ---------------- META PIXEL (META-CORRECT WAY) ----------------
   useEffect(() => {
-    if (data?.result?.pixel) {
-      // Create fb pixel main script
-      const script = document.createElement("script");
-      script.innerHTML = `
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', ${data?.result?.pixel});
-      fbq('track', 'PageView');
-    `;
-      document.head.appendChild(script);
+    if (!data?.result?.pixel) return;
+    if (metaPixelInitialized) return;
 
-      // Create noscript + img
-      const noscript = document.createElement("noscript");
-      const img = document.createElement("img");
-      img.height = 1;
-      img.width = 1;
-      img.style.display = "none";
-      img.src = `https://www.facebook.com/tr?id=${data?.result?.pixel}&ev=PageView&noscript=1`;
-      noscript.appendChild(img);
-
-      document.body.appendChild(noscript);
-
-      return () => {
-        // cleanup when component unmounts
-        script.remove();
-        noscript.remove();
+    // META OFFICIAL BOOTSTRAP (DO NOT TOUCH)
+    !(function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod
+          ? n.callMethod.apply(n, arguments)
+          : n.queue.push(arguments);
       };
-    }
-  }, [data]);
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = true;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    })(
+      window,
+      document,
+      "script",
+      "https://connect.facebook.net/en_US/fbevents.js",
+    );
+
+    window.fbq("init", data.result.pixel);
+    window.fbq("track", "PageView");
+
+    metaPixelInitialized = true;
+  }, [data?.result?.pixel]);
 
   return <MainLayout />;
 }
