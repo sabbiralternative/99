@@ -11,8 +11,7 @@ import { useParams } from "react-router-dom";
 import { useExposure } from "../../../hooks/exposure";
 import useBalance from "../../../hooks/balance";
 import { useCurrentBets } from "../../../hooks/currentBets";
-import { useOrderMutation } from "../../../redux/features/events/events";
-import { Settings } from "../../../api";
+import { API, Settings } from "../../../api";
 import { v4 as uuidv4 } from "uuid";
 import toast from "react-hot-toast";
 import {
@@ -22,6 +21,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import useWhatsApp from "../../../hooks/whatsapp";
+import { AxiosJSEncrypt } from "../../../lib/AxiosJSEncrypt";
 
 const BetSlip = ({ currentPlacedBetEvent }) => {
   const [isCashOut, setIsCashOut] = useState(false);
@@ -34,7 +34,6 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
   const { refetch: refetchBalance } = useBalance();
   const { refetch: refetchExposure } = useExposure(eventId);
   const { placeBetValues, price, stake } = useSelector((state) => state?.event);
-  const [createOrder] = useOrderMutation();
   const buttonValues = localStorage.getItem("buttonValue");
   let parseButtonValues = [];
   if (buttonValues) {
@@ -49,8 +48,8 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
       setStake(
         placeBetValues?.totalSize > 0
           ? placeBetValues?.totalSize?.toFixed(2)
-          : null
-      )
+          : null,
+      ),
     );
     setIsCashOut(placeBetValues?.cashout || false);
   }, [placeBetValues, dispatch]);
@@ -131,8 +130,8 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
     }
     // Introduce a delay before calling the API
     setTimeout(async () => {
-      const res = await createOrder(payloadData).unwrap();
-      if (res?.success) {
+      const { data } = await AxiosJSEncrypt.post(API.order, payloadData);
+      if (data?.success) {
         setLoading(false);
         refetchExposure();
         refetchBalance();
@@ -140,11 +139,11 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
         refetchCurrentBets();
         setBetDelay("");
         dispatch(setStake(null));
-        toast.success(res?.result?.result?.placed?.[0]?.message);
+        toast.success(data?.result?.result?.placed?.[0]?.message);
       } else {
         setLoading(false);
         toast.error(
-          res?.error?.status?.[0]?.description || res?.error?.errorMessage
+          data?.error?.status?.[0]?.description || data?.error?.errorMessage,
         );
         setBetDelay("");
       }
@@ -218,7 +217,7 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
                         price,
                         placeBetValues,
                         dispatch,
-                        setPrice
+                        setPrice,
                       );
                       setIsCashOut(false);
                     }}
@@ -250,7 +249,7 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
                         price,
                         placeBetValues,
                         dispatch,
-                        setPrice
+                        setPrice,
                       );
                       setIsCashOut(false);
                     }}
@@ -307,8 +306,8 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
                 onClick={() => {
                   dispatch(
                     setStake(
-                      parseButtonValues[parseButtonValues?.length - 1]?.value
-                    )
+                      parseButtonValues[parseButtonValues?.length - 1]?.value,
+                    ),
                   );
                   setIsCashOut(false);
                 }}
