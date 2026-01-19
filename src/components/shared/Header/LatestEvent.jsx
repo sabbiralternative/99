@@ -3,6 +3,7 @@
 import { useNavigate } from "react-router-dom";
 
 const LatestEvent = ({ latestEvent }) => {
+  console.log(latestEvent);
   const navigate = useNavigate();
   return (
     <div _ngcontent-htq-c82 _nghost-htq-c80>
@@ -32,8 +33,8 @@ const LatestEvent = ({ latestEvent }) => {
                 />
 
                 <div _ngcontent-yta-c80="">
-                  <span _ngcontent-yta-c80="">Afghanistan v West Indies</span>
-                  <b _ngcontent-yta-c80="">19/01/2026 20:30</b>
+                  <span _ngcontent-yta-c80="">{event?.eventName}</span>
+                  <b _ngcontent-yta-c80="">{event?.date}</b>
                 </div>
               </a>
             </div>
