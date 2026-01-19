@@ -837,7 +837,7 @@ html * {
   white-space: nowrap;
 }
 .latest-event-item {
-  min-width: calc(20% - 10px);
+  min-width: fit-content;
   justify-content: center;
   align-items: center;
   padding: 3px 5px;
