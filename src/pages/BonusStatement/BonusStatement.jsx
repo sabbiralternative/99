@@ -1,10 +1,12 @@
 import toast from "react-hot-toast";
 import moment from "moment";
-import { useBonusStatement, useGetBonusStatement } from "../../hooks/bonus";
+import { useBonusMutation, useBonusQuery } from "../../hooks/bonus";
 
 const BonusStatement = () => {
-  const { data, refetch } = useGetBonusStatement();
-  const { mutate: claimBonus } = useBonusStatement();
+  const { data, refetch } = useBonusQuery({
+    type: "viewStatement",
+  });
+  const { mutate: claimBonus } = useBonusMutation();
 
   const handleShowMessage = (item) => {
     if (item?.is_claimed === 1) {

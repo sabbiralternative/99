@@ -2,19 +2,16 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosSecure } from "../lib/AxiosSecure";
 import { API } from "../api";
 
-export const useGetBonusStatement = () => {
+export const useBonusQuery = (payload) => {
   return useQuery({
-    queryKey: ["get-bonus-statement"],
-
+    queryKey: ["bonus"],
     queryFn: async () => {
-      const { data } = await AxiosSecure.post(API.bonus, {
-        type: "viewStatement",
-      });
+      const { data } = await AxiosSecure.post(API.bonus, payload);
       return data;
     },
   });
 };
-export const useBonusStatement = () => {
+export const useBonusMutation = () => {
   return useMutation({
     mutationKey: ["bonus-statement"],
     mutationFn: async (payload) => {

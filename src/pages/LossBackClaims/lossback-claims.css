@@ -164,3 +164,22 @@
     transform: rotate(12deg) translateX(2px);
   }
 }
+
+.info-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+.info-card-inner div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.info-card-inner div h4 {
+  margin: 0px;
+  font-weight: 500 !important;
+}
+.info-card-inner div p {
+  margin: 0px;
+}
