@@ -538,7 +538,10 @@ html * {
 /* App pop up */
 .android-popup {
   width: 100%;
-  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  font-family:
+    Helvetica Neue,
+    sans-serif,
+    BBAlpha Sans;
   background: var(--theme2-bg);
   padding: 5px;
   display: flex;
@@ -584,7 +587,10 @@ html * {
 }
 
 .android-card {
-  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  font-family:
+    Helvetica Neue,
+    sans-serif,
+    BBAlpha Sans;
   display: flex;
   width: 282px;
   align-items: center;
@@ -622,7 +628,10 @@ html * {
 }
 .app-text h2 {
   color: #fff;
-  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  font-family:
+    Helvetica Neue,
+    sans-serif,
+    BBAlpha Sans;
   font-size: 11px;
   font-style: normal;
   font-weight: 700;
@@ -632,7 +641,10 @@ html * {
 
 .app-text span {
   color: #fff;
-  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  font-family:
+    Helvetica Neue,
+    sans-serif,
+    BBAlpha Sans;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
@@ -659,7 +671,10 @@ html * {
 
 .install-btn button {
   color: #fff;
-  font-family: Helvetica Neue, sans-serif, BBAlpha Sans;
+  font-family:
+    Helvetica Neue,
+    sans-serif,
+    BBAlpha Sans;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -815,3 +830,49 @@ html * {
   }
 }
 /*! Download apk css end  */
+.latest-event {
+  overflow-y: hidden;
+  overflow-x: overlay;
+  display: block;
+  white-space: nowrap;
+}
+.latest-event-item {
+  min-width: calc(20% - 10px);
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  background: var(--theme2-bg);
+  margin-right: 5px;
+  border-radius: 4px;
+  color: var(--white-color);
+  margin-bottom: 5px;
+  display: inline-flex;
+}
+.latest-event-item a {
+  padding: 0 1px;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.latest-event-item a {
+  color: var(--white-color);
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+}
+.latest-event-item a span {
+  margin-left: 3px;
+  vertical-align: middle;
+}
+.new-launch-text div b {
+  display: block;
+  color: #fff;
+  font-size: 12px;
+  background: #167122;
+  width: 110px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 2px;
+}

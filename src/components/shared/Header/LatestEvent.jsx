@@ -8,6 +8,7 @@ const LatestEvent = ({ latestEvent }) => {
     <div _ngcontent-htq-c82 _nghost-htq-c80>
       <div
         _ngcontent-htq-c80
+        style={{ margin: "2px" }}
         className={`latest-event ${latestEvent?.length > 1 ? "row" : ""}`}
       >
         {latestEvent?.map((event) => {
@@ -15,10 +16,10 @@ const LatestEvent = ({ latestEvent }) => {
             <div
               onClick={() =>
                 navigate(
-                  `/event-details/${event?.eventTypeId}/${event?.eventId}`
+                  `/event-details/${event?.eventTypeId}/${event?.eventId}`,
                 )
               }
-              style={{ width: "100%" }}
+              // style={{ width: "100%" }}
               key={event?.eventId}
               _ngcontent-htq-c80
               className="latest-event-item"
@@ -29,7 +30,11 @@ const LatestEvent = ({ latestEvent }) => {
                   alt=""
                   src={`/src/assets/img/${event?.eventTypeId}.png`}
                 />
-                <span _ngcontent-htq-c80>{event?.eventName}</span>
+
+                <div _ngcontent-yta-c80="">
+                  <span _ngcontent-yta-c80="">Afghanistan v West Indies</span>
+                  <b _ngcontent-yta-c80="">19/01/2026 20:30</b>
+                </div>
               </a>
             </div>
           );
