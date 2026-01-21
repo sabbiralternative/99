@@ -113,7 +113,7 @@ const Bookmaker = ({ bookmaker }) => {
     exposureB,
     runner1,
     runner2,
-    gameId
+    gameId,
   ) => {
     let runner,
       largerExposure,
@@ -142,7 +142,7 @@ const Bookmaker = ({ bookmaker }) => {
     }
 
     if (exposureA > 0 && exposureB > 0) {
-      const difference = exposureA - exposureB;
+      const difference = Math.abs(exposureA - exposureB);
       if (difference <= 10) {
         speedCashOut = true;
       }
@@ -196,10 +196,10 @@ const Bookmaker = ({ bookmaker }) => {
           const runner1 = runners[0];
           const runner2 = runners[1];
           const pnl1 = pnlBySelection?.find(
-            (pnl) => pnl?.RunnerId === runner1?.id
+            (pnl) => pnl?.RunnerId === runner1?.id,
           )?.pnl;
           const pnl2 = pnlBySelection?.find(
-            (pnl) => pnl?.RunnerId === runner2?.id
+            (pnl) => pnl?.RunnerId === runner2?.id,
           )?.pnl;
 
           if (pnl1 && pnl2 && runner1 && runner2) {
@@ -208,7 +208,7 @@ const Bookmaker = ({ bookmaker }) => {
               pnl2,
               runner1,
               runner2,
-              game?.id
+              game?.id,
             );
             results.push(result);
           }
@@ -237,10 +237,10 @@ const Bookmaker = ({ bookmaker }) => {
       {bookmaker?.map((games) => {
         const teamProfitForGame = teamProfit?.find(
           (profit) =>
-            profit?.gameId === games?.id && profit?.isOnePositiveExposure
+            profit?.gameId === games?.id && profit?.isOnePositiveExposure,
         );
         const speedCashOut = teamProfit?.find(
-          (profit) => profit?.gameId === games?.id && profit?.speedCashOut
+          (profit) => profit?.gameId === games?.id && profit?.speedCashOut,
         );
 
         return (
@@ -265,7 +265,7 @@ const Bookmaker = ({ bookmaker }) => {
                                 pnlBySelection,
                                 token,
                                 navigate,
-                                teamProfitForGame
+                                teamProfitForGame,
                               )
                             }
                             style={{
@@ -343,10 +343,10 @@ const Bookmaker = ({ bookmaker }) => {
                       <div _ngcontent-bym-c101 className="table-body">
                         {games?.runners?.map((runner) => {
                           const pnl = pnlBySelection?.find(
-                            (pnl) => pnl?.RunnerId === runner?.id
+                            (pnl) => pnl?.RunnerId === runner?.id,
                           );
                           const predictOddValues = predictOdd?.find(
-                            (val) => val?.id === runner?.id
+                            (val) => val?.id === runner?.id,
                           );
                           return (
                             <>
@@ -429,7 +429,7 @@ const Bookmaker = ({ bookmaker }) => {
                                       "back",
                                       games,
                                       runner,
-                                      runner?.back[2]?.price
+                                      runner?.back[2]?.price,
                                     )
                                   }
                                   _ngcontent-bym-c101
@@ -456,7 +456,7 @@ const Bookmaker = ({ bookmaker }) => {
                                       "back",
                                       games,
                                       runner,
-                                      runner?.back[1]?.price
+                                      runner?.back[1]?.price,
                                     )
                                   }
                                   _ngcontent-bym-c101
@@ -483,7 +483,7 @@ const Bookmaker = ({ bookmaker }) => {
                                       "back",
                                       games,
                                       runner,
-                                      runner?.back[0]?.price
+                                      runner?.back[0]?.price,
                                     )
                                   }
                                   _ngcontent-bym-c101
@@ -511,7 +511,7 @@ const Bookmaker = ({ bookmaker }) => {
                                       "lay",
                                       games,
                                       runner,
-                                      runner?.lay?.[0]?.price
+                                      runner?.lay?.[0]?.price,
                                     )
                                   }
                                   _ngcontent-bym-c101
@@ -538,7 +538,7 @@ const Bookmaker = ({ bookmaker }) => {
                                       "lay",
                                       games,
                                       runner,
-                                      runner?.lay?.[1]?.price
+                                      runner?.lay?.[1]?.price,
                                     )
                                   }
                                   _ngcontent-bym-c101
@@ -565,7 +565,7 @@ const Bookmaker = ({ bookmaker }) => {
                                       "lay",
                                       games,
                                       runner,
-                                      runner?.lay?.[0]?.price
+                                      runner?.lay?.[0]?.price,
                                     )
                                   }
                                   _ngcontent-bym-c101
