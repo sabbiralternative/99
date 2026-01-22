@@ -72,6 +72,7 @@ const Login = () => {
       username: "demo",
       password: "",
       b2c: Settings.b2c,
+      apk: closePopupForForever ? true : false,
     };
     const result = await handleLogin(loginData).unwrap();
 
