@@ -21,7 +21,8 @@ import CurrentBets from "../../components/modules/EventDetails/CurrentBets";
 // import ScoreCard from "../../components/modules/EventDetails/ScoreCard";
 import HorseGreyhound from "../../components/modules/EventDetails/HorseGreyhound";
 import SportsBook from "./SportsBook/SportsBook";
-import CricketScore from "../../components/modules/EventDetails/CricketScore";
+// import CricketScore from "../../components/modules/EventDetails/CricketScore";
+import Score from "../../components/modules/EventDetails/Score";
 
 const EventDetails = () => {
   const { eventTypeId, eventId } = useParams();
@@ -37,35 +38,35 @@ const EventDetails = () => {
     { eventTypeId, eventId },
     {
       pollingInterval: 1000,
-    }
+    },
   );
 
   const matchOdds = data?.result?.filter(
     (match_odd) =>
       match_odd.btype === "MATCH_ODDS" &&
       match_odd?.visible == true &&
-      match_odd?.name !== "tied match"
+      match_odd?.name !== "tied match",
   );
 
   const bookmaker = data?.result?.filter(
     (bookmaker) =>
       bookmaker.btype === "BOOKMAKER" &&
       bookmaker?.visible == true &&
-      bookmaker?.name !== "tied match"
+      bookmaker?.name !== "tied match",
   );
 
   const fancyData = data?.result?.filter(
     (fancy) =>
       fancy.btype === "FANCY" &&
       fancy.tabGroupName === "Normal" &&
-      fancy?.visible == true
+      fancy?.visible == true,
   );
 
   const tiedMatch = data?.result?.filter(
     (match_odd) =>
       match_odd.btype === "MATCH_ODDS" &&
       match_odd?.visible == true &&
-      match_odd?.name === "tied match"
+      match_odd?.name === "tied match",
   );
 
   useEffect(() => {
@@ -241,10 +242,9 @@ const EventDetails = () => {
                       )}
 
                       <div _ngcontent-bym-c104>
-                        {/* {eventTypeId == 4 &&
-                          data?.result?.[0]?.score?.length > 0 && (
-                            <Score score={data?.result?.[0]?.score} />
-                          )} */}
+                        {eventTypeId == 4 && data?.iscore && (
+                          <Score iscore={data?.iscore} />
+                        )}
 
                         <div _ngcontent-bym-c104 className="sr-widget-1" />
 
@@ -254,9 +254,9 @@ const EventDetails = () => {
                             <ScoreCard score2={data?.result?.[0]?.score2} />
                           )} */}
 
-                        {eventTypeId == 4 && data?.iscore && (
+                        {/* {eventTypeId == 4 && data?.iscore && (
                           <CricketScore iscore={data?.iscore} />
-                        )}
+                        )} */}
                         {matchOdds && matchOdds?.length > 0 && (
                           <MatchOdds matchOdds={matchOdds} />
                         )}
