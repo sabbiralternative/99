@@ -7,8 +7,12 @@ import HighLightThumbnails from "../../components/modules/Home/HighLightThumbnai
 import HomeThumbnails from "../../components/modules/Home/HomeThumbnails";
 // import NotUsing from "../../components/modules/Home/NotUsing";
 import Tab from "../../components/modules/Home/Tab";
+import { useGetIndex } from "../../hooks";
 
 const Home = () => {
+  const { data } = useGetIndex({
+    type: "99_casino_dashboard",
+  });
   const { homeTab } = useSelector((state) => state.global);
 
   return (
@@ -55,7 +59,9 @@ const Home = () => {
             {/* <NotUsing /> */}
           </div>
         </div>
-        {homeTab === "inPlay" && <HighLightThumbnails />}
+        {homeTab === "inPlay" && (
+          <HighLightThumbnails highlight_casino={data?.highlight_casino} />
+        )}
 
         {homeTab === "inPlay" && <HomeThumbnails />}
       </div>
