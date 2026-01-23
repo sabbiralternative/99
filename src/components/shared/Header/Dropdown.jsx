@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useWhatsApp from "../../../hooks/whatsapp";
 
 const Dropdown = ({ showDropdown, setShowDropdown }) => {
+  const closePopupForForever = localStorage.getItem("closePopupForForever");
   const { data: socialLink } = useWhatsApp();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -86,13 +87,23 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           Promos & Bonus
         </Link>
         <Link
-          to="/lossback-claims"
+          to="/lossback-bonus"
           onClick={closeDropdown}
           _ngcontent-htq-c82
           className="dropdown-item"
         >
-          Loss Back Claims
+          Lossback Bonus
         </Link>
+        {closePopupForForever && (
+          <Link
+            to="/app-only-bonus"
+            onClick={closeDropdown}
+            _ngcontent-htq-c82
+            className="dropdown-item"
+          >
+            App Only Bonus
+          </Link>
+        )}
 
         {/* <Link
           onClick={closeDropdown}
