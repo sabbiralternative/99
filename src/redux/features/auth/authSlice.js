@@ -15,7 +15,12 @@ export const authSlice = createSlice({
       state.user = user;
     },
     logout: (state) => {
-      localStorage.clear();
+      const nonRemovalKey = ["closePopupForForever", "build_version"];
+      Object.keys(localStorage).forEach((key) => {
+        if (!nonRemovalKey.includes(key)) {
+          localStorage.removeItem(key);
+        }
+      });
       state.token = null;
       state.user = null;
     },
