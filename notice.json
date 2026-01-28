@@ -48,7 +48,7 @@
 
     "endpoint": {
       "otpless": "https://api7.live/api/exchange/diamond/otpless",
-      "eventDetails": "https://cache7.live/api/exchange/encrypted/odds/event",
+      "eventDetails": "https://cache7.live/api/exchange/open/odds/event",
       "login": "https://api7.live/api/account/diamond/login",
       "inPlayAndPopularEvents": "https://api7.live/api/exchange/odds/inPlayAndPopularEvents",
       "menu": "https://cache7.live/api/exchange/diamond/menu2",
@@ -63,7 +63,7 @@
       "accessToken": "https://api7.live/api/exchange/diamond/accessToken",
       "orderList": "https://api7.live/api/exchange/diamond/open_bets.php",
       "inplayEvents": "https://cache7.live/api/exchange/diamond/inplayEvents",
-      "group": "https://cache7.live/api/exchange/diamond/group",
+      "group": "https://cache7.live/api/exchange/open/group",
       "pnl": "https://api7.live/api/exchange/diamond/exposure.php",
       "mobileStakes": "https://api7.live/api/account/settings/mobile-stakes",
       "oneClick": "https://api7.live/api/account/settings/one-click",
