@@ -16,21 +16,22 @@ import useWhatsApp from "../../../hooks/whatsapp";
 import { Settings } from "../../../api";
 import Referral from "../../modals/Referral/Referral";
 import {
+  setClosePopUpForForever,
   setShowAPKModal,
   setShowAppPopUp,
 } from "../../../redux/features/global/globalSlice";
 import AppPopup from "./AppPopUp";
 import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import BuildVersion from "../../modals/BuildVersion/BuildVersion";
+import Error from "../../modals/Error/Error";
 
 /* eslint-disable react/no-unknown-property */
 const Header = () => {
   const [showBuildVersion, setShowBuildVersion] = useState(false);
   const stored_build_version = localStorage.getItem("build_version");
   const navigate = useNavigate();
-  const { showAppPopUp, windowWidth, showAPKModal } = useSelector(
-    (state) => state?.global
-  );
+  const { showAppPopUp, windowWidth, showAPKModal, closePopupForForever } =
+    useSelector((state) => state?.global);
   const dispatch = useDispatch();
   const location = useLocation();
   const [showReferral, setShowReferral] = useState(false);
@@ -56,10 +57,12 @@ const Header = () => {
 
   useEffect(() => {
     const closePopupForForever = localStorage.getItem("closePopupForForever");
+    dispatch(setClosePopUpForForever(closePopupForForever ? true : false));
     const apk_modal_shown = sessionStorage.getItem("apk_modal_shown");
     if (location?.state?.pathname === "/apk" || location.pathname === "/apk") {
       sessionStorage.setItem("apk_modal_shown", true);
       localStorage.setItem("closePopupForForever", true);
+      dispatch(setClosePopUpForForever(true));
       localStorage.removeItem("installPromptExpiryTime");
     } else {
       if (!apk_modal_shown) {
@@ -99,6 +102,9 @@ const Header = () => {
     }
   }, [socialLink?.result?.build_version, stored_build_version]);
 
+  if (Settings.appOnly && !closePopupForForever) {
+    return <Error />;
+  }
   return (
     <>
       {showReferral && <Referral setShowReferral={setShowReferral} />}
