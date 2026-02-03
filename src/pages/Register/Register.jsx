@@ -13,7 +13,7 @@ import {
   faPhone,
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import useWhatsApp from "../../hooks/whatsapp";
+
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/features/auth/authSlice";
 import images from "../../assets/images";
@@ -22,7 +22,6 @@ const Register = () => {
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const referralCode = localStorage.getItem("referralCode");
-  const { refetch, data } = useWhatsApp();
   const [timer, setTimer] = useState(null);
   const [userData, setUserData] = useState({
     password: "",
@@ -81,7 +80,7 @@ const Register = () => {
             status: "success",
           });
         }
-        refetch();
+
         const token = data?.result?.token;
         const bonusToken = data?.result?.bonusToken;
         const user = data?.result?.loginName;
@@ -294,7 +293,7 @@ const Register = () => {
               </div>
 
               {!token &&
-                data?.result?.whatsapplink &&
+                Settings.whatsapplink &&
                 Settings.registrationWhatsapp && (
                   <Fragment>
                     <div
@@ -329,7 +328,7 @@ const Register = () => {
                       />
                     </div>
                     <button
-                      onClick={() => getWhatsappOTP(data?.result?.whatsapplink)}
+                      onClick={() => getWhatsappOTP(Settings.whatsapplink)}
                       className="btn btn-primary btn-block"
                       type="button"
                     >

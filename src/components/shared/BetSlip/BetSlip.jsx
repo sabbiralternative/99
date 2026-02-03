@@ -20,7 +20,6 @@ import {
 } from "../../../utils/editBetSlipPrice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import useWhatsApp from "../../../hooks/whatsapp";
 import { AxiosJSEncrypt } from "../../../lib/AxiosJSEncrypt";
 
 const BetSlip = ({ currentPlacedBetEvent }) => {
@@ -30,7 +29,6 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { eventId } = useParams();
-  const { data: socialLink } = useWhatsApp();
   const { refetch: refetchCurrentBets } = useCurrentBets(eventId);
   const { refetch: refetchBalance } = useBalance();
   const { refetch: refetchExposure } = useExposure(eventId);
@@ -103,7 +101,7 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
         ...payload,
         site: Settings.siteUrl,
         nounce: uuidv4(),
-        isbetDelay: socialLink?.result?.bet_delay,
+        isbetDelay: Settings.bet_delay,
         apk: closePopupForForever ? true : false,
       },
     ];
@@ -126,9 +124,7 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
       delay = 9000;
     } else {
       setBetDelay(currentPlacedBetEvent?.betDelay);
-      delay = socialLink?.result?.bet_delay
-        ? currentPlacedBetEvent?.betDelay * 1000
-        : 0;
+      delay = Settings.bet_delay ? currentPlacedBetEvent?.betDelay * 1000 : 0;
     }
     // Introduce a delay before calling the API
     setTimeout(async () => {

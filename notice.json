@@ -16,14 +16,14 @@
       "apkLink": "https://11xgame.vip/11xgame.apk",
       "deposit": true,
       "withdraw": true,
-      "disabledDevtool": false,
+
       "casinoCurrency": "INR",
       "balanceApiLoop": true,
       "baseUrl": "",
       "betFairCashOut": true,
       "bookmakerCashOut": true,
       "mac88": true,
-      "referral": true,
+
       "complaint": true,
       "logo": {
         "height": "65px",

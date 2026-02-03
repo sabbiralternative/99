@@ -3,11 +3,11 @@
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import useWhatsApp from "../../../hooks/whatsapp";
+import { Settings } from "../../../api";
 
 const Dropdown = ({ showDropdown, setShowDropdown }) => {
   const closePopupForForever = localStorage.getItem("closePopupForForever");
-  const { data: socialLink } = useWhatsApp();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -39,11 +39,9 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
         >
           Home
         </Link>
-        {socialLink?.result?.branchWhatsapplink && (
+        {Settings.branchWhatsapplink && (
           <Link
-            onClick={() =>
-              handleOpenSocialLink(socialLink?.result?.branchWhatsapplink)
-            }
+            onClick={() => handleOpenSocialLink(Settings.branchWhatsapplink)}
             _ngcontent-htq-c82
             to="/"
             className="dropdown-item router-link-exact-active router-link-active"
@@ -68,7 +66,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
         >
           Bonus Statement
         </Link>
-        {socialLink?.result?.referral && (
+        {Settings.referral && (
           <Link
             to="/affiliate"
             onClick={closeDropdown}
@@ -170,10 +168,10 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
         >
           Rule
         </Link>
-        {/* {socialLink?.result?.whatsapplink && (
+        {/* {Settings.whatsapplink && (
           <Link
             onClick={() =>
-              handleOpenSocialLink(socialLink?.result?.whatsapplink)
+              handleOpenSocialLink(Settings.whatsapplink)
             }
             _ngcontent-htq-c82
             to="/"

@@ -12,7 +12,6 @@ import Dropdown from "./Dropdown";
 import images from "../../../assets/images";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import Search from "./Search";
-import useWhatsApp from "../../../hooks/whatsapp";
 import { Settings } from "../../../api";
 import Referral from "../../modals/Referral/Referral";
 import {
@@ -36,7 +35,6 @@ const Header = () => {
   const location = useLocation();
   const [showReferral, setShowReferral] = useState(false);
   const dropdownRef = useRef();
-  const { data: socialLink } = useWhatsApp();
   const { user, token } = useSelector((state) => state.auth);
   const { data: balance } = useBalance();
   const { logo } = useContext(ApiContext);
@@ -48,10 +46,10 @@ const Header = () => {
   });
 
   const navigateWhatsApp = () => {
-    if (token && socialLink?.result?.branchWhatsapplink) {
-      window.open(socialLink?.result?.branchWhatsapplink, "_blank");
+    if (token && Settings.branchWhatsapplink) {
+      window.open(Settings.branchWhatsapplink, "_blank");
     } else {
-      window.open(socialLink?.result?.whatsapplink, "_blank");
+      window.open(Settings.whatsapplink, "_blank");
     }
   };
 
@@ -88,7 +86,7 @@ const Header = () => {
   ]);
 
   useEffect(() => {
-    const newVersion = socialLink?.result?.build_version;
+    const newVersion = Settings.build_version;
     if (!stored_build_version) {
       if (newVersion) {
         localStorage.setItem("build_version", newVersion);
@@ -100,7 +98,7 @@ const Header = () => {
         setShowBuildVersion(true);
       }
     }
-  }, [socialLink?.result?.build_version, stored_build_version]);
+  }, [stored_build_version]);
 
   if (Settings.appOnly && !closePopupForForever) {
     return <Error />;
@@ -112,7 +110,7 @@ const Header = () => {
       {Settings?.apkLink && showAppPopUp && windowWidth < 1040 && <AppPopup />}
       {showBuildVersion && !showAPKModal && (
         <BuildVersion
-          build_version={socialLink?.result?.build_version}
+          build_version={Settings.build_version}
           setShowBuildVersion={setShowBuildVersion}
         />
       )}
@@ -279,11 +277,9 @@ const Header = () => {
             {data && data?.length > 0 && <LatestEvent latestEvent={data} />}
           </div>
         </header>
-        {socialLink?.result?.instagramLink ? (
+        {Settings.instagramLink ? (
           <a
-            onClick={() =>
-              window.open(socialLink?.result?.instagramLink, "_blank")
-            }
+            onClick={() => window.open(Settings.instagramLink, "_blank")}
             style={{ bottom: "38%", right: "7.5%" }}
             className="whatsapp_link"
           >
@@ -293,11 +289,9 @@ const Header = () => {
             />
           </a>
         ) : null}
-        {socialLink?.result?.telegramLink ? (
+        {Settings.telegramLink ? (
           <a
-            onClick={() =>
-              window.open(socialLink?.result?.telegramLink, "_blank")
-            }
+            onClick={() => window.open(Settings.telegramLink, "_blank")}
             style={{ bottom: "22%", right: "7.5%" }}
             className="whatsapp_link"
           >
@@ -307,8 +301,7 @@ const Header = () => {
             />
           </a>
         ) : null}
-        {socialLink?.result?.whatsapplink ||
-        socialLink?.result?.branchWhatsapplink ? (
+        {Settings.whatsapplink || Settings.branchWhatsapplink ? (
           <a onClick={navigateWhatsApp} className="whatsapp_link">
             <img src={images.whatsApp} />
           </a>

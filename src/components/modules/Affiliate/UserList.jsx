@@ -2,15 +2,14 @@ import { Fragment, useState } from "react";
 import AddNewUser from "../../modals/Affiliate/AddNewUser";
 import images from "../../../assets/images";
 import { useNavigate } from "react-router-dom";
-import useWhatsApp from "../../../hooks/whatsapp";
 import { useGetIndex } from "../../../hooks";
 import { Pagination } from "rsuite";
+import { Settings } from "../../../api";
 
 const UserList = () => {
   const navigate = useNavigate();
   const [showAddNewUserModal, setShowAddNewUserModal] = useState(false);
   const [activePage, setActivePage] = useState(1);
-  const { data: socialLink } = useWhatsApp();
   const { data } = useGetIndex({
     type: "get_affiliate_users",
     page: activePage,
@@ -96,7 +95,7 @@ const UserList = () => {
                             <button
                               onClick={() =>
                                 navigate(
-                                  `/affiliate/user-statement?punter_id=${item?.punter_id}`
+                                  `/affiliate/user-statement?punter_id=${item?.punter_id}`,
                                 )
                               }
                               style={{
@@ -117,7 +116,7 @@ const UserList = () => {
                             <button
                               onClick={() =>
                                 navigate(
-                                  `/affiliate/user-profit-loss?punter_id=${item?.punter_id}`
+                                  `/affiliate/user-profit-loss?punter_id=${item?.punter_id}`,
                                 )
                               }
                               style={{
@@ -166,7 +165,7 @@ const UserList = () => {
                 boundaryLinks
               />
             </div>
-            {socialLink?.result?.referral_create_account && (
+            {Settings.referral_create_account && (
               <div data-v-fd406c30 className="nw-affi-add-new-user-btn-sec">
                 <button
                   onClick={() => setShowAddNewUserModal(true)}

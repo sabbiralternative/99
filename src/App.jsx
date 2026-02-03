@@ -5,7 +5,7 @@ import disableDevtool from "disable-devtool";
 
 import MainLayout from "./layout/MainLayout";
 import { logout } from "./redux/features/auth/authSlice";
-import useWhatsApp from "./hooks/whatsapp";
+import { Settings } from "./api";
 
 /**
  * GLOBAL META PIXEL GUARD
@@ -14,8 +14,7 @@ import useWhatsApp from "./hooks/whatsapp";
 let metaPixelInitialized = false;
 
 function App() {
-  const { data } = useWhatsApp();
-  const disabledDevtool = data?.result?.disabledDevtool;
+  const disabledDevtool = Settings.disabledDevtool;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,7 +48,7 @@ function App() {
 
   // ---------------- META PIXEL (META-CORRECT WAY) ----------------
   useEffect(() => {
-    if (!data?.result?.pixel) return;
+    if (!Settings?.pixel) return;
     if (metaPixelInitialized) return;
 
     // META OFFICIAL BOOTSTRAP (DO NOT TOUCH)
@@ -77,11 +76,11 @@ function App() {
       "https://connect.facebook.net/en_US/fbevents.js",
     );
 
-    window.fbq("init", data.result.pixel);
+    window.fbq("init", Settings.pixel);
     window.fbq("track", "PageView");
 
     metaPixelInitialized = true;
-  }, [data?.result?.pixel]);
+  }, []);
 
   return <MainLayout />;
 }
