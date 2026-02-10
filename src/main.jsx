@@ -10,20 +10,23 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./redux/store.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import SettingsWrapper from "./layout/SettingsWrapper.jsx";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
-  <ApiProvider>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
-      </PersistGate>
-    </Provider>
-    <Toaster />
-  </ApiProvider>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <QueryClientProvider client={queryClient}>
+        <SettingsWrapper>
+          <ApiProvider>
+            <RouterProvider router={router} />
+            <Toaster />
+          </ApiProvider>
+        </SettingsWrapper>
+      </QueryClientProvider>
+    </PersistGate>
+  </Provider>,
   // </StrictMode>
 );
