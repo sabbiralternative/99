@@ -19,12 +19,12 @@ createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <QueryClientProvider client={queryClient}>
-        <SettingsWrapper>
-          <ApiProvider>
+        <ApiProvider>
+          <SettingsWrapper>
             <RouterProvider router={router} />
             <Toaster />
-          </ApiProvider>
-        </SettingsWrapper>
+          </SettingsWrapper>
+        </ApiProvider>
       </QueryClientProvider>
     </PersistGate>
   </Provider>,
