@@ -122,7 +122,7 @@ const Login = () => {
 
   const handleDownload = (e) => {
     e.preventDefault();
-    const fileUrl = Settings.apkLink;
+    const fileUrl = Settings.apk_link;
     const link = document.createElement("a");
     link.href = fileUrl;
     link.setAttribute("download", "site.apk");
@@ -215,7 +215,7 @@ const Login = () => {
                 </button>
               </div>
             )}
-            {Settings.apkLink && (
+            {Settings.apk_link && (
               <div _ngcontent-wjb-c42 className="form-group mt-1">
                 <button
                   onClick={handleDownload}
