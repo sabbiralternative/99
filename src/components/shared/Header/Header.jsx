@@ -70,7 +70,7 @@ const Header = () => {
         const expiryTime = localStorage.getItem("installPromptExpiryTime");
         const currentTime = new Date().getTime();
 
-        if ((!expiryTime || currentTime > expiryTime) && Settings?.apkLink) {
+        if ((!expiryTime || currentTime > expiryTime) && Settings.apk_link) {
           localStorage.removeItem("installPromptExpiryTime");
 
           dispatch(setShowAppPopUp(true));
@@ -106,8 +106,8 @@ const Header = () => {
   return (
     <>
       {showReferral && <Referral setShowReferral={setShowReferral} />}
-      {Settings?.apkLink && showAPKModal && <DownloadAPK />}
-      {Settings?.apkLink && showAppPopUp && windowWidth < 1040 && <AppPopup />}
+      {Settings.apk_link && showAPKModal && <DownloadAPK />}
+      {Settings.apk_link && showAppPopUp && windowWidth < 1040 && <AppPopup />}
       {showBuildVersion && !showAPKModal && (
         <BuildVersion
           build_version={Settings.build_version}
