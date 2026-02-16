@@ -188,7 +188,7 @@ const Login = () => {
                 <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
               </button>
             </div>
-            {Settings.demoLogin && (
+            {Settings.demo_login && (
               <div _ngcontent-wjb-c42 className="form-group mb-0">
                 <button
                   onClick={loginWithDemo}
@@ -228,7 +228,7 @@ const Login = () => {
                 </button>
               </div>
             )}
-            {/* {Settings.registrationWhatsapp &&
+            {/* {Settings.registration_whatsapp &&
               Settings.whatsapplink && (
                 <div _ngcontent-wjb-c42 className="form-group mt-1">
                   <button

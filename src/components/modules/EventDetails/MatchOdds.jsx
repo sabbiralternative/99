@@ -252,7 +252,7 @@ const MatchOdds = ({ matchOdds }) => {
               <div _ngcontent-bym-c100>
                 <div _ngcontent-bym-c100 className="market-title mt-1">
                   {games?.name?.toUpperCase()}
-                  {Settings.betFairCashOut &&
+                  {Settings.cashout &&
                     games?.runners?.length !== 3 &&
                     games?.status === "OPEN" &&
                     games?.name !== "toss" &&
@@ -285,7 +285,7 @@ const MatchOdds = ({ matchOdds }) => {
                       </button>
                     )}
 
-                  {Settings.betFairCashOut &&
+                  {Settings.cashout &&
                     games?.runners?.length !== 3 &&
                     games?.status === "OPEN" &&
                     games?.name !== "toss" &&

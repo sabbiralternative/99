@@ -164,7 +164,7 @@ const Register = () => {
             </h4>
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* <!-- whatsapp start--> */}
-              {/* {data?.result?.whatsapplink && Settings?.registrationWhatsapp && (
+              {/* {data?.result?.whatsapplink && Settings?.registration_whatsapp && (
                 <div className="whatsapp-box">
                   <div>
                     <span>Register as New User</span>
@@ -294,7 +294,7 @@ const Register = () => {
 
               {!token &&
                 Settings.whatsapplink &&
-                Settings.registrationWhatsapp && (
+                Settings.registration_whatsapp && (
                   <Fragment>
                     <div
                       style={{

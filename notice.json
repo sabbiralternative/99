@@ -5,45 +5,8 @@
   },
   "result": {
     "settings": {
-      "siteTitle": "Jainbook",
       "siteUrl": "a23money.com",
-      "interval": "900",
-      "casino": "mac88",
-      "liveCasinoType": "ultrawin",
-      "registration": true,
-      "forceLogin": false,
-      "demoLogin": true,
-
-      "deposit": true,
-      "withdraw": true,
-
-      "casinoCurrency": "INR",
-
-      "baseUrl": "",
-      "betFairCashOut": true,
-      "bookmakerCashOut": true,
-      "mac88": true,
-
-      "complaint": true,
-      "logo": {
-        "height": "65px",
-        "width": "auto",
-        "format": "png"
-      },
-      "paymentIntent": false,
-      "registrationWhatsapp": true,
-      "ourCasino": true,
-      "liveCasino": true,
-      "slots": true,
-      "fantasy": true,
-      "ourVirtual": true,
-      "b2c": true,
-      "language": false,
-      "build": "development",
-      "betDelay": false,
-      "otp": true,
-      "otpWhatsapp": true,
-      "appOnly": false
+      "build": "development"
     },
 
     "endpoint": {

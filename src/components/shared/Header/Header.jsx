@@ -100,7 +100,7 @@ const Header = () => {
     }
   }, [stored_build_version]);
 
-  if (Settings.appOnly && !closePopupForForever) {
+  if (Settings.app_only && !closePopupForForever) {
     return <Error />;
   }
   return (

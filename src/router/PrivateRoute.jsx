@@ -11,7 +11,7 @@ const PrivateRoute = ({ children }) => {
   }
 
   const dispatch = useDispatch();
-  if (Settings.forceLogin) {
+  if (Settings.force_login) {
     if (!token) {
       dispatch(logout());
       return <Navigate to="/login"></Navigate>;

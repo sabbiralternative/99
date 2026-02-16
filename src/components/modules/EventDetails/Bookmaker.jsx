@@ -251,7 +251,7 @@ const Bookmaker = ({ bookmaker }) => {
                   <div _ngcontent-bym-c101>
                     <div _ngcontent-bym-c101 className="market-title mt-1">
                       {games?.name?.toUpperCase()}
-                      {Settings.betFairCashOut &&
+                      {Settings.cashout &&
                         games?.runners?.length !== 3 &&
                         games?.status === "OPEN" &&
                         games?.name !== "toss" &&
@@ -284,7 +284,7 @@ const Bookmaker = ({ bookmaker }) => {
                           </button>
                         )}
 
-                      {Settings.betFairCashOut &&
+                      {Settings.cashout &&
                         games?.runners?.length !== 3 &&
                         games?.status === "OPEN" &&
                         games?.name !== "toss" &&

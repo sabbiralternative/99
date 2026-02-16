@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getSetApis } from "../api/config";
 import { Settings } from "../api";
-import notice from "../../notice.json";
 
 export const ApiContext = createContext(null);
 
@@ -9,25 +8,24 @@ const ApiProvider = ({ children }) => {
   const closePopupForForever = localStorage.getItem("closePopupForForever");
   const [noticeLoaded, setNoticeLoaded] = useState(false);
   const [logo, setLogo] = useState("");
-  const baseUrl = notice?.result?.settings?.baseUrl;
 
   useEffect(() => {
     if (!noticeLoaded) {
       const fetchAPI = () => {
-        getSetApis(setNoticeLoaded, baseUrl);
+        getSetApis(setNoticeLoaded);
       };
       fetchAPI();
     }
-  }, [noticeLoaded, baseUrl]);
+  }, [noticeLoaded]);
 
   useEffect(() => {
     if (noticeLoaded) {
       /* Dynamically append  theme css  */
 
-      if (Settings.appOnly && !closePopupForForever) {
+      if (Settings.app_only && !closePopupForForever) {
         document.title = window.location.hostname;
       } else {
-        document.title = Settings.siteTitle;
+        document.title = Settings.site_name;
       }
     }
   }, [noticeLoaded, closePopupForForever]);

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Settings } from "./index";
 
-export const getSetApis = async (setNoticeLoaded, baseUrl) => {
-  const url = baseUrl ? `${baseUrl}/notice.json` : "/notice.json";
+export const getSetApis = async (setNoticeLoaded) => {
+  const url = "/notice.json";
   const { data: settingsResponse } = await axios.get(url);
 
   if (settingsResponse?.result) {
@@ -11,9 +11,9 @@ export const getSetApis = async (setNoticeLoaded, baseUrl) => {
     // Dynamically update Settings object
     Object.keys(settings).forEach((key) => {
       if (key === "logo") {
-        Settings.logoHeight = settings?.["logo"]?.height;
-        Settings.logoWidth = settings?.["logo"]?.width;
-        Settings.logoFormat = settings?.["logo"]?.format;
+        Settings.logo_height = settings?.["logo"]?.height;
+        Settings.logo_width = settings?.["logo"]?.width;
+        Settings.logo_format = settings?.["logo"]?.format;
       } else {
         Settings[key] = settings[key];
       }
