@@ -1,9 +1,14 @@
 /* eslint-disable react/no-unknown-property */
 
 import { useNavigate } from "react-router-dom";
+import images from "../../../assets/images";
 
 const LatestEvent = ({ latestEvent }) => {
-  console.log(latestEvent);
+  const eventIcon = {
+    1: images.football,
+    2: images.tennis,
+    4: images.cricket,
+  };
   const navigate = useNavigate();
   return (
     <div _ngcontent-htq-c82 _nghost-htq-c80>
@@ -29,7 +34,7 @@ const LatestEvent = ({ latestEvent }) => {
                 <img
                   _ngcontent-htq-c80
                   alt=""
-                  src={`/src/assets/img/${event?.eventTypeId}.png`}
+                  src={eventIcon[event?.eventTypeId]}
                 />
 
                 <div _ngcontent-yta-c80="">

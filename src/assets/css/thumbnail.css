@@ -1,0 +1,331 @@
+.newheading {
+  display: block;
+  width: 100%;
+  margin-bottom: 2px;
+  font-size: 16px;
+  background: var(--theme2-bg);
+  padding: 5px 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  position: relative;
+}
+.newheading span {
+  animation: zoom 2s infinite;
+  display: inline-block;
+}
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+    color: #a4e5ff;
+  }
+  50% {
+    transform: scale(1.1);
+    color: #fff;
+  }
+  to {
+    transform: scale(1);
+    color: #d0ffd0;
+  }
+}
+.newlaunch {
+  margin-bottom: 3px !important;
+}
+.newlaunch .col-3 {
+  padding: 0 1px;
+  margin-bottom: 2px;
+}
+.newlaunch .col-3 img {
+  height: 160px;
+  width: 100%;
+}
+.csn_div {
+  display: contents;
+}
+.csn_div .csn_thumb {
+  width: calc(33% - 2px);
+  margin: 1px;
+}
+ul.live_virtual {
+  list-style: none;
+  padding: 0;
+  display: flex !important;
+  align-items: center;
+  position: absolute;
+  top: 4px;
+  right: 13%;
+  width: auto;
+  margin: 0;
+}
+ul.live_virtual li {
+  display: inline;
+}
+ul.live_virtual li label {
+  display: inline-block;
+  border: 1px solid var(--theme1-bg);
+  color: var(--theme1-bg);
+  border-radius: 25px;
+  white-space: nowrap;
+  margin: 0 1px;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s;
+  font-weight: 400;
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 2;
+}
+ul.live_virtual li label:before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-size: 12px;
+  padding-right: 2px;
+  content: "-";
+  transition: transform 0.3s ease-in-out;
+  line-height: 0;
+}
+ul.live_virtual li input[type="checkbox"]:checked + label:before {
+  content: "+";
+  transform: rotate(-1turn);
+  transition: transform 0.3s ease-in-out;
+}
+ul.live_virtual li input[type="checkbox"]:checked + label {
+  border: 1px solid #00ad6f;
+  background-color: #00ad6f;
+  color: #fff;
+  transition: all 0.2s;
+}
+ul.live_virtual li input[type="checkbox"] {
+  display: absolute;
+  position: absolute;
+  opacity: 0;
+}
+.home-animated {
+  position: absolute;
+  padding: 3px 10px;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--theme2-bg);
+  right: 10px;
+  bottom: 5px;
+  font-size: 9px;
+  text-transform: uppercase;
+  animation: zoom-in-zoom-out 1s ease-out infinite;
+}
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.home-animated:hover {
+  color: #000;
+}
+.home-animated i {
+  color: darkred;
+}
+.home-animated span {
+  border-radisu: 10px;
+}
+.home-animated span:first-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  border-radisu: 10px;
+  background: linear-gradient(90deg, #fff400, #fff);
+  animation: animate1 2s linear infinite;
+}
+@keyframes animate1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+.home-animated span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(180deg, #05fb33, #fff);
+  animation: animate2 2s linear infinite;
+  animation-delay: 1s;
+}
+@keyframes animate2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+.home-animated span:nth-child(3) {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(270deg, #ff7d88, #fff);
+  animation: animate3 2s linear infinite;
+}
+@keyframes animate3 {
+  0% {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.home-animated span:nth-child(4) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(0deg, #05d8fb, #fff);
+  animation: animate4 2s linear infinite;
+  animation-delay: 1s;
+}
+@keyframes animate4 {
+  0% {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+.popularDiv {
+  position: relative;
+  margin-bottom: 0;
+}
+.popularDiv svg {
+  position: absolute;
+  width: 98%;
+  margin: 0 auto;
+  height: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #02020282;
+}
+.popularDiv svg text {
+  text-transform: uppercase;
+  animation: stroke 3s infinite alternate;
+  stroke-width: 3;
+  stroke: red;
+  font-size: 90px;
+  font-family: fangsong;
+}
+.popularDiv i {
+  position: absolute;
+  right: 20%;
+  top: 5px;
+  font-size: 15px;
+  color: #fff;
+  animation: bounce 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  height: auto;
+  padding: 0;
+}
+@keyframes bounce {
+  50% {
+    transform: translate(-15px);
+    color: #ff0;
+  }
+}
+@keyframes stroke {
+  0% {
+    fill: #fff700;
+    stroke: #fff;
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 4;
+  }
+  70% {
+    fill: #fff200;
+    stroke: #fff;
+  }
+  80% {
+    fill: #00ff07;
+    stroke: #fff;
+    stroke-width: 4px;
+  }
+  to {
+    fill: #d4ff00;
+    stroke: #fff;
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}
+.casinoicons {
+  width: 100%;
+}
+.new_games {
+  font-size: 14px;
+  position: absolute;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  left: 20%;
+  right: 20%;
+  bottom: 0;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 5px 0;
+  animation: newgames 2s infinite;
+}
+@keyframes newgames {
+  0% {
+    opacity: 0.5;
+    background: #000;
+  }
+  to {
+    opacity: 1;
+    background: green;
+  }
+}
+.new_games:before {
+  left: -10px;
+  transform: skew(339deg);
+}
+.new_games:after,
+.new_games:before {
+  content: "";
+  width: 20px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  animation: newgames 2s infinite;
+}
+.new_games:after {
+  right: -10px;
+  transform: skew(-339deg);
+}
+.home-products-container .row {
+  margin: 0;
+}
+.home-products-container .row .col-casino {
+  width: 14.2857143%;
+  padding: 0 1px !important;
+}

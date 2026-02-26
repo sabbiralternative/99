@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Header from "../../components/modules/Home/Header";
-import CasinoTab from "./CasinoTab/CasinoTab";
+// import CasinoTab from "./CasinoTab/CasinoTab";
 import IntCasino from "./InCasinoTab/IntCasino";
-import { useLocation } from "react-router-dom";
-import images from "../../assets/images";
+// import { useLocation } from "react-router-dom";
+// import images from "../../assets/images";
 
 const Casino = () => {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const category = params.get("category");
-  const [tab, setTab] = useState("casino");
-  useEffect(() => {
-    if (category) {
-      setTab("intCasino");
-    }
-  }, [category]);
+  // const location = useLocation();
+  // const params = new URLSearchParams(location.search);
+  // const category = params.get("category");
+  // const [tab, setTab] = useState("casino");
+  // useEffect(() => {
+  //   if (category) {
+  //     setTab("intCasino");
+  //   }
+  // }, [category]);
+
   return (
     <div>
       <div className="main-content">
@@ -25,7 +26,7 @@ const Casino = () => {
               <div role="tabpanel" aria-labelledby className="tab-pane active">
                 <div id="home" className="tab-pane sports">
                   <div type="tabs game-nav-bar" className="tab-container">
-                    <ul
+                    {/* <ul
                       role="tablist"
                       className="nav nav-tabs game-nav-bar"
                       aria-label="Tabs"
@@ -76,10 +77,10 @@ const Casino = () => {
                           <div>Int Casino</div>
                         </a>
                       </li>
-                    </ul>
+                    </ul> */}
                     {/*  */}
-                    {tab === "casino" ? <CasinoTab /> : <IntCasino />}
-                    {/*  */}
+                    {/* {tab === "casino" ? <CasinoTab /> : <IntCasino />} */}
+                    <IntCasino />
                   </div>
                 </div>
               </div>

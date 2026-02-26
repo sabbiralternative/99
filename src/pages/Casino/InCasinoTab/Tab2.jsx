@@ -1,6 +1,9 @@
 /* eslint-disable react/no-unknown-property */
 
-const Tab2 = ({ categories, setSelectedSubCategory, selectedSubCategory }) => {
+import { useNavigate } from "react-router-dom";
+
+const Tab2 = ({ subCategories, product, selectedSubCategory }) => {
+  const navigate = useNavigate();
   return (
     <ul
       _ngcontent-hot-c46
@@ -9,7 +12,9 @@ const Tab2 = ({ categories, setSelectedSubCategory, selectedSubCategory }) => {
       aria-label="Tabs"
     >
       <li
-        onClick={() => setSelectedSubCategory("All")}
+        onClick={() => {
+          navigate(`/casino?product=${product}&category=All`);
+        }}
         _ngcontent-hot-c46
         className={` nav-item ${
           selectedSubCategory === "All" ? "active " : ""
@@ -37,10 +42,12 @@ const Tab2 = ({ categories, setSelectedSubCategory, selectedSubCategory }) => {
           </span>
         </a>
       </li>
-      {categories?.map((category) => {
+      {subCategories?.map((category) => {
         return (
           <li
-            onClick={() => setSelectedSubCategory(category)}
+            onClick={() => {
+              navigate(`/casino?product=${product}&category=${category}`);
+            }}
             key={category}
             _ngcontent-hot-c46
             className={` nav-item ${

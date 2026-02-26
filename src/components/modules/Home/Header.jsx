@@ -60,7 +60,7 @@ const Header = () => {
       <li _ngcontent-htq-c46 className="nav-item">
         <Link
           _ngcontent-htq-c46
-          to="/casino"
+          to="/casino?product=All&category=All"
           role="tab"
           className={`nav-link  ${
             location.pathname === "/casino" ? "active" : ""

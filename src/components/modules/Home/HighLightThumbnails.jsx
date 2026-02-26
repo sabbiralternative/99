@@ -1,11 +1,14 @@
 /* eslint-disable react/no-unknown-property */
 
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const HighLightThumbnails = ({ highlight_casino }) => {
+  const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const handleNavigateToIFrame = (casino) => {
-    navigate(`/casino?name=${casino?.product}&gameName=${casino?.category}`);
+    if (!token) return navigate("/login");
+    navigate(`/casino?product=${casino?.product}&category=${casino?.category}`);
   };
   return (
     <>

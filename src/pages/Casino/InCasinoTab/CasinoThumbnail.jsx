@@ -1,10 +1,13 @@
 /* eslint-disable react/no-unknown-property */
 
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const CasinoThumbnail = ({ casinoData }) => {
+  const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const handleNavigateToIFrame = (casino) => {
+    if (!token) return navigate("/login");
     navigate(`/casino/${casino?.name?.replace(/ /g, "")}/${casino?.id}`);
   };
   return (
