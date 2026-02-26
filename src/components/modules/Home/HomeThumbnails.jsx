@@ -2,14 +2,17 @@
 
 import { useNavigate } from "react-router-dom";
 import { useMac88Query } from "../../../redux/features/events/events";
+import { useSelector } from "react-redux";
 
 const HomeThumbnails = () => {
+  const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { data } = useMac88Query();
 
   const handleNavigateToIFrame = (casino) => {
+    if (!token) return navigate("/login");
     navigate(
-      `/casino/${casino?.game_name?.replace(/ /g, "")}/${casino?.game_id}`
+      `/casino/${casino?.game_name?.replace(/ /g, "")}/${casino?.game_id}`,
     );
   };
 
