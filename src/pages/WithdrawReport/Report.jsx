@@ -3,8 +3,11 @@ import { useAccountStatement } from "../../hooks/accountStatement";
 import ShowImage from "./ShowImage";
 import Complaint from "../../components/modals/Complaint/Complaint";
 import { Settings } from "../../api";
+import { useBankMutation } from "../../redux/features/deposit/deposit.api";
+import toast from "react-hot-toast";
 
 const WithdrawReport = () => {
+  const [deleteWithdraw] = useBankMutation();
   const [complaintId, setComplaintId] = useState(null);
   const [image, setImage] = useState("");
   const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
@@ -18,17 +21,32 @@ const WithdrawReport = () => {
     type: "WITHDRAW",
     status: "ALL",
   };
-  const { data } = useAccountStatement(payload);
+  const { data, refetch } = useAccountStatement(payload);
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
     if (data?.length > 0) {
       const categories = Array.from(
-        new Set(data?.map((item) => item?.date?.split(" ")?.[0]))
+        new Set(data?.map((item) => item?.date?.split(" ")?.[0])),
       );
       setCategory(categories);
     }
   }, [data]);
+
+  const handleDeleteWithdraw = async (withdraw_id) => {
+    const payload = {
+      type: "withdrawDelete",
+      withdraw_id,
+    };
+    const res = await deleteWithdraw(payload).unwrap();
+
+    if (res?.success) {
+      refetch();
+      toast.success(res?.result?.message);
+    } else {
+      toast.error(res?.error?.errorMessage);
+    }
+  };
 
   return (
     <>
@@ -123,10 +141,10 @@ const WithdrawReport = () => {
                               data?.status === "APPROVED"
                                 ? "#3fae52"
                                 : data?.status === "REJECTED"
-                                ? "#e7234e"
-                                : data?.status === "PENDING"
-                                ? "#FFD700"
-                                : "#FFF",
+                                  ? "#e7234e"
+                                  : data?.status === "PENDING"
+                                    ? "#FFD700"
+                                    : "#FFF",
                           }}
                         >
                           {data?.status}
@@ -191,21 +209,63 @@ const WithdrawReport = () => {
                             {" "}
                             ₹ {data?.amount}
                           </span>
-                          {Settings.complaint && (
-                            <div
-                              style={{
-                                backgroundColor: "rgb(255 131 46)",
-                                padding: "4px 6px",
-                                fontSize: "12px",
-                                fontWeight: "600",
-                                borderRadius: "4px 0px 0px 0px",
-                              }}
-                              onClick={() => setComplaintId(data?.referenceNo)}
-                              className="px-2 py-1  text-white   "
-                            >
-                              Report Issue
-                            </div>
-                          )}
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "0px 5px",
+                            }}
+                          >
+                            {data.status === "PENDING" &&
+                              data?.reject_request === 0 && (
+                                <button
+                                  style={{
+                                    backgroundColor: "rgb(255 131 46)",
+                                    padding: "4px 6px",
+                                    fontSize: "12px",
+                                    fontWeight: "600",
+                                    borderRadius: "4px 4px 0px 0px",
+                                  }}
+                                  onClick={() =>
+                                    handleDeleteWithdraw(data?.withdraw_id)
+                                  }
+                                  className="px-2 py-1  text-white   "
+                                >
+                                  Delete Withdraw
+                                </button>
+                              )}
+
+                            {data.status === "PENDING" &&
+                              data?.reject_request === 1 && (
+                                <p
+                                  style={{
+                                    fontSize: "11px",
+                                    margin: "0px",
+                                    fontWeight: "500",
+                                  }}
+                                  className="px-2 py-1  text-black   "
+                                >
+                                  Withdraw delete request sent.
+                                </p>
+                              )}
+                            {Settings.complaint && (
+                              <div
+                                style={{
+                                  backgroundColor: "rgb(255 131 46)",
+                                  padding: "4px 6px",
+                                  fontSize: "12px",
+                                  fontWeight: "600",
+                                  borderRadius: "4px 0px 0px 0px",
+                                }}
+                                onClick={() =>
+                                  setComplaintId(data?.referenceNo)
+                                }
+                                className="px-2 py-1  text-white   "
+                              >
+                                Report Issue
+                              </div>
+                            )}
+                          </div>
                         </span>
                       </div>
                       <div
