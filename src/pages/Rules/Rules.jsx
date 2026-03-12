@@ -7608,6 +7608,80 @@ const Rules = () => {
                         </div>
                       </div>
                     </div>
+                    {/*  Casino Maximum Win Limit (100× Cap) */}
+                    <div className="panel" style={{ display: "block" }}>
+                      <div className="panel card panel-default">
+                        <div
+                          onClick={() => handleToggleTab(18)}
+                          role="tab"
+                          className="panel-heading card-header panel-enabled"
+                        >
+                          <div className="panel-title">
+                            <div
+                              role="button"
+                              className="accordion-toggle"
+                              aria-expanded="false"
+                            >
+                              <button type="button" className="btn btn-link">
+                                Casino Maximum Win Limit (100× Cap)
+                              </button>
+                              {/**/}
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          role="tabpanel"
+                          className={`panel-collapse collapse ${
+                            tab === 18 ? "in show" : ""
+                          }`}
+                          aria-hidden="true"
+                          style={{ display: tab === 18 ? "block" : "none" }}
+                        >
+                          <div className="panel-body card-block card-body">
+                            <table className="table table-bordered">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <span>
+                                      To manage risk and ensure fair play, a
+                                      maximum win cap applies to all casino
+                                      games. The maximum payout per game round
+                                      is capped at 100× the original stake
+                                      placed for that round. If a game round
+                                      generates winnings exceeding 100× the
+                                      stake, only 100× the stake amount will be
+                                      credited to the user’s balance. <br />
+                                      Any winnings above the 100× cap will be
+                                      automatically removed/adjusted by the
+                                      system.
+                                    </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span>
+                                      Example: Stake: ₹100 <br /> Game Result:
+                                      250× win (₹25,000) <br /> Maximum allowed
+                                      win: 100× (₹10,000) <br /> Amount
+                                      credited: ₹10,000
+                                    </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <span>
+                                      Remaining ₹15,000 will be voided. <br />{" "}
+                                      This rule applies to all casino games
+                                      unless otherwise stated.
+                                    </span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </accordion>
                 </div>
               </div>
