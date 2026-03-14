@@ -42,7 +42,8 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
     if (
       method?.type === "upigateway" ||
       method?.type === "toitgateway" ||
-      method?.type === "i100gateway"
+      method?.type === "i100gateway" ||
+      method?.type === "upiclick"
     ) {
       const depositDetailForPg = {
         paymentId: method?.paymentId,
@@ -119,7 +120,8 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
       methodType &&
       methodType !== "upigateway" &&
       methodType !== "toitgateway" &&
-      methodType !== "i100gateway"
+      methodType !== "i100gateway" &&
+      methodType !== "upiclick"
     ) {
       paymentMethodRef.current.scrollIntoView({
         behavior: "smooth",
@@ -226,7 +228,8 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                             ) : null}
                             {method?.type == "upigateway" ||
                             method?.type === "toitgateway" ||
-                            method?.type === "i100gateway" ? (
+                            method?.type === "i100gateway" ||
+                            method?.type === "upiclick" ? (
                               <img
                                 style={{
                                   height: "20px",
@@ -326,7 +329,8 @@ const BankAccountUploadTransaction = ({ setTab, amount }) => {
                     balance.{" "}
                   </p>
                   <p>
-                    5. NEFT receiving time varies from 40 minutes to 2 hours.{" "}
+                    5. NEFT receiving time varies from 40 minutes to 2
+                    hours.{" "}
                   </p>
                   <p>
                     6. In case of account modification: payment valid for 1 hour
