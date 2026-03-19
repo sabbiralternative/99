@@ -18,8 +18,6 @@ const Home = () => {
   });
   const { homeTab } = useSelector((state) => state.global);
 
-  console.log(data);
-
   return (
     <div _ngcontent-htq-c97 className="main-content">
       <div _ngcontent-htq-c97 className="position-relative">
