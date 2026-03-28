@@ -101,31 +101,42 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
         ...payload,
 
         nounce: uuidv4(),
-        isbetDelay: placeBetValues?.isBetDelay || Settings?.bet_delay,
+        isbetDelay:
+          placeBetValues?.btype === "FANCY" &&
+          placeBetValues?.eventTypeId === "4"
+            ? false
+            : Settings.bet_delay,
         apk: closePopupForForever ? true : false,
       },
     ];
     setLoading(true);
     let delay = 0;
+
     if (
-      (eventTypeId == 4 || eventTypeId == 2) &&
-      placeBetValues?.btype === "MATCH_ODDS" &&
-      price > 3 &&
-      placeBetValues?.name?.length === 2
+      placeBetValues?.btype !== "FANCY" &&
+      placeBetValues?.eventTypeId !== "4"
     ) {
-      delay = 9000;
+      if (
+        (eventTypeId == 4 || eventTypeId == 2) &&
+        placeBetValues?.btype === "MATCH_ODDS" &&
+        price > 3 &&
+        placeBetValues?.name?.length === 2
+      ) {
+        delay = 9000;
+      }
+      if (
+        (eventTypeId == 4 || eventTypeId == 2) &&
+        placeBetValues?.btype === "MATCH_ODDS" &&
+        price > 7 &&
+        placeBetValues?.name?.length === 3
+      ) {
+        delay = 9000;
+      } else {
+        setBetDelay(currentPlacedBetEvent?.betDelay);
+        delay = Settings.bet_delay ? currentPlacedBetEvent?.betDelay * 1000 : 0;
+      }
     }
-    if (
-      (eventTypeId == 4 || eventTypeId == 2) &&
-      placeBetValues?.btype === "MATCH_ODDS" &&
-      price > 7 &&
-      placeBetValues?.name?.length === 3
-    ) {
-      delay = 9000;
-    } else {
-      setBetDelay(currentPlacedBetEvent?.betDelay);
-      delay = Settings.bet_delay ? currentPlacedBetEvent?.betDelay * 1000 : 0;
-    }
+
     // Introduce a delay before calling the API
     setTimeout(async () => {
       const { data } = await AxiosJSEncrypt.post(API.order, payloadData);
