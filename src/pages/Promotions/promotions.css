@@ -137,19 +137,26 @@
 
 .gift-input {
   margin-top: 10px;
-  background: rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.code {
+  border: none;
+  width: 100%;
+  /* background: rgba(255, 255, 255, 0.2); */
   border-radius: 6px;
   padding: 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.code {
   font-size: 14px;
+  color: black;
 }
 
 .redeem {
+  position: absolute;
+  top: 1.5px;
+  right: 1px;
   background: #a9243d;
   border: none;
   color: white;

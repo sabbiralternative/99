@@ -46,7 +46,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
             to="/"
             className="dropdown-item router-link-exact-active router-link-active"
           >
-            Deposit Support
+            Customer Support
           </Link>
         )}
 
