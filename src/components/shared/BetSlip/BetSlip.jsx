@@ -21,6 +21,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { AxiosJSEncrypt } from "../../../lib/AxiosJSEncrypt";
+import { isBetDelay, isDelay } from "../../../utils/isBetDelay";
 
 const BetSlip = ({ currentPlacedBetEvent }) => {
   const closePopupForForever = localStorage.getItem("closePopupForForever");
@@ -101,23 +102,16 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
         ...payload,
 
         nounce: uuidv4(),
-        isbetDelay:
-          placeBetValues?.btype === "FANCY" &&
-          placeBetValues?.eventTypeId === "4"
-            ? false
-            : Settings.bet_delay,
+        isbetDelay: isBetDelay(placeBetValues),
         apk: closePopupForForever ? true : false,
       },
     ];
     setLoading(true);
     let delay = 0;
 
-    if (
-      placeBetValues?.btype !== "FANCY" &&
-      placeBetValues?.eventTypeId !== "4"
-    ) {
+    if (isDelay(placeBetValues)) {
       if (
-        (eventTypeId == 4 || eventTypeId == 2) &&
+        eventTypeId == 4 &&
         placeBetValues?.btype === "MATCH_ODDS" &&
         price > 3 &&
         placeBetValues?.name?.length === 2
@@ -125,7 +119,7 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
         delay = 9000;
       }
       if (
-        (eventTypeId == 4 || eventTypeId == 2) &&
+        eventTypeId == 4 &&
         placeBetValues?.btype === "MATCH_ODDS" &&
         price > 7 &&
         placeBetValues?.name?.length === 3
