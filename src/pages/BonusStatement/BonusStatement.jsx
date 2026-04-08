@@ -9,14 +9,14 @@ const BonusStatement = () => {
   const { mutate: claimBonus } = useBonusMutation();
 
   const handleShowMessage = (item) => {
-    if (item?.is_claimed === 1) {
+    if (item?.is_claimed == 1) {
       return <span style={{ color: "green" }}>Bonus Claimed</span>;
-    } else if (item?.is_claimed === 2) {
+    } else if (item?.is_claimed == 2) {
       return <span style={{ color: "orange" }}>Claim Pending</span>;
-    } else if (item?.is_claimed === 3) {
+    } else if (item?.is_claimed == 3) {
       return <span style={{ color: "red" }}>Rejected</span>;
-    } else if (item?.is_claimed === 0) {
-      if (item?.is_wagering_complete === 1) {
+    } else if (item?.is_claimed == 0) {
+      if (item?.is_wagering_complete == 1) {
         return (
           <button
             onClick={() => handleClaimBonus(item)}
@@ -97,134 +97,207 @@ const BonusStatement = () => {
                       padding: "4px",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "start",
-                        gap: "4px",
-                        backgroundColor: "#f4f4f4",
-                        marginBottom: "8px",
-                        boxShadow: "0px 3px 10px rgba(0,0,0,0.2)",
-                        borderRadius: "4px",
-                      }}
-                    >
+                    {item?.bonus_type === "wagering" ? (
                       <div
                         style={{
-                          display: "flex",
-                          justifyContent: "space-between",
                           width: "100%",
-                          padding: "8px",
-                          fontSize: "14px",
-                          backgroundColor: "#eaeaea",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "start",
+                          gap: "4px",
+                          backgroundColor: "#f4f4f4",
+                          marginBottom: "8px",
+                          boxShadow: "0px 3px 10px rgba(0,0,0,0.2)",
+                          borderRadius: "4px",
                         }}
                       >
-                        <span
+                        <div
                           style={{
-                            width: "50%",
-                            borderRight: "1px solid #ccc",
                             display: "flex",
-                            alignItems: "center",
+                            justifyContent: "space-between",
+                            width: "100%",
+                            padding: "8px",
+                            fontSize: "14px",
+                            backgroundColor: "#eaeaea",
                           }}
                         >
-                          Bonus Amount:{" "}
-                          <strong style={{ color: "green" }}>
-                            ₹ {item?.amount}
-                          </strong>
-                        </span>
-                        <span
-                          style={{
-                            width: "50%",
-                            display: "flex",
-                            justifyContent: "flex-end",
-                          }}
-                        >
-                          Wagering Required:{" "}
-                          <strong
+                          <span
                             style={{
-                              color:
-                                item?.wagering_amount > 0 ? "green" : "red",
+                              width: "50%",
+                              borderRight: "1px solid #ccc",
+                              display: "flex",
+                              alignItems: "center",
                             }}
                           >
-                            ₹ {item?.wagering_amount}
-                          </strong>
-                        </span>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          width: "100%",
-                          padding: "8px",
-                          fontSize: "14px",
-                          backgroundColor: "#eaeaea",
-                        }}
-                      >
-                        <span
-                          style={{
-                            width: "50%",
-                            borderRight: "1px solid #ccc",
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          Wagering Complete Amount:{" "}
-                          <strong
+                            Bonus Amount:{" "}
+                            <strong style={{ color: "green" }}>
+                              ₹ {item?.amount}
+                            </strong>
+                          </span>
+                          <span
                             style={{
-                              color:
-                                item?.is_wagering_complete === 0
-                                  ? "orange"
-                                  : "green",
+                              width: "50%",
+                              display: "flex",
+                              justifyContent: "flex-end",
                             }}
                           >
-                            ₹ {item?.wagering_complete_amount}
-                          </strong>
-                        </span>
-                        <span
+                            Wagering Required:{" "}
+                            <strong
+                              style={{
+                                color:
+                                  item?.wagering_amount > 0 ? "green" : "red",
+                              }}
+                            >
+                              ₹ {item?.wagering_amount}
+                            </strong>
+                          </span>
+                        </div>
+                        <div
                           style={{
-                            width: "50%",
                             display: "flex",
-                            justifyContent: "flex-end",
+                            justifyContent: "space-between",
+                            width: "100%",
+                            padding: "8px",
+                            fontSize: "14px",
+                            backgroundColor: "#eaeaea",
                           }}
                         >
-                          Date Added:{" "}
-                          <strong>{formateDate(item?.date_added)}</strong>
-                        </span>
+                          <span
+                            style={{
+                              width: "50%",
+                              borderRight: "1px solid #ccc",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            Wagering Complete Amount:{" "}
+                            <strong
+                              style={{
+                                color:
+                                  item?.is_wagering_complete === 0
+                                    ? "orange"
+                                    : "green",
+                              }}
+                            >
+                              ₹ {item?.wagering_complete_amount}
+                            </strong>
+                          </span>
+                          <span
+                            style={{
+                              width: "50%",
+                              display: "flex",
+                              justifyContent: "flex-end",
+                            }}
+                          >
+                            Date Added:{" "}
+                            <strong>{formateDate(item?.date_added)}</strong>
+                          </span>
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            width: "100%",
+                            padding: "8px",
+                            fontSize: "14px",
+                            backgroundColor: "#eaeaea",
+                          }}
+                        >
+                          <span
+                            style={{
+                              width: "50%",
+                              borderRight: "1px solid #ccc",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            Expiry Date:{" "}
+                            <strong>{formateDate(item?.expiry_date)}</strong>
+                          </span>
+                          <span
+                            style={{
+                              width: "50%",
+                              display: "flex",
+                              justifyContent: "flex-end",
+                            }}
+                          >
+                            {handleShowMessage(item)}
+                          </span>
+                        </div>
                       </div>
+                    ) : (
                       <div
                         style={{
-                          display: "flex",
-                          justifyContent: "space-between",
                           width: "100%",
-                          padding: "8px",
-                          fontSize: "14px",
-                          backgroundColor: "#eaeaea",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "start",
+                          gap: "4px",
+                          backgroundColor: "#f4f4f4",
+                          marginBottom: "8px",
+                          boxShadow: "0px 3px 10px rgba(0,0,0,0.2)",
+                          borderRadius: "4px",
                         }}
                       >
-                        <span
+                        <div
                           style={{
-                            width: "50%",
-                            borderRight: "1px solid #ccc",
                             display: "flex",
-                            alignItems: "center",
+                            justifyContent: "space-between",
+                            width: "100%",
+                            padding: "8px",
+                            fontSize: "14px",
+                            backgroundColor: "#eaeaea",
                           }}
                         >
-                          Expiry Date:{" "}
-                          <strong>{formateDate(item?.expiry_date)}</strong>
-                        </span>
-                        <span
+                          <span
+                            style={{
+                              width: "50%",
+                              borderRight: "1px solid #ccc",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            Bonus Amount:{" "}
+                            <strong style={{ color: "green" }}>
+                              ₹ {item?.amount}
+                            </strong>
+                          </span>
+                          <span
+                            style={{
+                              width: "50%",
+                              display: "flex",
+                              justifyContent: "flex-end",
+                            }}
+                          >
+                            Date Added:{" "}
+                            <strong>{formateDate(item?.date_added)}</strong>
+                          </span>
+                        </div>
+
+                        <div
                           style={{
-                            width: "50%",
                             display: "flex",
-                            justifyContent: "flex-end",
+                            justifyContent: "end",
+                            width: "100%",
+                            padding: "8px",
+                            fontSize: "14px",
+                            backgroundColor: "#eaeaea",
                           }}
                         >
-                          {handleShowMessage(item)}
-                        </span>
+                          <span
+                            style={{
+                              width: "50%",
+                              display: "flex",
+                              justifyContent: "flex-end",
+                            }}
+                          >
+                            {handleShowMessage(item)}
+                          </span>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 ))
               ) : (
