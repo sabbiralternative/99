@@ -1,17 +1,31 @@
 /* eslint-disable react/no-unknown-property */
 
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Tab2 = ({ subCategories, product, selectedSubCategory }) => {
+  const activeRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (activeRef.current) {
+      activeRef.current.scrollIntoView({
+        behavior: "smooth",
+        inline: "center", // key part
+        block: "nearest",
+      });
+    }
+  }, [selectedSubCategory, subCategories, product]);
   return (
     <ul
+      style={{ scrollBehavior: "smooth" }}
       _ngcontent-hot-c46
       role="tablist"
       className="nav nav-tabs"
       aria-label="Tabs"
     >
       <li
+        ref={selectedSubCategory === "All" ? activeRef : null}
         onClick={() => {
           navigate(`/casino?product=${product}&category=All`);
         }}
@@ -45,6 +59,7 @@ const Tab2 = ({ subCategories, product, selectedSubCategory }) => {
       {subCategories?.map((category) => {
         return (
           <li
+            ref={category === selectedSubCategory ? activeRef : null}
             onClick={() => {
               navigate(`/casino?product=${product}&category=${category}`);
             }}
@@ -81,9 +96,16 @@ const Tab2 = ({ subCategories, product, selectedSubCategory }) => {
                         ?.split(" ")
                         .join("")
                         .toLowerCase()}.webp`;
+                    } else if (e.target.src.endsWith(".webp")) {
+                      // Try webp only once after svg fails
+                      e.target.src = `/icon/${category
+                        ?.split(" ")
+                        .join("")
+                        .toLowerCase()}.png`;
                     } else {
                       // If webp fails, do nothing (leave broken img)
-                      e.target.onerror = null;
+                      // e.target.onerror = null;
+                      e.target.src = `/icon/all.svg`;
                     }
                   }}
                 />

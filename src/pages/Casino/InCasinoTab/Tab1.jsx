@@ -1,17 +1,31 @@
 /* eslint-disable react/no-unknown-property */
 
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Tab1 = ({ categories, selectedCategory }) => {
+  const activeRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (activeRef.current) {
+      activeRef.current.scrollIntoView({
+        behavior: "smooth",
+        inline: "center", // key part
+        block: "nearest",
+      });
+    }
+  }, [selectedCategory, categories]);
   return (
     <ul
+      style={{ scrollBehavior: "smooth" }}
       _ngcontent-hot-c46
       role="tablist"
       className="nav nav-tabs"
       aria-label="Tabs"
     >
       <li
+        ref={selectedCategory === "All" ? activeRef : null}
         style={{ color: "white" }}
         onClick={() => {
           navigate(`/casino?product=All&category=All`);
@@ -36,6 +50,7 @@ const Tab1 = ({ categories, selectedCategory }) => {
       {categories?.map((category) => {
         return (
           <li
+            ref={category === selectedCategory ? activeRef : null}
             style={{ color: "white" }}
             onClick={() => {
               navigate(`/casino?product=${category}&category=All`);

@@ -54,95 +54,23 @@ const HighLightThumbnails = ({ highlight_casino }) => {
       </div> */}
 
       <div _ngcontent-gkq-c98 className="row mx-0 mt-1 highlight-casino">
-        <div
-          _ngcontent-gkq-c98
-          className="col-3 position-relative"
-          style={{ paddingRight: "1px", paddingLeft: "1px" }}
-        >
-          <img
-            _ngcontent-gkq-c98
-            className="img-fluid"
-            src="https://pulseedge.io/frontend_config/diam/images/17741821545376191.gif"
-          />
-        </div>
-        <div
-          _ngcontent-gkq-c98
-          className="col-3 position-relative"
-          style={{ paddingRight: "1px", paddingLeft: "1px" }}
-        >
-          <img
-            _ngcontent-gkq-c98
-            className="img-fluid"
-            src="https://pulseedge.io/frontend_config/diam/images/17721055468085952.gif"
-          />
-        </div>
-        <div
-          _ngcontent-gkq-c98
-          className="col-3 position-relative"
-          style={{ paddingRight: "1px", paddingLeft: "1px" }}
-        >
-          <img
-            _ngcontent-gkq-c98
-            className="img-fluid"
-            src="https://pulseedge.io/frontend_config/diam/images/17753225505208026.gif"
-          />
-        </div>
-        <div
-          _ngcontent-gkq-c98
-          className="col-3 position-relative"
-          style={{ paddingRight: "1px", paddingLeft: "1px" }}
-        >
-          <img
-            _ngcontent-gkq-c98
-            className="img-fluid"
-            src="https://pulseedge.io/frontend_config/diam/images/17721055626412579.gif"
-          />
-        </div>
-        <div
-          _ngcontent-gkq-c98
-          className="col-3 position-relative"
-          style={{ paddingRight: "1px", paddingLeft: "1px", marginTop: "2px" }}
-        >
-          <img
-            _ngcontent-gkq-c98
-            className="img-fluid"
-            src="https://pulseedge.io/frontend_config/diam/images/17721055725370388.gif"
-          />
-        </div>
-        <div
-          _ngcontent-gkq-c98
-          className="col-3 position-relative"
-          style={{ paddingRight: "1px", paddingLeft: "1px", marginTop: "2px" }}
-        >
-          <img
-            _ngcontent-gkq-c98
-            className="img-fluid"
-            src="https://pulseedge.io/frontend_config/diam/images/17721055808070945.gif"
-          />
-        </div>
-        <div
-          _ngcontent-gkq-c98
-          className="col-3 position-relative"
-          style={{ paddingRight: "1px", paddingLeft: "1px", marginTop: "2px" }}
-        >
-          <img
-            _ngcontent-gkq-c98
-            className="img-fluid"
-            src="https://pulseedge.io/frontend_config/diam/images/17753845197295887.gif"
-          />
-        </div>
-        <div
-          _ngcontent-gkq-c98
-          className="col-3 position-relative"
-          style={{ paddingRight: "1px", paddingLeft: "1px", marginTop: "2px" }}
-        >
-          <img
-            _ngcontent-gkq-c98
-            className="img-fluid"
-            src="https://pulseedge.io/frontend_config/diam/images/17721055992383369.gif"
-          />
-        </div>
-        {/**/}
+        {highlight_casino?.map((item) => {
+          return (
+            <div
+              onClick={() => handleNavigateToIFrame(item)}
+              key={item?.id}
+              _ngcontent-gkq-c98
+              className="col-3 position-relative"
+              style={{ paddingRight: "1px", paddingLeft: "1px" }}
+            >
+              <img
+                _ngcontent-gkq-c98
+                className="img-fluid"
+                src={`/${item?.url_thumb}`}
+              />
+            </div>
+          );
+        })}
       </div>
     </>
   );

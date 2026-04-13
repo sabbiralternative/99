@@ -275,7 +275,11 @@ const Header = () => {
               </div>
             </div>
             {data && data?.length > 0 && <LatestEvent latestEvent={data} />}
-            <div _ngcontent-yvd-c83 className="row header-b-menu">
+            <div
+              onClick={() => navigate(`/event-details/4/28127348`)}
+              _ngcontent-yvd-c83
+              className="row header-b-menu"
+            >
               <div _ngcontent-yvd-c83 className="col election">
                 <Link
                   _ngcontent-yvd-c83
