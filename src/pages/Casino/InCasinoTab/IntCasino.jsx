@@ -7,7 +7,7 @@ import Tab1 from "./Tab1";
 // import { useSelector } from "react-redux";
 import { useGetIndex } from "../../../hooks";
 import { useLocation } from "react-router-dom";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 // import { useLocation } from "react-router-dom";
 
 const IntCasino = () => {
@@ -173,6 +173,10 @@ const IntCasino = () => {
       }
     }
   }, [allGames, categories, category, subCategories, product, search]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <div _ngcontent-hot-c46 className="tab-content">
