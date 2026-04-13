@@ -275,6 +275,17 @@ const Header = () => {
               </div>
             </div>
             {data && data?.length > 0 && <LatestEvent latestEvent={data} />}
+            <div _ngcontent-yvd-c83 className="row header-b-menu">
+              <div _ngcontent-yvd-c83 className="col election">
+                <Link
+                  _ngcontent-yvd-c83
+                  to="/event-details/4/28127348"
+                  className="text-link"
+                >
+                  IPL 2026
+                </Link>
+              </div>
+            </div>
           </div>
         </header>
         {Settings.instagramLink ? (

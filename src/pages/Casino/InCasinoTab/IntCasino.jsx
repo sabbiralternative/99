@@ -122,12 +122,17 @@ const IntCasino = () => {
   //   navigate(`/casino/${casino?.name?.replace(/ /g, "")}/${casino?.id}`);
   // };
 
-  const allGames =
-    allTables &&
-    Object.values(allTables).flatMap((provider) =>
+  // const allGames =
+  //   allTables &&
+  //   Object.values(allTables).flatMap((provider) =>
+  //     Object.values(provider).flat(),
+  //   );
+  const allGames = useMemo(() => {
+    if (!allTables) return [];
+    return Object.values(allTables).flatMap((provider) =>
       Object.values(provider).flat(),
     );
-
+  }, [allTables]);
   // const tablesGames =
   //   tables &&
   //   Object.values(tables).flatMap((provider) => Object.values(provider).flat());

@@ -24,11 +24,11 @@ const CasinoThumbnail = ({ casinoData }) => {
           className="row row5 mt-2"
           style={{ marginLeft: "0px", marginRight: "10px" }}
         >
-          {casinoData?.map((casino) => {
+          {casinoData?.map((casino, i) => {
             return (
               <div
                 onClick={() => handleNavigateToIFrame(casino)}
-                key={casino?.id}
+                key={`${casino?.id}-${casino?.category}-${casino?.product}-${i}`}
                 _ngcontent-hot-c96
                 className="col-3 text-center"
                 style={{ padding: "0px" }}
