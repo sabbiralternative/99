@@ -121,6 +121,7 @@ const Header = () => {
             <div
               _ngcontent-htq-c82
               className="row row5 pt-1 pb-1 align-items-center"
+              style={{ marginRight: "0px", marginLeft: "0px" }}
             >
               <div
                 _ngcontent-htq-c82
@@ -147,7 +148,7 @@ const Header = () => {
                     icon={faHome}
                     className="mr-1"
                   />
-                  {/* <i _ngcontent-htq-c82 className="fas fa-home mr-1" /> */}
+
                   <img
                     _ngcontent-htq-c82
                     alt="Exchange"
@@ -267,7 +268,11 @@ const Header = () => {
               </div>
             )}
 
-            <div _ngcontent-htq-c82 className="row row5 header-bottom">
+            <div
+              _ngcontent-htq-c82
+              className="row row5 header-bottom"
+              style={{ marginRight: "0px", marginLeft: "0px" }}
+            >
               <div _ngcontent-htq-c82 className="col-12">
                 <Search />
 
@@ -278,7 +283,7 @@ const Header = () => {
             <div
               onClick={() => navigate(`/event-details/4/28127348`)}
               _ngcontent-yvd-c83
-              className="row header-b-menu"
+              className=" header-b-menu"
             >
               <div _ngcontent-yvd-c83 className="col election">
                 <Link
@@ -321,50 +326,6 @@ const Header = () => {
             <img src={images.whatsApp} />
           </a>
         ) : null}
-        <div
-          _ngcontent-htq-c82
-          bsmodal
-          tabIndex={-1}
-          role="dialog"
-          aria-labelledby
-          className="modal fade force-change-password-popup"
-        >
-          <div
-            _ngcontent-htq-c82
-            className="modal-dialog bookModal app_version"
-          >
-            <div _ngcontent-htq-c82 className="modal-content">
-              <div _ngcontent-htq-c82 className="modal-body p-0">
-                <button
-                  _ngcontent-htq-c82
-                  type="button"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  className="close"
-                  style={{
-                    position: "absolute",
-                    left: "5px",
-                    top: 0,
-                    color: "#fff",
-                    fontSize: "21px",
-                    opacity: 1,
-                  }}
-                >
-                  <span _ngcontent-htq-c82 aria-hidden="true">
-                    ×
-                  </span>
-                </button>
-                <a _ngcontent-htq-c82>
-                  <img
-                    _ngcontent-htq-c82
-                    src="https://tezcdn.io/casino/casino-highlight/poster-login-popup.webp"
-                    style={{ width: "100%" }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>{" "}
       </div>
     </>
   );
