@@ -60,8 +60,10 @@ import promotionBanner from "../icon/promotionBanner.webp";
 import cashBundle from "../icon/cash-bundle.webp";
 import giftCard from "../icon/giftCard.webp";
 import redeemCardGift from "../icon/redeemCardGift.svg";
+import cockFight from "../img/cock-fight.png";
 
 export default {
+  cockFight,
   cashBundle,
   giftCard,
   redeemCardGift,

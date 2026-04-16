@@ -20,6 +20,12 @@ export const homeTab = [
     group: 2,
   },
   {
+    id: 3,
+    name: "Cock Fight",
+    eventId: 400332,
+    image: images.cockFight,
+  },
+  {
     id: 4,
     name: "Horse Racing",
     image: images.horseRacing,

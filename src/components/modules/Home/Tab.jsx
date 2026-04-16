@@ -3,10 +3,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setGroup } from "../../../redux/features/global/globalSlice";
 import { homeTab } from "../../../static/group";
+import { useNavigate } from "react-router-dom";
 
 const Tab = () => {
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const { group } = useSelector((state) => state.global);
   const dispatch = useDispatch();
+
+  const handleGroupType = (item) => {
+    if (item?.group) {
+      dispatch(setGroup(item?.group));
+    }
+    if (item?.eventId) {
+      if (token) {
+        navigate(`/casino/cock-fight/${item?.eventId}`);
+      } else {
+        navigate("/login");
+      }
+    }
+  };
   return (
     <ul
       _ngcontent-htq-c46
@@ -23,7 +39,7 @@ const Tab = () => {
           >
             <a
               style={{ color: "white" }}
-              onClick={() => dispatch(setGroup(item.group))}
+              onClick={() => handleGroupType(item)}
               _ngcontent-htq-c46
               role="tab"
               className={`nav-link ${group === item.group ? "active" : ""}`}
