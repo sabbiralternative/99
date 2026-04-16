@@ -2,7 +2,7 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const NewLaunch = ({ new_launch }) => {
+const NewLaunch = ({ data, title }) => {
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const handleNavigateToIFrame = (casino) => {
@@ -13,11 +13,11 @@ const NewLaunch = ({ new_launch }) => {
   return (
     <div className="row mx-0 mt-1 newlaunch">
       <h2 className="newheading">
-        <span>New Launch</span>
+        <span>{title}</span>
       </h2>
 
       <div _ngcontent-htq-c97 className="row mx-0 mt-1">
-        {new_launch?.map((casino) => {
+        {data?.map((casino) => {
           return (
             <div
               onClick={() => handleNavigateToIFrame(casino)}

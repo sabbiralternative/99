@@ -66,7 +66,7 @@ const HighLightThumbnails = ({ highlight_casino }) => {
               <img
                 _ngcontent-gkq-c98
                 className="img-fluid"
-                src={`/${item?.url_thumb}`}
+                src={`${item?.url_thumb}`}
               />
             </div>
           );

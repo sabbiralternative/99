@@ -214,8 +214,8 @@ a:active {
 }
 
 .row.row5 {
-  margin-left: -5px;
-  margin-right: -5px;
+  /* margin-left: -5px;
+  margin-right: -5px; */
 }
 
 .row.row5 > [class*="col-"] {

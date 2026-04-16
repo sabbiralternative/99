@@ -20,7 +20,7 @@ import {
   setShowAppPopUp,
 } from "../../../redux/features/global/globalSlice";
 import AppPopup from "./AppPopUp";
-import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
+// import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import BuildVersion from "../../modals/BuildVersion/BuildVersion";
 import Error from "../../modals/Error/Error";
 
@@ -44,14 +44,6 @@ const Header = () => {
   useCloseModalClickOutside(dropdownRef, () => {
     setShowDropdown(false);
   });
-
-  const navigateWhatsApp = () => {
-    if (token && Settings.branchWhatsapplink) {
-      window.open(Settings.branchWhatsapplink, "_blank");
-    } else {
-      window.open(Settings.whatsapplink, "_blank");
-    }
-  };
 
   useEffect(() => {
     const closePopupForForever = localStorage.getItem("closePopupForForever");
@@ -106,7 +98,7 @@ const Header = () => {
   return (
     <>
       {showReferral && <Referral setShowReferral={setShowReferral} />}
-      {Settings.apk_link && showAPKModal && <DownloadAPK />}
+      {/* {Settings.apk_link && showAPKModal && <DownloadAPK />} */}
       {Settings.apk_link && showAppPopUp && windowWidth < 1040 && <AppPopup />}
       {showBuildVersion && !showAPKModal && (
         <BuildVersion
@@ -297,35 +289,6 @@ const Header = () => {
             </div>
           </div>
         </header>
-        {Settings.instagramLink ? (
-          <a
-            onClick={() => window.open(Settings.instagramLink, "_blank")}
-            style={{ bottom: "38%", right: "7.5%" }}
-            className="whatsapp_link"
-          >
-            <img
-              style={{ height: "50px", width: "50px" }}
-              src={images.instagram}
-            />
-          </a>
-        ) : null}
-        {Settings.telegramLink ? (
-          <a
-            onClick={() => window.open(Settings.telegramLink, "_blank")}
-            style={{ bottom: "22%", right: "7.5%" }}
-            className="whatsapp_link"
-          >
-            <img
-              style={{ height: "50px", width: "50px" }}
-              src={images.telegram}
-            />
-          </a>
-        ) : null}
-        {Settings.whatsapplink || Settings.branchWhatsapplink ? (
-          <a onClick={navigateWhatsApp} className="whatsapp_link">
-            <img src={images.whatsApp} />
-          </a>
-        ) : null}
       </div>
     </>
   );
