@@ -54,7 +54,7 @@ const Deposit = () => {
         <div className="col-md-10 featured-box">
           <div className="bankingUi">
             <div className="container-fluid">
-              <div className="row">
+              <div className="row" style={{ flexDirection: "column" }}>
                 <div
                   className="col-md-12 text-center pt-3 logo-section"
                   style={{ display: "none" }}

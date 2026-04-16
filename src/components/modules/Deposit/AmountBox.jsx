@@ -21,7 +21,7 @@ const AmountBox = ({ setTab, setAmount, amount }) => {
               setTab("bankAccount");
             }
           },
-        }
+        },
       );
     } else {
       return toast.error("Amount is required");
@@ -29,7 +29,7 @@ const AmountBox = ({ setTab, setAmount, amount }) => {
   };
 
   return (
-    <div className="col-md-8">
+    <div className="col-md-12">
       <div className="row">
         <div className="col-md-12">
           <div>
@@ -101,7 +101,8 @@ const AmountBox = ({ setTab, setAmount, amount }) => {
                     balance.{" "}
                   </p>
                   <p>
-                    5. NEFT receiving time varies from 40 minutes to 2 hours.{" "}
+                    5. NEFT receiving time varies from 40 minutes to 2
+                    hours.{" "}
                   </p>
                   <p>
                     6. In case of account modification: payment valid for 1 hour

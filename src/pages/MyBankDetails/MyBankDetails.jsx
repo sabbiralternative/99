@@ -132,7 +132,7 @@ const MyBankDetails = () => {
           ></div> */}
         </div>
       </div>
-      <div style={{ margin: "10px" }}>
+      <div style={{ marginTop: "10px" }}>
         <button
           onClick={() => dispatch(setAddBank(true))}
           className="btn"

@@ -15,7 +15,7 @@ const DepositTransaction = () => {
   const { data } = useAccountStatement(payload);
 
   return (
-    <div className="col-md-4">
+    <div className="col-md-12">
       <div className="account-table">
         <table
           className="table table-bordered account-table-new"
@@ -42,10 +42,10 @@ const DepositTransaction = () => {
                         item?.status === "PENDING"
                           ? "badge-warning"
                           : item?.status === "REJECTED"
-                          ? "badge-danger"
-                          : item?.status === "APPROVED"
-                          ? "badge-success"
-                          : ""
+                            ? "badge-danger"
+                            : item?.status === "APPROVED"
+                              ? "badge-success"
+                              : ""
                       }`}
                     >
                       {item?.status}

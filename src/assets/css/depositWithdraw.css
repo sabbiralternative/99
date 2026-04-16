@@ -875,11 +875,11 @@
     gap: 1rem;
     align-self: stretch;
     border-radius: 0.75rem 0rem 0rem 0.75rem;
-    background: linear-gradient(
+    /* background: linear-gradient(
       92deg,
       rgba(19, 44, 94, 0.3) 1.84%,
       rgba(30, 93, 218, 0.3) 95.39%
-    );
+    ); */
   }
 }
 
