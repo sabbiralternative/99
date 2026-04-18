@@ -117,12 +117,12 @@ const MyBankDetails = () => {
             <button
               style={{
                 border: "none",
-                background: tab === 2 ? "var(--theme1-bg)" : "",
+                background: tab === 0 ? "var(--theme1-bg)" : "",
               }}
-              onClick={() => setTab(2)}
+              onClick={() => setTab(0)}
               className="btn-inactive "
             >
-              <span style={{ color: tab === 2 ? "white" : "" }} className="">
+              <span style={{ color: tab === 0 ? "white" : "" }} className="">
                 Deleted
               </span>
             </button>
