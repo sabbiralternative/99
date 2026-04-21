@@ -13,6 +13,7 @@ const ChangePassword = () => {
       oldPassword,
       password,
       passVerify,
+      nonce: crypto.randomUUID(),
     };
     const data = await handleChangePassword(payload).unwrap();
     if (data.success) {

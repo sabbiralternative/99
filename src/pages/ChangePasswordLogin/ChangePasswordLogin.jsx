@@ -24,6 +24,7 @@ const ChangePasswordLogin = () => {
       oldPassword: password,
       password: newPassword,
       passVerify: newPasswordConfirm,
+      nonce: crypto.randomUUID(),
     };
     const data = await handleChangePassword(payload).unwrap();
 
