@@ -41,19 +41,19 @@ export const homeTab = [
     id: 6,
     name: "Binary",
     image: images.binary,
-    group: 5,
+    group: 5444,
   },
   {
     id: 7,
     name: "Kabaddi",
     image: images.kabbadi,
-    group: 6,
+    group: 5,
   },
   {
     id: 8,
     name: "Politics",
     image: images.politicks,
-    group: 7,
+    group: 6,
   },
   {
     id: 9,
