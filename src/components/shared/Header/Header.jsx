@@ -272,7 +272,7 @@ const Header = () => {
               </div>
             </div>
             {data && data?.length > 0 && <LatestEvent latestEvent={data} />}
-            <div
+            {/* <div
               onClick={() => navigate(`/event-details/4/28127348`)}
               _ngcontent-yvd-c83
               className=" header-b-menu"
@@ -286,7 +286,7 @@ const Header = () => {
                   IPL 2026
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </header>
       </div>
