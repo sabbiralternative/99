@@ -81,7 +81,14 @@ const Register = () => {
     <div className="login-wrapper">
       <div className="login-page">
         <div className="login-box">
-          <div className="logo-login">
+          <div
+            className="logo-login"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Link to="/">
               <img src={logo} />
             </Link>
