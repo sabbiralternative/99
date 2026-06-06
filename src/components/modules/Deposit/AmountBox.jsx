@@ -48,7 +48,13 @@ const AmountBox = ({ setTab, setAmount, amount }) => {
                     <label>Amount</label>
                     <div className="input-group">
                       <input
-                        onChange={(e) => setAmount(e.target.value)}
+                        onChange={(e) =>
+                          setAmount(
+                            e.target.value <= 10000000
+                              ? e.target.value
+                              : 10000000,
+                          )
+                        }
                         value={amount}
                         type="number"
                         className="form-control"
