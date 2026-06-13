@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setGroup } from "../../../redux/features/global/globalSlice";
 import { homeTab } from "../../../static/group";
 import { useNavigate } from "react-router-dom";
+import { latestEvent } from "../../../../../../10sports/10sports/src/static/latest-event";
+import images from "../../../assets/images";
 
 const Tab = () => {
   const { token } = useSelector((state) => state.auth);
@@ -30,6 +32,28 @@ const Tab = () => {
       className="nav nav-tabs game-nav-bar"
       aria-label="Tabs"
     >
+      {latestEvent.map((item) => {
+        return (
+          <li key={item.eventName} _ngcontent-htq-c46 className={` nav-item `}>
+            <a
+              style={{ color: "white" }}
+              onClick={() => navigate(item.pathname)}
+              _ngcontent-htq-c46
+              role="tab"
+              className={`nav-link `}
+              aria-controls
+              aria-selected="true"
+              id
+            >
+              <span _ngcontent-htq-c46 />
+              <div _ngcontent-htq-c97>
+                <img _ngcontent-htq-c97 alt="" src={images.cricket} />
+              </div>
+              <div _ngcontent-htq-c97>{item.eventName}</div>
+            </a>
+          </li>
+        );
+      })}
       {homeTab.map((item) => {
         return (
           <li
