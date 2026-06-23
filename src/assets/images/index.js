@@ -61,8 +61,10 @@ import cashBundle from "../icon/cash-bundle.webp";
 import giftCard from "../icon/giftCard.webp";
 import redeemCardGift from "../icon/redeemCardGift.svg";
 import cockFight from "../img/cock-fight.png";
+import globe from "../img/globe.gif";
 
 export default {
+  globe,
   cockFight,
   cashBundle,
   giftCard,

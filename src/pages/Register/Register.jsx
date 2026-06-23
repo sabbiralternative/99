@@ -17,8 +17,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/features/auth/authSlice";
 import images from "../../assets/images";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../const";
 // import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
 const Register = () => {
+  const { valueByLanguage } = useLanguage();
   const affnook_token = localStorage.getItem("affnook_token");
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -296,7 +300,7 @@ const Register = () => {
               </div>
               <div className="d-grid">
                 <button type="submit" className="btn btn-primary btn-block">
-                  Register{" "}
+                  {languageValue(valueByLanguage, LanguageKey.REGISTER)}{" "}
                   <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
                 </button>
               </div>
@@ -360,7 +364,7 @@ const Register = () => {
               <div className="mt-2 mb-1">
                 <b>Already have User?</b>{" "}
                 <Link to="/login" className="ms-1">
-                  <b>Login here</b>
+                  <b> {languageValue(valueByLanguage, LanguageKey.LOGIN)}</b>
                 </Link>
               </div>
               {/* <small className="recaptchaTerms mt-1">

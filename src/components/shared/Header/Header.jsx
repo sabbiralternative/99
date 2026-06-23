@@ -23,9 +23,15 @@ import AppPopup from "./AppPopUp";
 // import DownloadAPK from "../../modals/DownloadAPK/DownloadAPK";
 import BuildVersion from "../../modals/BuildVersion/BuildVersion";
 import Error from "../../modals/Error/Error";
+import Language from "../../modals/Language";
+import useLanguage from "../../../hooks/useLanguage";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../const";
 
 /* eslint-disable react/no-unknown-property */
 const Header = () => {
+  const { language, valueByLanguage, setLanguage } = useLanguage();
+  const [showLanguage, setShowLanguage] = useState(false);
   const [showBuildVersion, setShowBuildVersion] = useState(false);
   const stored_build_version = localStorage.getItem("build_version");
   const navigate = useNavigate();
@@ -92,6 +98,9 @@ const Header = () => {
     }
   }, [stored_build_version]);
 
+  useEffect(() => {
+    setLanguage(localStorage.getItem("language") || "english");
+  }, [setLanguage]);
   if (Settings.app_only && !closePopupForForever) {
     return <Error />;
   }
@@ -167,7 +176,7 @@ const Header = () => {
                     type="submit"
                     className="btn btn-secondary"
                   >
-                    Login
+                    {languageValue(valueByLanguage, LanguageKey.LOGIN)}
                     <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
                   </button>
                   {Settings.registration && (
@@ -177,49 +186,138 @@ const Header = () => {
                       _ngcontent-wjb-c42
                       className="btn btn-secondary btn-block"
                     >
-                      Register
+                      {languageValue(valueByLanguage, LanguageKey.REGISTER)}
                       <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
                     </button>
                   )}
+                  <div style={{ position: "relative", padding: "1px 4px" }}>
+                    {Settings.language && (
+                      <button onClick={() => setShowLanguage((prev) => !prev)}>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "end",
+                            background: "transparent",
+                            border: "none",
+                          }}
+                        >
+                          <img
+                            style={{
+                              height: "20px",
+                              width: "20px",
+                              filter: "invert(1)",
+                            }}
+                            src={images.globe}
+                            alt=""
+                          />
+                          <b
+                            style={{
+                              margin: "0px",
+                              fontSize: "10px",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {language || "EN"}
+                          </b>
+                        </div>
+                      </button>
+                    )}
+                    {showLanguage && (
+                      <Language setShowLanguage={setShowLanguage} />
+                    )}
+                  </div>
                 </div>
               )}
               {token && (
-                <div _ngcontent-htq-c82 className="col-6 text-right bal-expo">
-                  <p _ngcontent-htq-c82 className="mb-0">
-                    <img
-                      _ngcontent-htq-c82
-                      src={images.landMark}
-                      alt="Exchange"
-                      className="img-fluid pr-1"
-                    />
-                    <b _ngcontent-htq-c82>{balance?.availBalance}</b>
-                  </p>
-                  <div _ngcontent-htq-c82>
-                    <span _ngcontent-htq-c82 className="mr-1">
-                      <u _ngcontent-htq-c82>Exp: {balance?.deductedExposure}</u>
-                    </span>
-                    <div
-                      ref={dropdownRef}
-                      _ngcontent-htq-c82
-                      className="dropdown d-inline-block"
-                    >
-                      <a
-                        onClick={() => setShowDropdown((prev) => !prev)}
+                <div
+                  _ngcontent-htq-c82
+                  className="col-6 text-right bal-expo"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "end",
+                  }}
+                >
+                  <div>
+                    {" "}
+                    <p _ngcontent-htq-c82 className="mb-0">
+                      <img
                         _ngcontent-htq-c82
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        className="dropdown-toggle"
-                      >
-                        <u _ngcontent-htq-c82 data-v-3f4cf84d>
-                          {user}
-                        </u>
-                      </a>
-                      <Dropdown
-                        showDropdown={showDropdown}
-                        setShowDropdown={setShowDropdown}
-                        setShowReferral={setShowReferral}
+                        src={images.landMark}
+                        alt="Exchange"
+                        className="img-fluid pr-1"
                       />
+                      <b _ngcontent-htq-c82>{balance?.availBalance}</b>
+                    </p>
+                    <div _ngcontent-htq-c82>
+                      <span _ngcontent-htq-c82 className="mr-1">
+                        <u _ngcontent-htq-c82>
+                          Exp: {balance?.deductedExposure}
+                        </u>
+                      </span>
+                      <div
+                        ref={dropdownRef}
+                        _ngcontent-htq-c82
+                        className="dropdown d-inline-block"
+                      >
+                        <a
+                          onClick={() => setShowDropdown((prev) => !prev)}
+                          _ngcontent-htq-c82
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                          className="dropdown-toggle"
+                        >
+                          <u _ngcontent-htq-c82 data-v-3f4cf84d>
+                            {user}
+                          </u>
+                        </a>
+                        <Dropdown
+                          showDropdown={showDropdown}
+                          setShowDropdown={setShowDropdown}
+                          setShowReferral={setShowReferral}
+                        />
+                      </div>
                     </div>
+                  </div>
+                  <div style={{ position: "relative", padding: "1px 4px" }}>
+                    {Settings.language && (
+                      <button onClick={() => setShowLanguage((prev) => !prev)}>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "end",
+                            background: "transparent",
+                            border: "none",
+                          }}
+                        >
+                          <img
+                            style={{
+                              height: "20px",
+                              width: "20px",
+                              filter: "invert(1)",
+                            }}
+                            src={images.globe}
+                            alt=""
+                          />
+                          <b
+                            style={{
+                              margin: "0px",
+                              fontSize: "10px",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {language || "EN"}
+                          </b>
+                        </div>
+                      </button>
+                    )}
+                    {showLanguage && (
+                      <Language setShowLanguage={setShowLanguage} />
+                    )}
                   </div>
                 </div>
               )}
@@ -238,7 +336,7 @@ const Header = () => {
                       src={images.deposit}
                       className="img-fluid"
                     />
-                    deposit{" "}
+                    {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}{" "}
                   </Link>
                 )}
 
@@ -254,7 +352,7 @@ const Header = () => {
                       src={images.withdraw}
                       className="img-fluid"
                     />
-                    withdrawal
+                    {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
                   </Link>
                 )}
               </div>

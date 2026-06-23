@@ -12,8 +12,12 @@ import { setUser } from "../../redux/features/auth/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { GrAndroid } from "react-icons/gr";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../const";
 
 const Login = () => {
+  const { valueByLanguage } = useLanguage();
   const closePopupForForever = localStorage.getItem("closePopupForForever");
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -185,7 +189,7 @@ const Login = () => {
                 type="submit"
                 className="btn btn-primary btn-block"
               >
-                Login
+                {languageValue(valueByLanguage, LanguageKey.LOGIN)}
                 <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
               </button>
             </div>
@@ -211,7 +215,7 @@ const Login = () => {
                   type="button"
                   className="btn btn-primary btn-block"
                 >
-                  Registration
+                  {languageValue(valueByLanguage, LanguageKey.REGISTER)}
                   <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
                 </button>
               </div>

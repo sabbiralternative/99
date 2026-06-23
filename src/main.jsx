@@ -11,6 +11,7 @@ import { persistor, store } from "./redux/store.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import SettingsWrapper from "./layout/SettingsWrapper.jsx";
+import LanguageProvider from "./context/LanguageProvider.jsx";
 
 const queryClient = new QueryClient();
 
@@ -21,8 +22,11 @@ createRoot(document.getElementById("root")).render(
       <QueryClientProvider client={queryClient}>
         <ApiProvider>
           <SettingsWrapper>
-            <RouterProvider router={router} />
-            <Toaster />
+            <LanguageProvider>
+              {" "}
+              <RouterProvider router={router} />
+              <Toaster />
+            </LanguageProvider>
           </SettingsWrapper>
         </ApiProvider>
       </QueryClientProvider>
