@@ -3,11 +3,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setGroup } from "../../../redux/features/global/globalSlice";
 import { useNavigate } from "react-router-dom";
-import { latestEvent } from "../../../../../../10sports/10sports/src/static/latest-event";
 import images from "../../../assets/images";
 import useLanguage from "../../../hooks/useLanguage";
 import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import { latestEvent } from "../../../static/latest-event";
 
 const Tab = () => {
   const { valueByLanguage } = useLanguage();
