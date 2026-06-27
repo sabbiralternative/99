@@ -44,7 +44,7 @@ const SettledBet = ({ setMarketId, marketId }) => {
                     </button>
                   </div>
                   <div className="card-body container-fluid container-fluid-5">
-                    <form
+                    {/* <form
                       noValidate
                       className="ng-untouched ng-pristine ng-valid"
                     >
@@ -84,7 +84,7 @@ const SettledBet = ({ setMarketId, marketId }) => {
                           </label>
                         </div>
                       </div>
-                    </form>
+                    </form> */}
 
                     <div className="row row5 mt-2">
                       <div className="col-12">
@@ -92,7 +92,7 @@ const SettledBet = ({ setMarketId, marketId }) => {
                           return (
                             <div
                               key={bet?.betId}
-                              className={`bet-history lay ${
+                              className={`bet-history  ${
                                 bet?.betType === "Back" ? "back" : "lay"
                               }`}
                             >
