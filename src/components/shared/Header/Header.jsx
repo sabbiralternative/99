@@ -165,8 +165,8 @@ const Header = () => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    gap: "10px",
+                    justifyContent: "end",
+                    gap: "5px",
                   }}
                 >
                   <button
@@ -182,7 +182,7 @@ const Header = () => {
                   {Settings.registration && (
                     <button
                       onClick={() => navigate("/register")}
-                      style={{ marginTop: "0px" }}
+                      style={{ marginTop: "0px", maxWidth: "80px" }}
                       _ngcontent-wjb-c42
                       className="btn btn-secondary btn-block"
                     >
@@ -192,7 +192,10 @@ const Header = () => {
                   )}
                   <div style={{ position: "relative", padding: "1px 4px" }}>
                     {Settings.language && (
-                      <button onClick={() => setShowLanguage((prev) => !prev)}>
+                      <button
+                        style={{ background: "transparent", border: "none" }}
+                        onClick={() => setShowLanguage((prev) => !prev)}
+                      >
                         <div
                           style={{
                             display: "flex",
@@ -207,7 +210,7 @@ const Header = () => {
                             style={{
                               height: "20px",
                               width: "20px",
-                              filter: "invert(1)",
+                              // filter: "invert(1)",
                             }}
                             src={images.globe}
                             alt=""
@@ -217,6 +220,7 @@ const Header = () => {
                               margin: "0px",
                               fontSize: "10px",
                               textTransform: "capitalize",
+                              color: "white",
                             }}
                           >
                             {language || "EN"}
@@ -283,7 +287,10 @@ const Header = () => {
                   </div>
                   <div style={{ position: "relative", padding: "1px 4px" }}>
                     {Settings.language && (
-                      <button onClick={() => setShowLanguage((prev) => !prev)}>
+                      <button
+                        style={{ background: "transparent", border: "none" }}
+                        onClick={() => setShowLanguage((prev) => !prev)}
+                      >
                         <div
                           style={{
                             display: "flex",
@@ -298,7 +305,7 @@ const Header = () => {
                             style={{
                               height: "20px",
                               width: "20px",
-                              filter: "invert(1)",
+                              // filter: "invert(1)",
                             }}
                             src={images.globe}
                             alt=""
@@ -308,6 +315,7 @@ const Header = () => {
                               margin: "0px",
                               fontSize: "10px",
                               textTransform: "capitalize",
+                              color: "white",
                             }}
                           >
                             {language || "EN"}

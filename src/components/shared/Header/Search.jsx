@@ -52,35 +52,45 @@ const Search = () => {
           />
         </a>
       </div>
-      {showSearch && data?.result?.length > 0 && (
+      {showSearch && data?.result?.length > 0 && searchTerm.length > 2 && (
         <div
-          className="dropdown open bottom ng-tns-c52-1 dropdown-menu ng-star-inserted"
+          className="dropdown open bottom ng-tns-c52-1  ng-star-inserted"
           style={{
             position: "absolute",
             display: "block",
             visibility: "visible",
             willChange: "transform",
-            top: "0px",
+            top: "10px",
             left: "0px",
+            width: "100%",
+            maxWidth: "300px",
             transform: "translate3d(0px, 30px, 0px)",
           }}
           id="ngb-typeahead-1"
           role="listbox"
         >
-          <ul className="ng-star-inserted">
+          <ul
+            style={{ display: "flex", flexDirection: "column" }}
+            className="ng-star-inserted"
+          >
             {data?.result?.map((event) => {
               return (
                 <li key={event?.eventId} className="active ng-star-inserted">
-                  <a onClick={() => handleNavigate(event)}>
-                    <div>
-                      <div className="search-game-name">
-                        <b>{event?.eventType}</b>
-                        <b />
-                      </div>
-                      <div className="game-date text-right ng-star-inserted">
-                        {event?.openDate}
-                      </div>
-                      <div className="game-teams">{event?.name}</div>
+                  <a
+                    style={{ width: "100%" }}
+                    onClick={() => handleNavigate(event)}
+                  >
+                    <div
+                      className="search-game-name"
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <p>{event?.name}</p>
+                      <p> {event?.openDate}</p>
                     </div>
                   </a>
                 </li>
