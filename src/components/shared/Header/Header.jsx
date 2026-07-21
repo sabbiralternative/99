@@ -30,7 +30,7 @@ import { LanguageKey } from "../../../const";
 
 /* eslint-disable react/no-unknown-property */
 const Header = () => {
-  const { language, valueByLanguage, setLanguage } = useLanguage();
+  const { valueByLanguage, setLanguage } = useLanguage();
   const [showLanguage, setShowLanguage] = useState(false);
   const [showBuildVersion, setShowBuildVersion] = useState(false);
   const stored_build_version = localStorage.getItem("build_version");
@@ -223,7 +223,7 @@ const Header = () => {
                               color: "white",
                             }}
                           >
-                            {language || "EN"}
+                            {/* {language || "EN"} */}
                           </b>
                         </div>
                       </button>
@@ -318,7 +318,7 @@ const Header = () => {
                               color: "white",
                             }}
                           >
-                            {language || "EN"}
+                            {/* {language || "EN"} */}
                           </b>
                         </div>
                       </button>

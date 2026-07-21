@@ -10,11 +10,13 @@ import Tab from "../../components/modules/Home/Tab";
 import { useGetIndex } from "../../hooks";
 import NewLaunch from "../../components/modules/Home/NewLaunch";
 import OurProviders from "../../components/modules/Home/OurProviders";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Settings } from "../../api";
 import images from "../../assets/images";
+import MiniGames from "../../components/modals/MiniGames/MiniGames";
 
 const Home = () => {
+  const [showMiniGamesModal, setShowMiniGamesModal] = useState(false);
   const { token } = useSelector((state) => state.auth);
   const { data } = useGetIndex({
     type: "99_casino_dashboard",
@@ -84,36 +86,53 @@ const Home = () => {
       </div>
 
       <Fragment>
-        {Settings.instagramLink ? (
-          <a
-            onClick={() => window.open(Settings.instagramLink, "_blank")}
-            style={{ bottom: "38%", right: "7.5%" }}
-            className="whatsapp_link"
-          >
+        <a
+          className="whatsapp_link"
+          style={{
+            position: "fixed",
+            bottom: "6%",
+            right: "7.5%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          {Settings.instagramLink ? (
+            <a onClick={() => window.open(Settings.instagramLink, "_blank")}>
+              <img
+                style={{ height: "50px", width: "50px" }}
+                src={images.instagram}
+              />
+            </a>
+          ) : null}
+          {Settings.telegramLink ? (
+            <a onClick={() => window.open(Settings.telegramLink, "_blank")}>
+              <img
+                style={{ height: "50px", width: "50px" }}
+                src={images.telegram}
+              />
+            </a>
+          ) : null}
+          {Settings.whatsapplink || Settings.branchWhatsapplink ? (
+            <a onClick={navigateWhatsApp}>
+              <img src={images.whatsApp} />
+            </a>
+          ) : null}
+
+          <a onClick={() => setShowMiniGamesModal(true)}>
             <img
-              style={{ height: "50px", width: "50px" }}
-              src={images.instagram}
+              style={{
+                height: "70px",
+              }}
+              src="/icon/uv_games-CkYT1PYz.gif"
             />
           </a>
-        ) : null}
-        {Settings.telegramLink ? (
-          <a
-            onClick={() => window.open(Settings.telegramLink, "_blank")}
-            style={{ bottom: "22%", right: "7.5%" }}
-            className="whatsapp_link"
-          >
-            <img
-              style={{ height: "50px", width: "50px" }}
-              src={images.telegram}
-            />
-          </a>
-        ) : null}
-        {Settings.whatsapplink || Settings.branchWhatsapplink ? (
-          <a onClick={navigateWhatsApp} className="whatsapp_link">
-            <img src={images.whatsApp} />
-          </a>
-        ) : null}
+        </a>
       </Fragment>
+      {showMiniGamesModal && (
+        <MiniGames setShowMiniGamesModal={setShowMiniGamesModal} />
+      )}
     </div>
   );
 };
