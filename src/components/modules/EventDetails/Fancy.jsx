@@ -136,7 +136,7 @@ const Fancy = ({ fancy }) => {
         className="newtab_collect tab-container"
         _nghost-bym-c46
       >
-        <ul
+        {/* <ul
           _ngcontent-bym-c46
           role="tablist"
           className="nav nav-tabs"
@@ -171,7 +171,7 @@ const Fancy = ({ fancy }) => {
               </em>
             </a>
           </li>
-        </ul>
+        </ul> */}
         <div _ngcontent-bym-c46 className="tab-content">
           <div
             _ngcontent-bym-c104
@@ -186,7 +186,7 @@ const Fancy = ({ fancy }) => {
                 _nghost-bym-c46
                 className="tab-container"
               >
-                <ul
+                {/* <ul
                   _ngcontent-bym-c46
                   role="tablist"
                   className="nav nav-tabs mt-2 fancy-nav"
@@ -292,7 +292,7 @@ const Fancy = ({ fancy }) => {
                       </span>
                     </a>
                   </li>
-                </ul>
+                </ul> */}
 
                 {/* Above not using */}
                 <div _ngcontent-bym-c46 className="tab-content">

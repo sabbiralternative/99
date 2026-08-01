@@ -24,8 +24,10 @@ import SportsBook from "./SportsBook/SportsBook";
 // import CricketScore from "../../components/modules/EventDetails/CricketScore";
 import Score from "../../components/modules/EventDetails/Score";
 import Premium from "../../components/modules/EventDetails/Premium";
+import ToggleButtons from "../../components/modules/EventDetails/ToggleButtons";
 
 const EventDetails = () => {
+  const [fancyPremiumTab, setFancyPremiumTab] = useState("");
   const { eventTypeId, eventId } = useParams();
   const { data: currentBet, refetch: refetchCurrentBets } =
     useCurrentBets(eventId);
@@ -69,7 +71,12 @@ const EventDetails = () => {
       match_odd?.visible == true &&
       match_odd?.name === "tied match",
   );
-
+  const fancy = data?.result?.filter(
+    (normal) =>
+      normal.btype === "FANCY" &&
+      normal.tabGroupName === "Normal" &&
+      normal?.visible == true,
+  );
   useEffect(() => {
     if (showIFrame) {
       const payload = {
@@ -265,9 +272,24 @@ const EventDetails = () => {
                         {bookmaker && bookmaker?.length > 0 && (
                           <Bookmaker bookmaker={bookmaker} />
                         )}
-                        {fancyData && fancyData?.length > 0 && (
-                          <Fancy fancy={fancyData} />
+                        {data && (
+                          <ToggleButtons
+                            data={data}
+                            fancy={fancy}
+                            setFancyPremiumTab={setFancyPremiumTab}
+                            fancyPremiumTab={fancyPremiumTab}
+                          />
                         )}
+                        {fancyData &&
+                          fancyData?.length > 0 &&
+                          fancyPremiumTab === "fancy" && (
+                            <Fancy fancy={fancyData} />
+                          )}
+                        {data?.premium &&
+                          data?.premium?.eventId &&
+                          fancyPremiumTab === "premium" && (
+                            <Premium premium={data?.premium} />
+                          )}
                         {(eventTypeId == 7 || eventTypeId == 4339) &&
                         data?.result?.length > 0 ? (
                           <HorseGreyhound data={data?.result} />
@@ -278,9 +300,6 @@ const EventDetails = () => {
 
                         {tiedMatch && tiedMatch?.length > 0 && (
                           <MatchOdds matchOdds={tiedMatch} />
-                        )}
-                        {data?.premium && data?.premium?.eventId && (
-                          <Premium premium={data?.premium} />
                         )}
                       </div>
                     </div>
