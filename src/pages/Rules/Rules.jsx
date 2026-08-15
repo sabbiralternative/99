@@ -1,6 +1,9 @@
 import { useState } from "react";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const Rules = () => {
+  const { getLanguage } = useLanguage();
   const [tab, setTab] = useState(13);
 
   const handleToggleTab = (t) => {
@@ -14,7 +17,7 @@ const Rules = () => {
     <div>
       <div className="card rules-container">
         <div className="card-header">
-          <h4 className="mb-0">Rules</h4>
+          <h4 className="mb-0"> {getLanguage(LanguageKey.RULES)}</h4>
         </div>
         <div className="card-body container-fluid container-fluid-5">
           <div className="row row5 mt-2">

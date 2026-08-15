@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { useGetSettledBets } from "../../../hooks/settledBet";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const SettledBet = ({ setMarketId, marketId }) => {
+  const { getLanguage } = useLanguage();
   const settledBetRef = useRef();
   const { data } = useGetSettledBets(marketId);
 
@@ -31,7 +34,9 @@ const SettledBet = ({ setMarketId, marketId }) => {
               <div className="report-container modal-cs">
                 <div className="card">
                   <div className="card-header">
-                    <h4 className="mb-0">Bet History</h4>
+                    <h4 className="mb-0">
+                      {getLanguage(LanguageKey.BET_HISTORY)}
+                    </h4>
                     <button
                       onClick={() => setMarketId(null)}
                       type="button"
@@ -104,27 +109,38 @@ const SettledBet = ({ setMarketId, marketId }) => {
                                     </a>
                                   </div>
                                   <div>
-                                    <strong>Nation: </strong>
+                                    <strong>
+                                      {" "}
+                                      {getLanguage(LanguageKey.NATION)}:{" "}
+                                    </strong>
                                     {bet?.nation}
                                   </div>
                                   <div>
-                                    <strong>Place Date: </strong>
+                                    <strong>
+                                      {" "}
+                                      {getLanguage(LanguageKey.PLACED_DATE)}
+                                      :{" "}
+                                    </strong>
                                     {bet?.placeDate}
                                   </div>
                                   <div>
-                                    <strong>Match Date: </strong>
+                                    <strong>
+                                      {" "}
+                                      {getLanguage(LanguageKey.MATCH_DATE)}
+                                      :{" "}
+                                    </strong>
                                     n/A
                                   </div>
                                 </div>
                                 <div className="col-2 text-right">
                                   <div>
-                                    <b>Rate</b>
+                                    <b> {getLanguage(LanguageKey.RATE)}</b>
                                   </div>
                                   <div>{bet?.userRate} </div>
                                 </div>
                                 <div className="col-2 text-right">
                                   <div>
-                                    <b>Amount</b>
+                                    <b> {getLanguage(LanguageKey.AMOUNT)}</b>
                                   </div>
                                   <div>{bet?.amount}</div>
                                 </div>

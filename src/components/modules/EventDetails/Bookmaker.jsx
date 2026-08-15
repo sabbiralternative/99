@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 
 import { useNavigate, useParams } from "react-router-dom";
-import { Status } from "../../../const";
+import { LanguageKey, Status } from "../../../const";
 import BetSlip from "../../shared/BetSlip/BetSlip";
 import { useDispatch, useSelector } from "react-redux";
 import { useExposure } from "../../../hooks/exposure";
@@ -17,8 +17,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MarketRule from "../../modals/MarketRule/MarketRule";
 import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
 import { isGameSuspended } from "../../../utils/isOddSuspended";
+import useLanguage from "../../../hooks/use-language";
 
 const Bookmaker = ({ bookmaker }) => {
+  const { getLanguage } = useLanguage();
   const [speedCashOut, setSpeedCashOut] = useState(null);
   const [showRule, setShowRule] = useState(false);
   const { eventId } = useParams();
@@ -278,7 +280,7 @@ const Bookmaker = ({ bookmaker }) => {
                             _ngcontent-gdr-c100=""
                             class="btn-cashout"
                           >
-                            cashout{" "}
+                            {getLanguage(LanguageKey.CASHOUT)}{" "}
                             {teamProfitForGame?.profit &&
                               teamProfitForGame?.profit?.toFixed(0)}
                           </button>
@@ -307,7 +309,7 @@ const Bookmaker = ({ bookmaker }) => {
                             class="btn-cashout"
                           >
                             {" "}
-                            Speed Cashout
+                            {getLanguage(LanguageKey.SPEED_CASHOUT)}
                           </button>
                         )}
                       <p _ngcontent-bym-c101 className="float-right mb-0">
@@ -324,7 +326,8 @@ const Bookmaker = ({ bookmaker }) => {
                           className="float-left country-name box-6 min-max"
                         >
                           <b _ngcontent-bym-c101>
-                            Min:100 Max:{games?.maxLiabilityPerBet}
+                            {getLanguage(LanguageKey.MIN)}:100 Max:
+                            {games?.maxLiabilityPerBet}
                           </b>
                         </div>
                         <div

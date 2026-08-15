@@ -1,7 +1,10 @@
 import toast from "react-hot-toast";
 import useDepositBreakdown from "../../../hooks/depositBreakdown";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const AmountBox = ({ setTab, setAmount, amount }) => {
+  const { getLanguage } = useLanguage();
   const { mutate: handleDepositBreakdown } = useDepositBreakdown();
 
   const handleShowPaymentMethods = () => {
@@ -45,7 +48,7 @@ const AmountBox = ({ setTab, setAmount, amount }) => {
                     defaultValue="UyyVAHBHaqYFcyWmX8uPuo1iw9C6q5woWtYSzycO"
                   />{" "}
                   <div className="form-group">
-                    <label>Amount</label>
+                    <label> {getLanguage(LanguageKey.AMOUNT)}</label>
                     <div className="input-group">
                       <input
                         onChange={(e) =>
@@ -70,7 +73,7 @@ const AmountBox = ({ setTab, setAmount, amount }) => {
                           data-wp-add
                           id="basic-addon2"
                         >
-                          SUBMIT
+                          {getLanguage(LanguageKey.SUBMIT)}
                         </button>
                       </div>
                     </div>

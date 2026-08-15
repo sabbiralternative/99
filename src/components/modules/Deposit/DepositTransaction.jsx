@@ -1,6 +1,9 @@
+import { LanguageKey } from "../../../const";
 import { useAccountStatement } from "../../../hooks/accountStatement";
+import useLanguage from "../../../hooks/use-language";
 
 const DepositTransaction = () => {
+  const { getLanguage } = useLanguage();
   const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
     .toISOString()
     .split("T")[0];
@@ -23,11 +26,11 @@ const DepositTransaction = () => {
         >
           <thead>
             <tr>
-              <th>Transaction No</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th>Date</th>
-              <th>Reason</th>
+              <th>{getLanguage(LanguageKey.TRANSACTION_NO)}</th>
+              <th> {getLanguage(LanguageKey.AMOUNT)}</th>
+              <th> {getLanguage(LanguageKey.STATUS)}</th>
+              <th> {getLanguage(LanguageKey.DATE)}</th>
+              <th> {getLanguage(LanguageKey.REASON)}</th>
             </tr>
           </thead>
           <tbody id="depositTableData">

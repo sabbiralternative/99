@@ -1,21 +1,21 @@
 /* eslint-disable react/no-unknown-property */
 
 import { useRef } from "react";
-import useLanguage from "../../hooks/useLanguage";
+
 import { MdKeyboardArrowRight } from "react-icons/md";
 import useCloseModalClickOutside from "../../hooks/closeModal";
 import { useGetLanguage } from "../../hooks/language.hook";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const Language = ({ setShowLanguage }) => {
-  const { setLanguage } = useLanguage();
+  const { setLanguage, getLanguage } = useLanguage();
   const { data } = useGetLanguage();
 
   const languageRef = useRef();
   useCloseModalClickOutside(languageRef, () => {
     setShowLanguage(false);
   });
-
-  console.log(data);
 
   const languages = data?.CRICKET;
 
@@ -103,7 +103,8 @@ const Language = ({ setShowLanguage }) => {
                         _ngcontent-ng-c2806737617=""
                         className="form-title"
                       >
-                        <MdKeyboardArrowRight /> <span>Select Language</span>
+                        <MdKeyboardArrowRight />{" "}
+                        <span>{getLanguage(LanguageKey.SELECT_LANGUAGE)}</span>
                       </h1>
 
                       <div

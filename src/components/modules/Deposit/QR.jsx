@@ -1,8 +1,11 @@
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const QR = ({ depositData }) => {
+  const { getLanguage } = useLanguage();
   return (
     <div className="col-md-6">
       <div className="row justify-content-center">
@@ -10,7 +13,8 @@ const QR = ({ depositData }) => {
           <div className="account-data">
             {depositData?.qrDisplayName && (
               <p className="card-text">
-                <b>Display Name</b>: {depositData?.qrDisplayName}
+                <b> {getLanguage(LanguageKey.DISPLAY_NAME)}</b>:{" "}
+                {depositData?.qrDisplayName}
                 <button
                   onClick={() =>
                     handleCopyToClipBoard(depositData?.qrDisplayName)

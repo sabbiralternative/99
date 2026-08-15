@@ -1,6 +1,10 @@
 /* eslint-disable react/no-unknown-property */
 
+import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
+
 const Tab = ({ tab, setTab, currentBet }) => {
+  const { getLanguage } = useLanguage();
   return (
     <ul
       _ngcontent-bym-c46
@@ -22,7 +26,7 @@ const Tab = ({ tab, setTab, currentBet }) => {
           aria-selected="true"
           id
         >
-          <span _ngcontent-bym-c46>ODDS</span>
+          <span _ngcontent-bym-c46> {getLanguage(LanguageKey.ODDS)}</span>
         </a>
       </li>
       <li
@@ -39,7 +43,10 @@ const Tab = ({ tab, setTab, currentBet }) => {
           aria-selected="false"
           id
         >
-          <span _ngcontent-bym-c46>MATCHED BET ({currentBet?.length})</span>
+          <span _ngcontent-bym-c46>
+            {" "}
+            {getLanguage(LanguageKey.MATCHED_BETS)} ({currentBet?.length})
+          </span>
         </a>
       </li>
     </ul>

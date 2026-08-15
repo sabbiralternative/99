@@ -5,8 +5,11 @@ import Complaint from "../../components/modals/Complaint/Complaint";
 import { Settings } from "../../api";
 import { useBankMutation } from "../../redux/features/deposit/deposit.api";
 import toast from "react-hot-toast";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const WithdrawReport = () => {
+  const { getLanguage } = useLanguage();
   const [deleteWithdraw] = useBankMutation();
   const [complaintId, setComplaintId] = useState(null);
   const [image, setImage] = useState("");
@@ -128,7 +131,7 @@ const WithdrawReport = () => {
                             padding: "8px 12px",
                           }}
                         >
-                          Withdraw
+                          {getLanguage(LanguageKey.WITHDRAW)}
                         </div>
                         <div
                           style={{
@@ -231,7 +234,7 @@ const WithdrawReport = () => {
                                   }
                                   className="px-2 py-1  text-white   "
                                 >
-                                  Cancel Withdraw
+                                  {getLanguage(LanguageKey.CANCEL_WITHDRAWAL)}
                                 </button>
                               )}
 
@@ -245,7 +248,10 @@ const WithdrawReport = () => {
                                   }}
                                   className="px-2 py-1  text-black   "
                                 >
-                                  Withdraw delete request sent.
+                                  {getLanguage(
+                                    LanguageKey.WITHDRAW_DELETE_REQUEST_SENT,
+                                  )}
+                                  .
                                 </p>
                               )}
                             {Settings.complaint && (
@@ -262,7 +268,7 @@ const WithdrawReport = () => {
                                 }
                                 className="px-2 py-1  text-white   "
                               >
-                                Report Issue
+                                {getLanguage(LanguageKey.REPORT_ISSUE)}
                               </div>
                             )}
                           </div>
@@ -295,7 +301,7 @@ const WithdrawReport = () => {
               paddingTop: "80px",
             }}
           >
-            <p>No transaction yet!</p>
+            <p> {getLanguage(LanguageKey.NO_TRANSACTION_YET)}!</p>
           </div>
         )}
       </div>

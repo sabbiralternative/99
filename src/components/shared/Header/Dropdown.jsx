@@ -4,8 +4,11 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { Settings } from "../../../api";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Dropdown = ({ showDropdown, setShowDropdown }) => {
+  const { getLanguage } = useLanguage();
   const closePopupForForever = localStorage.getItem("closePopupForForever");
 
   const dispatch = useDispatch();
@@ -37,7 +40,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="/"
           className="dropdown-item router-link-exact-active router-link-active"
         >
-          Home
+          {getLanguage(LanguageKey.HOME)}
         </Link>
         {Settings.branchWhatsapplink && (
           <Link
@@ -46,7 +49,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
             to="/"
             className="dropdown-item router-link-exact-active router-link-active"
           >
-            Customer Support
+            {getLanguage(LanguageKey.CUSTOMER_SUPPORT)}
           </Link>
         )}
 
@@ -56,7 +59,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="/account-statement"
           className="dropdown-item"
         >
-          Account Statement
+          {getLanguage(LanguageKey.ACCOUNT_STATEMENT)}
         </Link>
         <Link
           onClick={closeDropdown}
@@ -64,7 +67,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="/bonus-statement"
           className="dropdown-item"
         >
-          Bonus Statement
+          {getLanguage(LanguageKey.BONUS_STATEMENT)}
         </Link>
         {Settings.referral && (
           <Link
@@ -73,7 +76,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
             _ngcontent-htq-c82
             className="dropdown-item"
           >
-            Affiliate
+            {getLanguage(LanguageKey.AFFILIATE)}
           </Link>
         )}
         <Link
@@ -82,7 +85,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           _ngcontent-htq-c82
           className="dropdown-item"
         >
-          Promos & Bonus
+          {getLanguage(LanguageKey.PROMOTION_AND_BONUSES)}
         </Link>
         <Link
           to="/lossback-bonus"
@@ -90,7 +93,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           _ngcontent-htq-c82
           className="dropdown-item"
         >
-          Lossback Bonus
+          {getLanguage(LanguageKey.LOSSBACK_BONUS)}
         </Link>
         {closePopupForForever && (
           <Link
@@ -99,7 +102,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
             _ngcontent-htq-c82
             className="dropdown-item"
           >
-            App Only Bonus
+            {getLanguage(LanguageKey.APP_ONLY_BONUS)}
           </Link>
         )}
 
@@ -117,7 +120,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="/deposit-report"
           className="dropdown-item"
         >
-          Deposit Report
+          {getLanguage(LanguageKey.DEPOSIT_STATEMENT)}
         </Link>
         <Link
           onClick={closeDropdown}
@@ -125,7 +128,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="/withdraw-report"
           className="dropdown-item"
         >
-          Withdraw Report
+          {getLanguage(LanguageKey.WITHDRAW_STATMENT)}
         </Link>
         <Link
           onClick={closeDropdown}
@@ -133,7 +136,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="/my-bank-details"
           className="dropdown-item"
         >
-          My Bank Details
+          {getLanguage(LanguageKey.MY_BANK_DETAILS)}
         </Link>
 
         <Link
@@ -142,7 +145,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="/unsettled-bets"
           className="dropdown-item"
         >
-          Unsetteled Bet
+          {getLanguage(LanguageKey.UNSETTLED_BETS)}
         </Link>
         <Link
           onClick={closeDropdown}
@@ -150,7 +153,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="change-btn-value"
           className="dropdown-item"
         >
-          Set Button Values
+          {getLanguage(LanguageKey.EDIT_STAKE)}
         </Link>
         <Link
           onClick={closeDropdown}
@@ -158,7 +161,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="/change-password"
           className="dropdown-item"
         >
-          Change Password
+          {getLanguage(LanguageKey.CHANGE_PASSWORD)}
         </Link>
         <Link
           onClick={closeDropdown}
@@ -166,7 +169,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           to="/rules"
           className="dropdown-item"
         >
-          Rule
+          {getLanguage(LanguageKey.RULES)}
         </Link>
         {/* {Settings.whatsapplink && (
           <Link
@@ -185,7 +188,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
           onClick={handleLogout}
           className="dropdown-item mt-2 text-danger"
         >
-          <b _ngcontent-htq-c82>Logout</b>
+          <b _ngcontent-htq-c82> {getLanguage(LanguageKey.LOGOUT)}</b>
         </Link>
       </div>
     </>

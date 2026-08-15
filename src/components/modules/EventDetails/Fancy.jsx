@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 
 import { useNavigate, useParams } from "react-router-dom";
-import { Status } from "../../../const";
+import { LanguageKey, Status } from "../../../const";
 import BetSlip from "../../shared/BetSlip/BetSlip";
 import { useDispatch, useSelector } from "react-redux";
 import { useExposure } from "../../../hooks/exposure";
@@ -14,8 +14,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useGetLadderMutation } from "../../../redux/features/events/events";
 import { useState } from "react";
 import Ladder from "../../modals/Ladder/Ladder";
+import useLanguage from "../../../hooks/use-language";
 
 const Fancy = ({ fancy }) => {
+  const { getLanguage } = useLanguage();
   const [ladderData, setLadderData] = useState([]);
   const [getLadder] = useGetLadderMutation();
   const { eventId } = useParams();
@@ -429,13 +431,19 @@ const Fancy = ({ fancy }) => {
                                                   >
                                                     <span _ngcontent-bym-c102>
                                                       <b _ngcontent-bym-c102>
-                                                        Min:
+                                                        {getLanguage(
+                                                          LanguageKey.MIN,
+                                                        )}
+                                                        :
                                                       </b>
                                                       100
                                                     </span>
                                                     <span _ngcontent-bym-c102>
                                                       <b _ngcontent-bym-c102>
-                                                        Max:
+                                                        {getLanguage(
+                                                          LanguageKey.MAX,
+                                                        )}
+                                                        :
                                                       </b>
                                                       {
                                                         games?.maxLiabilityPerBet

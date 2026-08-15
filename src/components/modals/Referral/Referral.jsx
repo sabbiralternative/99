@@ -5,8 +5,11 @@ import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
 import { ApiContext } from "../../../context/ApiProvider";
 import useCloseModalClickOutside from "../../../hooks/closeModal";
 import { useGetIndex } from "../../../hooks";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Referral = ({ setShowReferral }) => {
+  const { getLanguage } = useLanguage();
   const { logo } = useContext(ApiContext);
 
   const referralRef = useRef();
@@ -106,11 +109,13 @@ const Referral = ({ setShowReferral }) => {
                           style={{ textAlign: "start" }}
                           _ngcontent-ng-c526813732=""
                         >
-                          Refer and earn
+                          {getLanguage(LanguageKey.REFER_AND_EARN)}
                         </h3>
                         <p _ngcontent-ng-c526813732="">
-                          Be our brand hero, refer your friend using your refer
-                          code.
+                          {getLanguage(
+                            LanguageKey.BE_OUR_BRAND_HERO_REFER_YOUR_FRIEND_USING_YOUR_REFER_CODE,
+                          )}
+                          .
                         </p>
                         <div
                           _ngcontent-ng-c526813732=""
@@ -136,7 +141,7 @@ const Referral = ({ setShowReferral }) => {
                             _ngcontent-ng-c526813732=""
                             className="btn secondary-btn"
                           >
-                            Copy
+                            {getLanguage(LanguageKey.COPY)}
                           </button>
                         </div>
                       </div>

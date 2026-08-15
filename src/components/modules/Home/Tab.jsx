@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setGroup } from "../../../redux/features/global/globalSlice";
 import { useNavigate } from "react-router-dom";
 import images from "../../../assets/images";
-import useLanguage from "../../../hooks/useLanguage";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
 import { latestEvent } from "../../../static/latest-event";
+import useLanguage from "../../../hooks/use-language";
 
 const Tab = () => {
-  const { valueByLanguage } = useLanguage();
+  const { getLanguage } = useLanguage();
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { group } = useSelector((state) => state.global);
@@ -32,19 +31,19 @@ const Tab = () => {
   const homeTab = [
     {
       id: 1,
-      name: languageValue(valueByLanguage, LanguageKey.CRICKET),
+      name: getLanguage(LanguageKey.CRICKET),
       image: images.cricket,
       group: 4,
     },
     {
       id: 2,
-      name: languageValue(valueByLanguage, LanguageKey.FOOTBALL),
+      name: getLanguage(LanguageKey.FOOTBALL),
       image: images.football,
       group: 1,
     },
     {
       id: 3,
-      name: languageValue(valueByLanguage, LanguageKey.TENNIS),
+      name: getLanguage(LanguageKey.TENNIS),
       image: images.tennis,
       group: 2,
     },
@@ -56,13 +55,13 @@ const Tab = () => {
     },
     {
       id: 4,
-      name: languageValue(valueByLanguage, LanguageKey.HORSE),
+      name: getLanguage(LanguageKey.HORSE),
       image: images.horseRacing,
       group: 7,
     },
     {
       id: 5,
-      name: languageValue(valueByLanguage, LanguageKey.GREYHOUND),
+      name: getLanguage(LanguageKey.GREYHOUND),
       image: images.greyhoundRacing,
       group: 4339,
     },
@@ -74,67 +73,67 @@ const Tab = () => {
     // },
     {
       id: 7,
-      name: languageValue(valueByLanguage, LanguageKey.KABADDI),
+      name: getLanguage(LanguageKey.KABADDI),
       image: images.kabbadi,
       group: 5,
     },
     {
       id: 8,
-      name: "Politics",
+      name: getLanguage(LanguageKey.POLITICS),
       image: images.politicks,
       group: 6,
     },
     {
       id: 9,
-      name: "Basketball",
+      name: getLanguage(LanguageKey.BASKETBALL),
       image: images.basketBall,
       group: 7522,
     },
     {
       id: 10,
-      name: "Baseball",
+      name: getLanguage(LanguageKey.BASEBALL),
       image: images.baseBall,
       group: 7511,
     },
     {
       id: 11,
-      name: "Table Tennis",
+      name: getLanguage(LanguageKey.TABLE_TENNIS),
       image: images.tableTennis,
       group: 20,
     },
     {
       id: 12,
-      name: "Volleyball",
+      name: getLanguage(LanguageKey.VOLLYBALL),
       image: images.voleyBall,
       group: 998917,
     },
     {
       id: 13,
-      name: "Ice Hockey",
+      name: getLanguage(LanguageKey.ICE_HOCKY),
       image: images.icehocky,
       group: 7524,
     },
     {
       id: 14,
-      name: "Rugby",
+      name: getLanguage(LanguageKey.RUGBY),
       image: images.rugby,
       group: 5,
     },
     {
       id: 15,
-      name: "Mixed Martial Arts",
+      name: getLanguage(LanguageKey.MIXED_MARTIAL_ARTS),
       image: images.martial,
       group: 26420387,
     },
     {
       id: 16,
-      name: "Darts",
+      name: getLanguage(LanguageKey.DARTS),
       image: images.darts,
       group: 3503,
     },
     {
       id: 17,
-      name: "Futsal",
+      name: getLanguage(LanguageKey.FUTSAL),
       image: images.fustal,
       group: 29,
     },

@@ -9,11 +9,13 @@ import {
 } from "../../../redux/features/events/eventSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { Status } from "../../../const";
+import { LanguageKey, Status } from "../../../const";
 import BetSlip from "../../shared/BetSlip/BetSlip";
 import MarketRule from "../../modals/MarketRule/MarketRule";
+import useLanguage from "../../../hooks/use-language";
 
 const HorseGreyhound = ({ data }) => {
+  const { getLanguage } = useLanguage();
   const [showRule, setShowRule] = useState(false);
   const { eventId } = useParams();
   const { data: exposure } = useExposure(eventId);
@@ -52,7 +54,7 @@ const HorseGreyhound = ({ data }) => {
 
         const day = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
         const hour = Math.floor(
-          (diffInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          (diffInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
         );
         const minute = Math.floor((diffInMs % (1000 * 60 * 60)) / (1000 * 60));
         const second = Math.floor((diffInMs % (1000 * 60)) / 1000);
@@ -154,7 +156,7 @@ const HorseGreyhound = ({ data }) => {
           className="img-fluid"
         />
         <div className="horse-banner-detail">
-          <div className="text-success">OPEN</div>
+          <div className="text-success"> {getLanguage(LanguageKey.OPEN)}</div>
           {timeDiff?.day ||
           timeDiff?.hour ||
           timeDiff?.minute ||
@@ -163,26 +165,30 @@ const HorseGreyhound = ({ data }) => {
               <span style={{ display: "flex", gap: "5px" }}>
                 {timeDiff?.day > 0 && (
                   <span>
-                    {timeDiff?.day} <small>Day</small>
+                    {timeDiff?.day}{" "}
+                    <small> {getLanguage(LanguageKey.DAY)}</small>
                   </span>
                 )}
                 {timeDiff?.hour > 0 && (
                   <span>
-                    {timeDiff?.hour} <small>Hour</small>
+                    {timeDiff?.hour}{" "}
+                    <small> {getLanguage(LanguageKey.HOUR)}</small>
                   </span>
                 )}
                 {timeDiff?.minute > 0 && (
                   <span>
-                    {timeDiff?.minute} <small>Minutes</small>
+                    {timeDiff?.minute}{" "}
+                    <small> {getLanguage(LanguageKey.MINUTE)}</small>
                   </span>
                 )}
                 {timeDiff?.hour === 0 && timeDiff?.minute < 60 && (
                   <span>
-                    {timeDiff?.second} <small>Seconds</small>
+                    {timeDiff?.second}{" "}
+                    <small> {getLanguage(LanguageKey.SECOND)}</small>
                   </span>
                 )}
               </span>
-              <span>Remaining</span>
+              <span> {getLanguage(LanguageKey.REMAINING)}</span>
             </div>
           ) : null}
 
@@ -293,7 +299,7 @@ const HorseGreyhound = ({ data }) => {
                                   "back",
                                   games,
                                   runner,
-                                  runner?.back[2]?.price
+                                  runner?.back[2]?.price,
                                 )
                               }
                               _ngcontent-bym-c100
@@ -317,7 +323,7 @@ const HorseGreyhound = ({ data }) => {
                                   "back",
                                   games,
                                   runner,
-                                  runner?.back[1]?.price
+                                  runner?.back[1]?.price,
                                 )
                               }
                               _ngcontent-bym-c100
@@ -341,7 +347,7 @@ const HorseGreyhound = ({ data }) => {
                                   "back",
                                   games,
                                   runner,
-                                  runner?.back[0]?.price
+                                  runner?.back[0]?.price,
                                 )
                               }
                               _ngcontent-bym-c100
@@ -369,7 +375,7 @@ const HorseGreyhound = ({ data }) => {
                                   "lay",
                                   games,
                                   runner,
-                                  runner?.lay[0]?.price
+                                  runner?.lay[0]?.price,
                                 )
                               }
                               _ngcontent-bym-c100
@@ -393,7 +399,7 @@ const HorseGreyhound = ({ data }) => {
                                   "lay",
                                   games,
                                   runner,
-                                  runner?.lay?.[1]?.price
+                                  runner?.lay?.[1]?.price,
                                 )
                               }
                               _ngcontent-bym-c100
@@ -417,7 +423,7 @@ const HorseGreyhound = ({ data }) => {
                                   "lay",
                                   games,
                                   runner,
-                                  runner?.lay?.[2]?.price
+                                  runner?.lay?.[2]?.price,
                                 )
                               }
                               _ngcontent-bym-c100

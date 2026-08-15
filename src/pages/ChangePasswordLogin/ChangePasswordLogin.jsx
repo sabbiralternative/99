@@ -6,8 +6,11 @@ import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandPointDown } from "@fortawesome/free-solid-svg-icons";
 import { useChangePasswordMutation } from "../../redux/features/auth/authApi";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const ChangePasswordLogin = () => {
+  const { getLanguage } = useLanguage();
   const { logo } = useContext(ApiContext);
   const navigate = useNavigate();
   const [handleChangePassword] = useChangePasswordMutation();
@@ -47,7 +50,7 @@ const ChangePasswordLogin = () => {
           </Link>
           <div className="login-form mt-4">
             <h4 className="text-center login-title">
-              Change Password{" "}
+              {getLanguage(LanguageKey.CHANGE_PASSWORD)}{" "}
               <FontAwesomeIcon icon={faHandPointDown} className="ml-2" />
             </h4>
             <form
@@ -60,7 +63,7 @@ const ChangePasswordLogin = () => {
                   style={{ width: "100%" }}
                 >
                   <label className="form-label text-start w-100">
-                    Current Password:
+                    {getLanguage(LanguageKey.OLD_PASSWORD)}:
                   </label>
                   <input
                     {...register("password", { required: true })}
@@ -85,7 +88,7 @@ const ChangePasswordLogin = () => {
                   style={{ width: "100%" }}
                 >
                   <label className="form-label text-start w-100">
-                    New Password:
+                    {getLanguage(LanguageKey.NEW_PASSWORD)}:
                   </label>
                   <input
                     {...register("newPassword", {
@@ -123,7 +126,7 @@ const ChangePasswordLogin = () => {
                   style={{ width: "100%" }}
                 >
                   <label className="form-label text-start w-100">
-                    Confirm Password:
+                    {getLanguage(LanguageKey.CONFIRM_PASSWORD)}:
                   </label>
                   <input
                     {...register("newPasswordConfirm", {
@@ -157,7 +160,7 @@ const ChangePasswordLogin = () => {
               <div className="row row10">
                 <div className="mb-3" style={{ width: "100%" }}>
                   <button type="submit" className="btn btn-primary btn-block">
-                    Change Password
+                    {getLanguage(LanguageKey.CHANGE_PASSWORD)}
                   </button>
                 </div>
               </div>

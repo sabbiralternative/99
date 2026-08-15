@@ -3,18 +3,21 @@ import { useState } from "react";
 import { DatePicker } from "rsuite";
 import "rsuite/DateRangePicker/styles/index.css";
 import useGetReferralStatement from "../../hooks/useGetReferralStatement";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const ReferralStatement = () => {
+  const { getLanguage } = useLanguage();
   const [fetchData, setFetchData] = useState(false);
   const [startDate, setStartDate] = useState(
-    new Date(new Date().setDate(new Date().getDate() - 7))
+    new Date(new Date().setDate(new Date().getDate() - 7)),
   );
   const [endDate, setEndDate] = useState(new Date());
   const { data } = useGetReferralStatement(
     startDate,
     endDate,
     fetchData,
-    setFetchData
+    setFetchData,
   );
   return (
     <div _ngcontent-htq-c97 className="main-content">
@@ -22,7 +25,9 @@ const ReferralStatement = () => {
         <div className="card">
           {" "}
           <div className="card-header">
-            <h4 className="card-title">Referral Statement</h4>
+            <h4 className="card-title">
+              {getLanguage(LanguageKey.REFERRAL_STATEMENT)}
+            </h4>
           </div>
           <div className="card-body">
             <div
@@ -40,7 +45,7 @@ const ReferralStatement = () => {
                     fontSize: "12px",
                   }}
                 >
-                  From Date
+                  {getLanguage(LanguageKey.FROM_DATE)}
                 </p>
                 <DatePicker
                   onChange={(date) => setStartDate(date)}
@@ -55,7 +60,7 @@ const ReferralStatement = () => {
                     fontSize: "12px",
                   }}
                 >
-                  To Date
+                  {getLanguage(LanguageKey.TO_DATE)}
                 </p>
                 <DatePicker
                   onChange={(date) => setEndDate(date)}
@@ -79,7 +84,7 @@ const ReferralStatement = () => {
                   justifyContent: "center",
                 }}
               >
-                Submit
+                {getLanguage(LanguageKey.SUBMIT)}
               </button>
             </div>
             {data && (
@@ -111,7 +116,8 @@ const ReferralStatement = () => {
                             flex: 1,
                           }}
                         >
-                          Total Clients <span>{data?.total_clients}</span>
+                          {getLanguage(LanguageKey.TOTAL_CLIENTS)}{" "}
+                          <span>{data?.total_clients}</span>
                         </p>
                         <p
                           style={{
@@ -121,7 +127,8 @@ const ReferralStatement = () => {
                             flex: 1,
                           }}
                         >
-                          Total Deposit <span>{data?.total_deposit}</span>
+                          {getLanguage(LanguageKey.TOTAL_DEPOSIT)}{" "}
+                          <span>{data?.total_deposit}</span>
                         </p>
                         <p
                           style={{
@@ -132,7 +139,10 @@ const ReferralStatement = () => {
                             flex: 1,
                           }}
                         >
-                          <span>Total Withdraw</span>
+                          <span>
+                            {" "}
+                            {getLanguage(LanguageKey.TOTAL_WITHDRAW)}
+                          </span>
                           <span>{data?.total_withdraw}</span>
                         </p>
                       </li>

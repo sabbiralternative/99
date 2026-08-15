@@ -3,8 +3,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setHomeTab } from "../../../redux/features/global/globalSlice";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Header = () => {
+  const { getLanguage } = useLanguage();
   const location = useLocation();
   const dispatch = useDispatch();
   const { homeTab } = useSelector((state) => state.global);
@@ -39,7 +42,7 @@ const Header = () => {
           aria-selected="true"
           id
         >
-          <span _ngcontent-htq-c46>Inplay</span>
+          <span _ngcontent-htq-c46> {getLanguage(LanguageKey.IN_PLAY)}</span>
         </Link>
       </li>
       <li _ngcontent-htq-c46 className="nav-item">
@@ -55,7 +58,7 @@ const Header = () => {
           aria-selected="false"
           id
         >
-          <span _ngcontent-htq-c46>Sports</span>
+          <span _ngcontent-htq-c46> {getLanguage(LanguageKey.SPORTS)}</span>
         </Link>
       </li>
       <li _ngcontent-htq-c46 className="nav-item">
@@ -70,7 +73,7 @@ const Header = () => {
           aria-selected="false"
           id
         >
-          <span _ngcontent-htq-c46>Casino</span>
+          <span _ngcontent-htq-c46> {getLanguage(LanguageKey.CASINO)}</span>
         </Link>
       </li>
       <li
@@ -92,7 +95,7 @@ const Header = () => {
             _ngcontent-htq-c97
             className="new-tag-menus-sb"
           >
-            Sports book
+            {getLanguage(LanguageKey.SPORTSBOOK)}
           </div>
         </a>
       </li>
@@ -108,7 +111,7 @@ const Header = () => {
           aria-selected="false"
           id
         >
-          <span _ngcontent-htq-c46>Others</span>
+          <span _ngcontent-htq-c46> {getLanguage(LanguageKey.OTHERS)}</span>
         </Link>
       </li>
     </ul>

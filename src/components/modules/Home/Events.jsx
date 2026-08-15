@@ -7,8 +7,11 @@ import images from "../../../assets/images";
 import HorseGreyhound from "./HorseGreyhound";
 import { useState } from "react";
 import { FilterLiveVirtual } from "../../../utils/filter-live-virtual";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const Events = ({ homeTab }) => {
+  const { getLanguage } = useLanguage();
   const [liveVirtual, setLiveVirtual] = useState([]);
   const navigate = useNavigate();
   const { group } = useSelector((state) => state.global);
@@ -85,7 +88,10 @@ const Events = ({ homeTab }) => {
                       )?.isChecked ?? false
                     }
                   />
-                  <label htmlFor={`checkboxOne4-inplay-`}>LIVE</label>
+                  <label htmlFor={`checkboxOne4-inplay-`}>
+                    {" "}
+                    {getLanguage(LanguageKey.LIVE)}
+                  </label>
                 </li>
                 <li>
                   <input
@@ -103,7 +109,10 @@ const Events = ({ homeTab }) => {
                     id={`checkboxTwo4-inplay-`}
                     className="ng-untouched ng-pristine ng-valid"
                   />
-                  <label htmlFor={`checkboxTwo4-inplay-`}>VIRTUAL</label>
+                  <label htmlFor={`checkboxTwo4-inplay-`}>
+                    {" "}
+                    {getLanguage(LanguageKey.VIRTUAL)}
+                  </label>
                 </li>
               </ul>
               <div className="filter-ct">
@@ -256,7 +265,10 @@ const Events = ({ homeTab }) => {
                     ) : (
                       <div>
                         <div>
-                          <span> No events available right now</span>
+                          <span>
+                            {" "}
+                            {getLanguage(LanguageKey.NO_RECORD_FOUND)}
+                          </span>
                         </div>
                       </div>
                     )}

@@ -1,15 +1,19 @@
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const BankAccount = ({ depositData }) => {
+  const { getLanguage } = useLanguage();
   return (
     <div className="col-md-6">
       <div className="row justify-content-center">
         <div className="col-md-11">
           <div className="account-data">
             <p className="card-text">
-              <b>Bank Name</b>: {depositData?.bankName}
+              <b>{getLanguage(LanguageKey.BANK_NAME)}</b>:{" "}
+              {depositData?.bankName}
               <button
                 onClick={() => handleCopyToClipBoard(depositData?.bankName)}
                 className="btn btn-sm btn-success"
@@ -35,7 +39,7 @@ const BankAccount = ({ depositData }) => {
               <br />
             </p>
             <p className="card-text">
-              <b>IFSC Code</b>: {depositData?.ifsc}
+              <b>{getLanguage(LanguageKey.IFSC_CODE)}</b>: {depositData?.ifsc}
               <button
                 onClick={() => handleCopyToClipBoard(depositData?.ifsc)}
                 className="btn btn-sm btn-success"
@@ -48,7 +52,8 @@ const BankAccount = ({ depositData }) => {
               <br />
             </p>
             <p className="card-text">
-              <b>Account Name</b>: {depositData?.accountName}
+              <b> {getLanguage(LanguageKey.ACCOUNT_NAME)}</b>:{" "}
+              {depositData?.accountName}
               <button
                 onClick={() => handleCopyToClipBoard(depositData?.accountName)}
                 className="btn btn-sm btn-success"

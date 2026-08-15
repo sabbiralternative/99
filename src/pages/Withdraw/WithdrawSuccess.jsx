@@ -2,8 +2,11 @@ import { useNavigate } from "react-router-dom";
 import images from "../../assets/images";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/closeModal";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const WithdrawSuccess = ({ setShowSuccessModal }) => {
+  const { getLanguage } = useLanguage();
   const ref = useRef();
   const navigate = useNavigate();
 
@@ -19,7 +22,10 @@ const WithdrawSuccess = ({ setShowSuccessModal }) => {
         style={{ padding: "10px" }}
       >
         <div className="depositbreak ng-tns-c159-13">
-          <p className="ng-tns-c159-13">Congratulations!</p>
+          <p className="ng-tns-c159-13">
+            {" "}
+            {getLanguage(LanguageKey.CONGRATULATIONS)}!
+          </p>
           <div
             style={{ cursor: "pointer" }}
             onClick={() => {

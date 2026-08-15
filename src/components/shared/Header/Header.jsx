@@ -24,13 +24,12 @@ import AppPopup from "./AppPopUp";
 import BuildVersion from "../../modals/BuildVersion/BuildVersion";
 import Error from "../../modals/Error/Error";
 import Language from "../../modals/Language";
-import useLanguage from "../../../hooks/useLanguage";
-import { languageValue } from "../../../utils/language";
 import { LanguageKey } from "../../../const";
+import useLanguage from "../../../hooks/use-language";
 
 /* eslint-disable react/no-unknown-property */
 const Header = () => {
-  const { valueByLanguage, setLanguage } = useLanguage();
+  const { getLanguage, setLanguage } = useLanguage();
   const [showLanguage, setShowLanguage] = useState(false);
   const [showBuildVersion, setShowBuildVersion] = useState(false);
   const stored_build_version = localStorage.getItem("build_version");
@@ -176,7 +175,7 @@ const Header = () => {
                     type="submit"
                     className="btn btn-secondary"
                   >
-                    {languageValue(valueByLanguage, LanguageKey.LOGIN)}
+                    {getLanguage(LanguageKey.LOGIN)}
                     <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
                   </button>
                   {Settings.registration && (
@@ -186,7 +185,7 @@ const Header = () => {
                       _ngcontent-wjb-c42
                       className="btn btn-secondary btn-block"
                     >
-                      {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+                      {getLanguage(LanguageKey.REGISTER)}
                       <FontAwesomeIcon icon={faSignInAlt} className="ml-2" />
                     </button>
                   )}
@@ -344,7 +343,7 @@ const Header = () => {
                       src={images.deposit}
                       className="img-fluid"
                     />
-                    {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}{" "}
+                    {getLanguage(LanguageKey.DEPOSIT)}{" "}
                   </Link>
                 )}
 
@@ -360,7 +359,7 @@ const Header = () => {
                       src={images.withdraw}
                       className="img-fluid"
                     />
-                    {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
+                    {getLanguage(LanguageKey.WITHDRAW)}
                   </Link>
                 )}
               </div>

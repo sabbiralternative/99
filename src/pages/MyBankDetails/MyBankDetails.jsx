@@ -12,8 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAddBank } from "../../redux/features/global/globalSlice";
 import AddUSDTAccount from "../../components/modals/AddUSDTAccount/AddUSDTAccount";
 import AddBank from "../../components/modals/AddBank/AddBank";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const MyBankDetails = () => {
+  const { getLanguage } = useLanguage();
   const { addBank } = useSelector((state) => state.global);
   const [showUSDTModal, setShowUSDTModal] = useState(false);
   const dispatch = useDispatch();
@@ -111,7 +114,7 @@ const MyBankDetails = () => {
               className="btn-inactive "
             >
               <span style={{ color: tab === 1 ? "white" : "" }} className="">
-                Active
+                {getLanguage(LanguageKey.ACTIVE)}
               </span>
             </button>
             <button
@@ -123,7 +126,7 @@ const MyBankDetails = () => {
               className="btn-inactive "
             >
               <span style={{ color: tab === 0 ? "white" : "" }} className="">
-                Deleted
+                {getLanguage(LanguageKey.DELETED)}
               </span>
             </button>
           </div>
@@ -142,7 +145,7 @@ const MyBankDetails = () => {
             borderRadius: "4px",
           }}
         >
-          Add New Bank
+          {getLanguage(LanguageKey.ADD_NEW_BANK)}
         </button>
         <button
           onClick={() => setShowUSDTModal(true)}
@@ -154,7 +157,7 @@ const MyBankDetails = () => {
             marginTop: "5px",
           }}
         >
-          Add USDT Account
+          {getLanguage(LanguageKey.ADD_USDT_ACCOUNT)}
         </button>
         <h6 style={{ marginTop: "5px", fontWeight: "500" }}>Bank Details</h6>
 
@@ -201,7 +204,10 @@ const MyBankDetails = () => {
                     <div>
                       <p> {bank?.bankName}</p>
                       {bank?.isDefault === 1 && (
-                        <span style={{ color: "#488feb" }}>Default</span>
+                        <span style={{ color: "#488feb" }}>
+                          {" "}
+                          {getLanguage(LanguageKey.DEFAULT)}
+                        </span>
                       )}
                     </div>
                   </div>
@@ -250,7 +256,8 @@ const MyBankDetails = () => {
                       justifyContent: "space-between",
                     }}
                   >
-                    <p>Account Holder Name: </p> <p>{bank?.bankAccountName}</p>
+                    <p> {getLanguage(LanguageKey.ACCOUNT_HOLDER_NAME)}: </p>{" "}
+                    <p>{bank?.bankAccountName}</p>
                   </div>
                   <div
                     style={{
@@ -261,7 +268,8 @@ const MyBankDetails = () => {
                     }}
                   >
                     {" "}
-                    <p> Account number: </p> <p>{bank?.accountNumber}</p>
+                    <p> {getLanguage(LanguageKey.ACCOUNT_NUMBER)}: </p>{" "}
+                    <p>{bank?.accountNumber}</p>
                   </div>
                   <div
                     style={{
@@ -272,7 +280,8 @@ const MyBankDetails = () => {
                     }}
                   >
                     {" "}
-                    <p> IFSC Code: </p> <p>{bank?.ifsc}</p>
+                    <p> {getLanguage(LanguageKey.IFSC_CODE)}: </p>{" "}
+                    <p>{bank?.ifsc}</p>
                   </div>
                   <div
                     style={{
@@ -283,7 +292,8 @@ const MyBankDetails = () => {
                     }}
                   >
                     {" "}
-                    <p> Bank Branch: </p> <p>{bank?.bankBranch}</p>
+                    <p> {getLanguage(LanguageKey.BANK_BRANCH)}: </p>{" "}
+                    <p>{bank?.bankBranch}</p>
                   </div>
                   <div
                     style={{
@@ -294,7 +304,8 @@ const MyBankDetails = () => {
                     }}
                   >
                     {" "}
-                    <p> Account added on: </p> <p>{bank?.dateAdded}</p>
+                    <p> {getLanguage(LanguageKey.ACCOUNT_ADDED_ON)}: </p>{" "}
+                    <p>{bank?.dateAdded}</p>
                   </div>
                   {bank?.isDefault === 0 && tab === 1 && (
                     <button
@@ -306,7 +317,7 @@ const MyBankDetails = () => {
                         marginTop: "15px",
                       }}
                     >
-                      Default
+                      {getLanguage(LanguageKey.DEFAULT)}
                     </button>
                   )}
                 </div>

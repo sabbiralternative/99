@@ -22,8 +22,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { AxiosJSEncrypt } from "../../../lib/AxiosJSEncrypt";
 import { isBetDelay, isDelay } from "../../../utils/isBetDelay";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const BetSlip = ({ currentPlacedBetEvent }) => {
+  const { getLanguage } = useLanguage();
   const closePopupForForever = localStorage.getItem("closePopupForForever");
   const [isCashOut, setIsCashOut] = useState(false);
   const { eventTypeId } = useParams();
@@ -303,7 +306,7 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
                 _ngcontent-ukj-c63=""
                 class="min-stake"
               >
-                min stake
+                {getLanguage(LanguageKey.MIN)}
               </button>
               <button
                 onClick={() => {
@@ -317,10 +320,10 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
                 _ngcontent-ukj-c63=""
                 class="max-stake"
               >
-                max stake
+                {getLanguage(LanguageKey.MAX)}
               </button>
               <button _ngcontent-ukj-c63="" class="all-in-stake">
-                Edit Stake
+                {getLanguage(LanguageKey.EDIT_STAKE)}
               </button>
               <button
                 onClick={() => {
@@ -329,7 +332,7 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
                 _ngcontent-ukj-c63=""
                 class="clear-stake"
               >
-                clear
+                {getLanguage(LanguageKey.CLEAR)}
               </button>
             </div>
           </div>
@@ -340,7 +343,7 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
                 _ngcontent-ukj-c63=""
                 class="new-cancel-button"
               >
-                cancel
+                {getLanguage(LanguageKey.CANCEL)}
               </button>
             </div>
             <div _ngcontent-ukj-c63="" class="col-6 px-0">
@@ -349,7 +352,7 @@ const BetSlip = ({ currentPlacedBetEvent }) => {
                 class="new-placebet-button"
                 onClick={handleOrderBets}
               >
-                place bet
+                {getLanguage(LanguageKey.PLACE_BET)}
               </button>
             </div>
           </div>

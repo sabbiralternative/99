@@ -2,8 +2,11 @@
 
 import toast from "react-hot-toast";
 import useSBCashOut from "../../../hooks/sb_cashout";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const CurrentBets = ({ currentBet, sportsBook, refetchCurrentBets }) => {
+  const { getLanguage } = useLanguage();
   const { mutate: cashOut } = useSBCashOut();
 
   const sports =
@@ -12,7 +15,7 @@ const CurrentBets = ({ currentBet, sportsBook, refetchCurrentBets }) => {
       (group) =>
         group?.Name !== "Bet Builder" &&
         group?.Name !== "Fast Markets" &&
-        group?.Name !== "Player Specials"
+        group?.Name !== "Player Specials",
     );
 
   const handleCashOut = ({ betHistory, sportsBook, price, cashout_value }) => {
@@ -26,7 +29,7 @@ const CurrentBets = ({ currentBet, sportsBook, refetchCurrentBets }) => {
     });
 
     const column = item?.Items?.find(
-      (col) => col?.Id === betHistory?.selectionId
+      (col) => col?.Id === betHistory?.selectionId,
     );
 
     const payload = {
@@ -79,18 +82,18 @@ const CurrentBets = ({ currentBet, sportsBook, refetchCurrentBets }) => {
                 <tr _ngcontent-nfu-c64="">
                   <th _ngcontent-nfu-c64="" style={{ width: "60%" }}>
                     {" "}
-                    Nation{" "}
+                    {getLanguage(LanguageKey.NATION)}{" "}
                   </th>
                   <th _ngcontent-nfu-c64="" class="text-right">
                     {" "}
                   </th>
                   <th _ngcontent-nfu-c64="" class="text-right">
                     {" "}
-                    Odds{" "}
+                    {getLanguage(LanguageKey.ODDS)}{" "}
                   </th>
                   <th _ngcontent-nfu-c64="" class="text-center">
                     {" "}
-                    Stake{" "}
+                    {getLanguage(LanguageKey.STAKE)}{" "}
                   </th>
                 </tr>
               </thead>
@@ -100,7 +103,7 @@ const CurrentBets = ({ currentBet, sportsBook, refetchCurrentBets }) => {
                   group?.Items?.forEach((data) => {
                     if (bet?.marketId == data?.Id) {
                       column = data?.Items?.find(
-                        (col) => col?.Id === bet?.selectionId
+                        (col) => col?.Id === bet?.selectionId,
                       );
                     }
                   });
@@ -197,21 +200,21 @@ const CurrentBets = ({ currentBet, sportsBook, refetchCurrentBets }) => {
                 <tr _ngcontent-nfu-c64="">
                   <th _ngcontent-nfu-c64="" style={{ width: "60%" }}>
                     {" "}
-                    Nation{" "}
+                    {getLanguage(LanguageKey.NATION)}{" "}
                   </th>
                   <th _ngcontent-nfu-c64="" class="text-right">
                     {" "}
-                    Odds{" "}
+                    {getLanguage(LanguageKey.ODDS)}{" "}
                   </th>
                   <th _ngcontent-nfu-c64="" class="text-center">
                     {" "}
-                    Stake{" "}
+                    {getLanguage(LanguageKey.STAKE)}{" "}
                   </th>
                 </tr>
               </thead>
               <tr _ngcontent-nfu-c64="">
                 <td _ngcontent-nfu-c64="" colspan="3" class="text-center">
-                  No records Found
+                  {getLanguage(LanguageKey.NO_RECORD_FOUND)}
                 </td>
               </tr>
             </table>

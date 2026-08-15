@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useIndex } from "../../../hooks";
 import moment from "moment";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const ProfitLoss = () => {
+  const { getLanguage } = useLanguage();
   const from = new Date(new Date().setDate(new Date().getDate() - 7))
     .toISOString()
     .split("T")[0];
@@ -21,13 +24,13 @@ const ProfitLoss = () => {
   };
 
   const getUniqueDate = Array.from(
-    new Set(data?.result?.map((item) => item?.date_added))
+    new Set(data?.result?.map((item) => item?.date_added)),
   );
   return (
     <section data-v-81c2ddd8 className="nw-affi-user-wrapper affi-pd-bot ">
       <div data-v-81c2ddd8 className>
         <h3 data-v-81c2ddd8 className="nw-affi-heading-text">
-          User Profit / Loss
+          {getLanguage(LanguageKey.USER_PROFIT_LOSS)}
         </h3>
         <form
           onSubmit={handleSubmit}
@@ -42,7 +45,7 @@ const ProfitLoss = () => {
             <li data-v-81c2ddd8>
               <div data-v-81c2ddd8 className="form-group">
                 <label data-v-81c2ddd8 className="label-pl12">
-                  From Date
+                  {getLanguage(LanguageKey.FROM_DATE)}
                 </label>
                 <input
                   onChange={(e) => setFromDate(e.target.value)}
@@ -57,7 +60,7 @@ const ProfitLoss = () => {
             <li data-v-81c2ddd8>
               <div data-v-81c2ddd8 className="form-group">
                 <label data-v-81c2ddd8 className="label-pl12">
-                  To Date
+                  {getLanguage(LanguageKey.TO_DATE)}
                 </label>
                 <input
                   onChange={(e) => setToDate(e.target.value)}
@@ -78,7 +81,7 @@ const ProfitLoss = () => {
               data-bs-toggle="modal"
               data-v-4c49d924
             >
-              <span data-v-4c49d924>Submit</span>
+              <span data-v-4c49d924> {getLanguage(LanguageKey.SUBMIT)}</span>
             </button>
           </div>
         </form>
@@ -86,7 +89,7 @@ const ProfitLoss = () => {
           <div className="a23_css">
             {getUniqueDate?.map((date) => {
               const filterByDate = data?.result?.filter(
-                (item) => item?.date_added === date
+                (item) => item?.date_added === date,
               );
               const totalPnl = filterByDate?.reduce((acc, curr) => {
                 return acc + Number(curr.amount);
@@ -127,7 +130,7 @@ const ProfitLoss = () => {
                         color: "#fff",
                       }}
                     >
-                      <span>Total PL</span>
+                      <span>{getLanguage(LanguageKey.TOTAL_PL)}</span>
                       <span style={{ marginTop: "-2px", marginLeft: "4px" }}>
                         :
                       </span>
@@ -139,8 +142,8 @@ const ProfitLoss = () => {
                             totalPnl > 0
                               ? "#48BB78"
                               : totalPnl < 0
-                              ? "#F56565"
-                              : "#FFFFFF",
+                                ? "#F56565"
+                                : "#FFFFFF",
                         }}
                       >
                         {totalPnl}
@@ -187,7 +190,7 @@ const ProfitLoss = () => {
                               }}
                               className="mat-expansion-panel-header-description "
                             >
-                              <span> Amount:</span>{" "}
+                              <span> {getLanguage(LanguageKey.AMOUNT)}:</span>{" "}
                               <span
                                 className={`${
                                   item?.amount > 0 ? "Won" : "Lost"
@@ -222,7 +225,7 @@ const ProfitLoss = () => {
 
         {isSuccess && getUniqueDate?.length === 0 && (
           <div className="no-data ng-star-inserted">
-            <p>No betting profit and loss yet!</p>
+            <p>{getLanguage(LanguageKey.NO_BETTING_PROFIT_LOSS_YET)}!</p>
           </div>
         )}
       </div>

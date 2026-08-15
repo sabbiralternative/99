@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 
-import { Status } from "../../../const";
+import { LanguageKey, Status } from "../../../const";
 import BetSlip from "../../shared/BetSlip/BetSlip";
 import { useExposure } from "../../../hooks/exposure";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,8 +17,10 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import MarketRule from "../../modals/MarketRule/MarketRule";
 import SpeedCashOut from "../../modals/SpeedCashOut/SpeedCashOut";
 import { isGameSuspended } from "../../../utils/isOddSuspended";
+import useLanguage from "../../../hooks/use-language";
 
 const MatchOdds = ({ matchOdds }) => {
+  const { getLanguage } = useLanguage();
   const [speedCashOut, setSpeedCashOut] = useState(null);
   const [showRule, setShowRule] = useState(false);
   const { eventId } = useParams();
@@ -279,7 +281,7 @@ const MatchOdds = ({ matchOdds }) => {
                         _ngcontent-gdr-c100=""
                         class="btn-cashout"
                       >
-                        cashout{" "}
+                        {getLanguage(LanguageKey.CASHOUT)}{" "}
                         {teamProfitForGame?.profit &&
                           `(${teamProfitForGame.profit.toFixed(0)})`}
                       </button>
@@ -308,7 +310,7 @@ const MatchOdds = ({ matchOdds }) => {
                         class="btn-cashout"
                       >
                         {" "}
-                        Speed Cashout
+                        {getLanguage(LanguageKey.SPEED_CASHOUT)}
                       </button>
                     )}
 
@@ -326,7 +328,9 @@ const MatchOdds = ({ matchOdds }) => {
                       className="float-left country-name box-6 min-max"
                     >
                       <b _ngcontent-bym-c100>
-                        Min:100 Max:{games?.maxLiabilityPerBet}
+                        {getLanguage(LanguageKey.MIN)}:100{" "}
+                        {getLanguage(LanguageKey.MAX)}:
+                        {games?.maxLiabilityPerBet}
                       </b>
                     </div>
                     <div

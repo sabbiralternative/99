@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useCurrentBets } from "../../hooks/currentBets";
+import useLanguage from "../../hooks/use-language";
+import { LanguageKey } from "../../const";
 
 const UnSettledBets = () => {
+  const { getLanguage } = useLanguage();
   const { data } = useCurrentBets();
   const navigate = useNavigate();
 
@@ -15,7 +18,10 @@ const UnSettledBets = () => {
         <div className="report-container">
           <div className="card">
             <div className="card-header">
-              <h4 className="mb-0">Un-Setteled Bet</h4>
+              <h4 className="mb-0">
+                {" "}
+                {getLanguage(LanguageKey.UNSETTLED_BETS)}
+              </h4>
             </div>
             <div className="card-body container-fluid container-fluid-5">
               <div className="row row5 mt-2">
@@ -37,27 +43,36 @@ const UnSettledBets = () => {
                               </a>
                             </div>
                             <div>
-                              <strong>Nation: </strong>
+                              <strong>
+                                {" "}
+                                {getLanguage(LanguageKey.NATION)}:{" "}
+                              </strong>
                               {bet?.nation}
                             </div>
                             <div>
-                              <strong>Place Date: </strong>
+                              <strong>
+                                {" "}
+                                {getLanguage(LanguageKey.PLACED_DATE)}:{" "}
+                              </strong>
                               {bet?.placeDate}
                             </div>
                             <div>
-                              <strong>Match Date: </strong>
+                              <strong>
+                                {" "}
+                                {getLanguage(LanguageKey.MATCH_DATE)}:{" "}
+                              </strong>
                               N/A
                             </div>
                           </div>
                           <div className="col-2 text-right">
                             <div>
-                              <b>User Rate</b>
+                              <b> {getLanguage(LanguageKey.USER_RATE)}</b>
                             </div>
                             <div>{bet?.userRate}</div>
                           </div>
                           <div className="col-2 text-right">
                             <div>
-                              <b>Amount</b>
+                              <b> {getLanguage(LanguageKey.AMOUNT)}</b>
                             </div>
                             <div>{bet?.amount}</div>
                           </div>

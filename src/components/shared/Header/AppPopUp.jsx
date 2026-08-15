@@ -2,8 +2,11 @@ import { useDispatch } from "react-redux";
 import images from "../../../assets/images";
 import { setShowAppPopUp } from "../../../redux/features/global/globalSlice";
 import { Settings } from "../../../api";
+import useLanguage from "../../../hooks/use-language";
+import { LanguageKey } from "../../../const";
 
 const AppPopup = () => {
+  const { getLanguage } = useLanguage();
   const dispatch = useDispatch();
   const closeAppModal = () => {
     const expiryTime = new Date().getTime() + 24 * 60 * 60 * 1000;
@@ -51,7 +54,7 @@ const AppPopup = () => {
           <img src={images.playStore} alt="" />
         </div>
         <div className="app-text">
-          <h2>Download Android Application</h2>
+          <h2>{getLanguage(LanguageKey.DOWNLOAD_ANDROID_APPLICATION)}</h2>
 
           <div className="star">
             <img src={images.appStar} alt="star" />
@@ -72,7 +75,7 @@ const AppPopup = () => {
             style={{ color: "white" }}
             className=" text-x  font-lato md:font-semibold xs:text-xs  md:text-sm font-[800]"
           >
-            Install
+            {getLanguage(LanguageKey.INSTALL)}
           </span>
         </button>
       </a>
