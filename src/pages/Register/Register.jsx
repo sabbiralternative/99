@@ -19,8 +19,12 @@ import { setUser } from "../../redux/features/auth/authSlice";
 import images from "../../assets/images";
 import { LanguageKey } from "../../const";
 import useLanguage from "../../hooks/use-language";
+import { FaMobileAlt, FaRegUser } from "react-icons/fa";
 // import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
 const Register = () => {
+  const [tab, setTab] = useState(
+    Settings.registration_mobile ? "mobile" : "username",
+  );
   const { getLanguage } = useLanguage();
   const affnook_token = localStorage.getItem("affnook_token");
   const { token } = useSelector((state) => state.auth);
@@ -33,6 +37,7 @@ const Register = () => {
     mobileNo: "",
     otp: "",
     referralCode: "",
+    username: "",
   });
   const { logo } = useContext(ApiContext);
   const { handleSubmit } = useForm();
@@ -67,6 +72,7 @@ const Register = () => {
       return toast.error("Enter four digit OTP no");
     } else {
       const registerData = {
+        username: userData?.username,
         password: userData?.password,
         confirmPassword: userData?.confirmPassword,
         mobile: userData?.mobileNo,
@@ -75,6 +81,8 @@ const Register = () => {
         orderId: order.orderId,
         otpMethod: order.otpMethod,
         affnook_token: affnook_token || null,
+        registration_mobile: Settings.registration_mobile,
+        registration_username: Settings.registration_username,
       };
 
       const { data } = await AxiosSecure.post(API.register, registerData);
@@ -196,35 +204,99 @@ const Register = () => {
                 </div>
               )} */}
               {/* <!-- whatsapp end--> */}
-
-              <div className="mb-4 input-group position-relative username-text">
-                <input
-                  name="mobileNo"
-                  type="number"
-                  className="form-control PhoneInput"
-                  placeholder="Mobile No."
-                  onChange={(e) =>
-                    setUserData({ ...userData, mobileNo: e.target.value })
-                  }
-                />
-                <span className="input-group-text">
-                  <FontAwesomeIcon icon={faPhone} className="ml-2" />
-                </span>
-                {timer ? (
-                  <button className="btn btn-primary btn-block" type="button">
-                    {getLanguage(LanguageKey.RETRY_IN)} {timer}
-                  </button>
-                ) : (
-                  <button
-                    onClick={getOtp}
-                    className="btn btn-primary btn-block"
-                    type="button"
+              {Settings.registration_mobile &&
+                Settings.registration_username && (
+                  <div
+                    style={{
+                      width: "100%",
+                      background:
+                        "color-mix(in srgb, var(--theme1-bg) 30%, transparent)",
+                      marginBottom: "12px",
+                    }}
                   >
-                    {getLanguage(LanguageKey.GET_OTP_ON_MESSAGE)}
-                  </button>
-                )}
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        position: "relative",
+                        width: "100%",
+                      }}
+                    >
+                      <div
+                        onClick={() => setTab("mobile")}
+                        style={{
+                          cursor: "pointer",
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: "5px",
+                          width: "100%",
+                          gap: "6px",
+                          color: tab === "mobile" ? "white" : "black",
+                          background:
+                            tab === "mobile" ? "var(--theme1-bg)" : undefined,
+                        }}
+                      >
+                        <FaMobileAlt />
 
-                {/* <button
+                        <span>{getLanguage(LanguageKey.BY_PHONE)}</span>
+                      </div>
+
+                      <div
+                        onClick={() => setTab("username")}
+                        style={{
+                          cursor: "pointer",
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: "5px",
+                          width: "100%",
+                          gap: "6px",
+                          color: tab === "username" ? "white" : "black",
+                          background:
+                            tab === "username" ? "var(--theme1-bg)" : undefined,
+                        }}
+                      >
+                        <FaRegUser />
+
+                        <span>{getLanguage(LanguageKey.BY_USERNAME)}</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              {tab === "mobile" && Settings.registration_mobile && (
+                <div className="mb-4 input-group position-relative username-text">
+                  <input
+                    name="mobileNo"
+                    type="number"
+                    className="form-control PhoneInput"
+                    placeholder="Mobile No."
+                    onChange={(e) =>
+                      setUserData({ ...userData, mobileNo: e.target.value })
+                    }
+                  />
+                  <span className="input-group-text">
+                    <FontAwesomeIcon icon={faPhone} className="ml-2" />
+                  </span>
+                  {timer ? (
+                    <button className="btn btn-primary btn-block" type="button">
+                      {getLanguage(LanguageKey.RETRY_IN)} {timer}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={getOtp}
+                      className="btn btn-primary btn-block"
+                      type="button"
+                    >
+                      {getLanguage(LanguageKey.GET_OTP_ON_MESSAGE)}
+                    </button>
+                  )}
+
+                  {/* <button
                   onClick={handleGetOtpOnWhatsapp}
                   disabled={userData?.mobileNo?.length < 10}
                   className="btn btn-primary btn-block"
@@ -232,7 +304,23 @@ const Register = () => {
                 >
                   Get OTP on Whatsapp
                 </button> */}
-              </div>
+                </div>
+              )}
+              {tab === "username" && Settings.registration_username && (
+                <div className="mb-4 input-group position-relative username-text">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Username"
+                    onChange={(e) => {
+                      setUserData({ ...userData, username: e.target.value });
+                    }}
+                  />
+                  <span className="input-group-text">
+                    <FontAwesomeIcon icon={faKey} className="ml-2" />
+                  </span>
+                </div>
+              )}
 
               <div className="mb-4 input-group position-relative username-text">
                 <input
