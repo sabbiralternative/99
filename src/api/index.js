@@ -99,4 +99,6 @@ export const Settings = {
   referral_create_account: "",
   bet_delay: "",
   build_version: "",
+  registration_mobile: "",
+  registration_username: "",
 };
