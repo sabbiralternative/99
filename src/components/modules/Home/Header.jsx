@@ -99,6 +99,30 @@ const Header = () => {
           </div>
         </a>
       </li>
+
+      <li
+        onClick={() => handleNavigateToIFrame("fantasy-11", "595001")}
+        _ngcontent-htq-c46
+        className="nav-item customClass"
+      >
+        <a
+          _ngcontent-htq-c46
+          role="tab"
+          className="nav-link"
+          aria-controls
+          aria-selected="false"
+          id
+        >
+          <span _ngcontent-htq-c46 />
+          <div
+            style={{ color: "white" }}
+            _ngcontent-htq-c97
+            className="new-tag-menus-sb"
+          >
+            {getLanguage(LanguageKey.FANTASY_11)}
+          </div>
+        </a>
+      </li>
       <li _ngcontent-htq-c46 className="nav-item">
         <Link
           _ngcontent-htq-c46

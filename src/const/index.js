@@ -387,5 +387,6 @@ export const LanguageKey = {
   AVAILABLE_TO_WITHDRAW: "AVAILABLE_TO_WITHDRAW",
   BY_USERNAME: "BY_USERNAME",
   BY_PHONE: "BY_PHONE",
+  FANTASY_11: "FANTASY_11",
 };
 export const settingsAPI = "https://api7.live/api/exchange/diamond/settings";
