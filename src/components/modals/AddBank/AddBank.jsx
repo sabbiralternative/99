@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 
@@ -131,21 +131,22 @@ const AddBank = ({ refetchBankData }) => {
     }
   }, [timer]);
 
-  // const getOtpOnWhatsapp = async () => {
-  //   const otpData = {
-  //     mobile: mobile,
-  //     type: "otpsend",
-  //   };
+  const getOtpOnWhatsapp = async () => {
+    const otpData = {
+      mobile,
+      type: "otpsend",
+    };
 
-  //   const res = await AxiosSecure.post(API.otpless, otpData);
-  //   const data = res.data;
+    const res = await AxiosSecure.post(API.otpless, otpData);
+    const data = res.data;
 
-  //   if (data?.success) {
-  //     toast.success(data?.result?.message);
-  //   } else {
-  //     toast.error(data?.error?.errorMessage);
-  //   }
-  // };
+    if (data?.success) {
+      setTimer(60);
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
+    }
+  };
   return (
     <>
       <div className="Modal-Background  ">
@@ -237,78 +238,64 @@ const AddBank = ({ refetchBankData }) => {
                   <input type="text" placeholder="Enter IFSC" name="" />
                 </div>
                 {mobile && Settings.otp && (
-                  <div style={{ position: "relative" }} className="input-box ">
-                    <input
-                      readOnly
-                      type="text"
-                      placeholder="Phone Number"
-                      value={mobile}
-                    />
+                  <Fragment>
+                    <div
+                      style={{ position: "relative" }}
+                      className="input-box "
+                    >
+                      <input
+                        readOnly
+                        type="text"
+                        placeholder="Phone Number"
+                        value={mobile}
+                      />
+                    </div>
                     {timer ? (
-                      <div
+                      <button
                         style={{
-                          backgroundColor: "var(--theme1-bg)",
-                          borderRadius: "4px",
-                          padding: "6px 0px",
-                          width: "80px",
-                          color: "white",
-                          fontSize: "11px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          marginRight: "10px",
+                          marginTop: "10px",
                         }}
+                        className="btn btn-primary btn-block"
+                        type="button"
                       >
                         {getLanguage(LanguageKey.RETRY_IN)} {timer}
-                      </div>
+                      </button>
                     ) : (
                       <div
                         style={{
                           display: "flex",
                           alignItems: "center",
+                          gap: "10px",
+                          width: "100%",
+                          marginTop: "10px",
                         }}
                       >
-                        {/* {Settings.otpWhatsapp && (
+                        {Settings.otp_method?.includes("sms") && (
                           <button
-                            onClick={getOtpOnWhatsapp}
-                            style={{
-                              backgroundColor: "var(--theme1-bg)",
-                              borderRadius: "4px",
-                              padding: "6px 0px",
-                              width: "110px",
-                              color: "white",
-                              fontSize: "11px",
-                              border: "none",
-                              marginRight: "10px",
-                            }}
+                            onClick={getOtp}
+                            className="btn btn-primary btn-block"
                             type="button"
                           >
-                            Get OTP Whatsapp
+                            {getLanguage(LanguageKey.GET_OTP_ON_MESSAGE)}
                           </button>
-                        )} */}
-
-                        <button
-                          onClick={getOtp}
-                          style={{
-                            backgroundColor: "var(--theme1-bg)",
-                            borderRadius: "4px",
-                            padding: "6px 0px",
-                            width: "110px",
-                            color: "white",
-                            fontSize: "11px",
-                            border: "none",
-                            marginRight: "10px",
-                          }}
-                          type="button"
-                        >
-                          {getLanguage(LanguageKey.GET_OTP_ON_MESSAGE)}
-                        </button>
+                        )}
+                        {Settings.otp_method?.includes("whatsapp") && (
+                          <button
+                            style={{ marginTop: "0px" }}
+                            onClick={getOtpOnWhatsapp}
+                            className="btn btn-primary btn-block"
+                            type="button"
+                          >
+                            {getLanguage(LanguageKey.GET_OTP_ON_WHATSAPP)}
+                          </button>
+                        )}
                       </div>
                     )}
-                  </div>
+                  </Fragment>
                 )}
                 {mobile && Settings.otp && (
                   <div
+                    style={{ marginTop: "10px" }}
                     onChange={(e) => {
                       setBankDetails({
                         ...bankDetails,

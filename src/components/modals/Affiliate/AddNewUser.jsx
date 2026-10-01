@@ -116,21 +116,22 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
     }
   }, [timer]);
 
-  // const getOtpOnWhatsapp = async () => {
-  //   const otpData = {
-  //     mobile: mobile,
-  //     type: "otpsend",
-  //   };
+  const getOtpOnWhatsapp = async () => {
+    const otpData = {
+      mobile,
+      type: "otpsend",
+    };
 
-  //   const res = await AxiosSecure.post(API.otpless, otpData);
-  //   const data = res.data;
+    const res = await AxiosSecure.post(API.otpless, otpData);
+    const data = res.data;
 
-  //   if (data?.success) {
-  //     toast.success(data?.result?.message);
-  //   } else {
-  //     toast.error(data?.error?.errorMessage);
-  //   }
-  // };
+    if (data?.success) {
+      setTimer(60);
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
+    }
+  };
 
   return (
     <div className="Modal-Background  ">
@@ -161,6 +162,24 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
           <div className="bank-popup">
             <form onSubmit={handleAddBank}>
               <div style={{ position: "relative" }} className="input-box ">
+                <select
+                  style={{
+                    borderTopLeftRadius: "5px",
+                    borderBottomLeftRadius: "5px",
+                    padding: "10px 2px",
+                    color: "black",
+                  }}
+                  id="dropdown-phone-button"
+                  className="rounded-l-lg border py-1.5 bg-auth px-3"
+                >
+                  {Settings.country_code?.map((item) => {
+                    return (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                </select>
                 <input
                   onChange={(e) => {
                     if (e.target.value.length <= 10) {
@@ -171,64 +190,50 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                   placeholder="Phone Number"
                   value={mobile}
                 />
-                {timer ? (
-                  <div
-                    style={{
-                      backgroundColor: "var(--theme1-bg)",
-                      borderRadius: "4px",
-                      padding: "6px 0px",
-                      width: "80px",
-                      color: "white",
-                      fontSize: "11px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {getLanguage(LanguageKey.RETRY_IN)} {timer}
-                  </div>
-                ) : (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "3px",
-                    }}
-                  >
-                    {/* {Settings.otpWhatsapp && (
-                      <button
-                        onClick={getOtpOnWhatsapp}
-                        style={{
-                          backgroundColor: "var(--theme1-bg)",
-                          borderRadius: "4px",
-                          padding: "6px 0px",
-                          width: "110px",
-                          color: "white",
-                          fontSize: "11px",
-                        }}
-                        type="button"
-                      >
-                        Get OTP Whatsapp
-                      </button>
-                    )} */}
+              </div>
+              {timer ? (
+                <button
+                  style={{
+                    marginTop: "10px",
+                  }}
+                  className="btn btn-primary btn-block"
+                  type="button"
+                >
+                  {getLanguage(LanguageKey.RETRY_IN)} {timer}
+                </button>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    width: "100%",
+                    marginTop: "10px",
+                  }}
+                >
+                  {Settings.otp_method?.includes("sms") && (
                     <button
+                      disabled={!mobile}
                       onClick={getOtp}
-                      style={{
-                        backgroundColor: "var(--theme1-bg)",
-                        borderRadius: "4px",
-                        padding: "6px 0px",
-                        width: "110px",
-                        color: "white",
-                        fontSize: "11px",
-                      }}
+                      className="btn btn-primary btn-block"
                       type="button"
                     >
                       {getLanguage(LanguageKey.GET_OTP_ON_MESSAGE)}
                     </button>
-                  </div>
-                )}
-              </div>
-
+                  )}
+                  {Settings.otp_method?.includes("whatsapp") && (
+                    <button
+                      disabled={!mobile}
+                      style={{ marginTop: "0px" }}
+                      onClick={getOtpOnWhatsapp}
+                      className="btn btn-primary btn-block"
+                      type="button"
+                    >
+                      {getLanguage(LanguageKey.GET_OTP_ON_WHATSAPP)}
+                    </button>
+                  )}
+                </div>
+              )}
               <div
                 onChange={(e) => {
                   setUserDetails({
@@ -236,6 +241,7 @@ const AddNewUser = ({ setShowAddNewUserModal }) => {
                     otp: e.target.value,
                   });
                 }}
+                style={{ marginTop: "10px" }}
                 className="input-box "
               >
                 <input

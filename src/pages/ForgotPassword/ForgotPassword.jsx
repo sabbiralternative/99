@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { ApiContext } from "../../context/ApiProvider";
-import { Settings } from "../../api";
+import { API, Settings } from "../../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHandPointDown,
@@ -18,6 +18,7 @@ import {
 } from "../../redux/features/auth/authApi";
 import useLanguage from "../../hooks/use-language";
 import { LanguageKey } from "../../const";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 const Register = () => {
   const { getLanguage } = useLanguage();
   const navigate = useNavigate();
@@ -50,7 +51,22 @@ const Register = () => {
       }
     }
   };
+  const getOtpOnWhatsapp = async () => {
+    const otpData = {
+      mobile,
+      type: "otpsend",
+    };
 
+    const res = await AxiosSecure.post(API.otpless, otpData);
+    const data = res.data;
+
+    if (data?.success) {
+      setTimer(60);
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
+    }
+  };
   const onSubmit = async (data) => {
     const forgotPasswordData = {
       username: mobile,
@@ -103,6 +119,24 @@ const Register = () => {
             </h4>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4 input-group position-relative username-text">
+                <select
+                  style={{
+                    borderTopLeftRadius: "5px",
+                    borderBottomLeftRadius: "5px",
+                    padding: "10px 2px",
+                    color: "black",
+                  }}
+                  id="dropdown-phone-button"
+                  className="rounded-l-lg border py-1.5 bg-auth px-3"
+                >
+                  {Settings.country_code?.map((item) => {
+                    return (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                </select>
                 <input
                   name="mobileNo"
                   type="number"
@@ -114,17 +148,47 @@ const Register = () => {
                   <FontAwesomeIcon icon={faPhone} className="ml-2" />
                 </span>
                 {timer ? (
-                  <button className="btn btn-primary btn-block" type="button">
-                    {getLanguage(LanguageKey.RETRY_IN)} {timer}
-                  </button>
-                ) : (
                   <button
-                    onClick={handleOTP}
+                    style={{
+                      marginTop: "10px",
+                    }}
                     className="btn btn-primary btn-block"
                     type="button"
                   >
-                    {getLanguage(LanguageKey.GET_OTP)}
+                    {getLanguage(LanguageKey.RETRY_IN)} {timer}
                   </button>
+                ) : (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      width: "100%",
+                      marginTop: "10px",
+                    }}
+                  >
+                    {Settings.otp_method?.includes("sms") && (
+                      <button
+                        disabled={!mobile}
+                        onClick={handleOTP}
+                        className="btn btn-primary btn-block"
+                        type="button"
+                      >
+                        {getLanguage(LanguageKey.GET_OTP_ON_MESSAGE)}
+                      </button>
+                    )}
+                    {Settings.otp_method?.includes("whatsapp") && (
+                      <button
+                        style={{ marginTop: "0px" }}
+                        disabled={!mobile}
+                        onClick={getOtpOnWhatsapp}
+                        className="btn btn-primary btn-block"
+                        type="button"
+                      >
+                        {getLanguage(LanguageKey.GET_OTP_ON_WHATSAPP)}
+                      </button>
+                    )}
+                  </div>
                 )}
               </div>
 

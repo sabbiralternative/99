@@ -143,7 +143,22 @@ const Register = () => {
       toast.error(data?.error?.description);
     }
   };
+  const getOtpOnWhatsapp = async () => {
+    const otpData = {
+      mobile: userData?.mobileNo,
+      type: "otpsend",
+    };
 
+    const res = await AxiosSecure.post(API.otpless, otpData);
+    const data = res.data;
+
+    if (data?.success) {
+      setTimer(60);
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
+    }
+  };
   // const handleGetOtpOnWhatsapp = async () => {
   //   await getOtpOnWhatsapp(userData.mobileNo, setOrder);
   // };
@@ -269,34 +284,81 @@ const Register = () => {
                   </div>
                 )}
               {tab === "mobile" && Settings.registration_mobile && (
-                <div className="mb-4 input-group position-relative username-text">
-                  <input
-                    name="mobileNo"
-                    type="number"
-                    className="form-control PhoneInput"
-                    placeholder="Mobile No."
-                    onChange={(e) =>
-                      setUserData({ ...userData, mobileNo: e.target.value })
-                    }
-                  />
-                  <span className="input-group-text">
-                    <FontAwesomeIcon icon={faPhone} className="ml-2" />
-                  </span>
-                  {timer ? (
-                    <button className="btn btn-primary btn-block" type="button">
-                      {getLanguage(LanguageKey.RETRY_IN)} {timer}
-                    </button>
-                  ) : (
-                    <button
-                      onClick={getOtp}
-                      className="btn btn-primary btn-block"
-                      type="button"
+                <Fragment>
+                  <div className="mb-4 input-group position-relative username-text">
+                    <select
+                      style={{
+                        borderTopLeftRadius: "5px",
+                        borderBottomLeftRadius: "5px",
+                        padding: "10px 2px",
+                        color: "black",
+                      }}
+                      id="dropdown-phone-button"
+                      className="rounded-l-lg border py-1.5 bg-auth px-3"
                     >
-                      {getLanguage(LanguageKey.GET_OTP_ON_MESSAGE)}
-                    </button>
-                  )}
+                      {Settings.country_code?.map((item) => {
+                        return (
+                          <option key={item} value={item}>
+                            {item}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <input
+                      name="mobileNo"
+                      type="number"
+                      className="form-control PhoneInput"
+                      placeholder="Mobile No."
+                      onChange={(e) =>
+                        setUserData({ ...userData, mobileNo: e.target.value })
+                      }
+                    />
+                    <span className="input-group-text">
+                      <FontAwesomeIcon icon={faPhone} className="ml-2" />
+                    </span>
+                    {timer ? (
+                      <button
+                        style={{
+                          marginTop: "10px",
+                        }}
+                        className="btn btn-primary btn-block"
+                        type="button"
+                      >
+                        {getLanguage(LanguageKey.RETRY_IN)} {timer}
+                      </button>
+                    ) : (
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "10px",
+                          width: "100%",
+                          marginTop: "10px",
+                        }}
+                      >
+                        {Settings.otp_method?.includes("sms") && (
+                          <button
+                            onClick={getOtp}
+                            className="btn btn-primary btn-block"
+                            type="button"
+                          >
+                            {getLanguage(LanguageKey.GET_OTP_ON_MESSAGE)}
+                          </button>
+                        )}
+                        {Settings.otp_method?.includes("whatsapp") && (
+                          <button
+                            style={{ marginTop: "0px" }}
+                            onClick={getOtpOnWhatsapp}
+                            className="btn btn-primary btn-block"
+                            type="button"
+                          >
+                            {getLanguage(LanguageKey.GET_OTP_ON_WHATSAPP)}
+                          </button>
+                        )}
+                      </div>
+                    )}
 
-                  {/* <button
+                    {/* <button
                   onClick={handleGetOtpOnWhatsapp}
                   disabled={userData?.mobileNo?.length < 10}
                   className="btn btn-primary btn-block"
@@ -304,7 +366,8 @@ const Register = () => {
                 >
                   Get OTP on Whatsapp
                 </button> */}
-                </div>
+                  </div>
+                </Fragment>
               )}
               {tab === "username" && Settings.registration_username && (
                 <div className="mb-4 input-group position-relative username-text">
